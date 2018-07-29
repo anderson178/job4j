@@ -6,7 +6,10 @@ package ru.job4j.calculate;
 	 *@version 1.0
 	*/
 public class Calculate
-{
+{	
+	/**
+	*основной метод выводящий текст "hello word" 
+	*/
 	public static void main (String[] args )
 		{
 			System.out.println("Hello word");

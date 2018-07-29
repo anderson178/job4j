@@ -4,16 +4,26 @@
     <artifactId>junior</artifactId>
     <packaging>pom</packaging>
     <version>2.0</version>
-     <name>junior</name>
-     <url>http://job4j.ru/</url>
+    <name>junior</name>
+    <url>http://job4j.ru/</url>
 
     <properties>
-       <maven.compiler.source>1.8</maven.compiler.source>
-       <maven.compiler.target>1.8</maven.compiler.target>
-       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-     </properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <modules>
-       <module>chapter_001</module>
-     </modules>
+        <module>chapter_001</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
