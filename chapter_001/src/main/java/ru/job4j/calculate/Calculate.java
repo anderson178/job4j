@@ -5,13 +5,11 @@ package ru.job4j.calculate;
 	 *@since 29.07.2018
 	 *@version 1.0
 	*/
-public class Calculate
-{	
+public class Calculate{	
 	/**
 	*основной метод выводящий текст "hello word" 
 	*/
-	public static void main (String[] args )
-		{
+	public static void main (String[] args ){
 			System.out.println("Hello word");
 		}
 }
