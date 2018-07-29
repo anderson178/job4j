@@ -7,4 +7,3 @@ public class Calculate
 			System.out.println("Hello word");
 		}
 }
-
