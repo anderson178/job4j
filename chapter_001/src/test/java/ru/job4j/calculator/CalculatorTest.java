@@ -14,25 +14,25 @@ public class CalculatorTest {
         assertThat(result, is(expected));
     }
     @Test
-    public void oneDivTwo(){
+    public void oneDivTwo() {
         Calculator calc = new Calculator();
-        calc.div(1D,1D);
+        calc.div(1D, 1D);
         double result = calc.getResult();
         double expected = 1D;
         assertThat(result, is(expected));
     }
     @Test
-    public void oneMultipleTwo(){
+    public void oneMultipleTwo() {
         Calculator calc = new Calculator();
-        calc.multiple(2D,3D);
+        calc.multiple(2D, 3D);
         double result = calc.getResult();
         double expected = 6D;
         assertThat(result, is(expected));
     }
     @Test
-    public void oneSubtractTwo(){
+    public void oneSubtractTwo() {
         Calculator calc = new Calculator();
-        calc.subtract(10D,23D);
+        calc.subtract(10D, 23D);
         double result = calc.getResult();
         double expected = -13D;
         assertThat(result, is(expected));
