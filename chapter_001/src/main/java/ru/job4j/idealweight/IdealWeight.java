@@ -6,13 +6,11 @@ package ru.job4j.idealweight;
  *@version 1.0
  */
 public class IdealWeight {
-    /**
-     * @param indexforman - индекс для мужчин.
-     * @param indexforwoman - индекс для женщин.
-     * @param generalindex - общий индекс
-     */
+    //@param indexforman - индекс для мужчин
     private int indexforman = 100;
+    //@param indexforwoman - индекс для женщин
     private int indexforwoman = 110;
+    //@param generalindex - общий индекс
     private double generalindex = 1.15;
 
     /**
