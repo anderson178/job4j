@@ -28,7 +28,7 @@ public class Point {
      * Расчитываем расстояние от точки A до точки B.
      * @param that - коорлинаты точки b
      * @return result - Результат расчета расстояния между точками А и B
-     * через this передаем кооринаты точки А
+     * через this обращаемся к координате точки А проинициализированной в методе main
      */
     public double distanceTo(Point that) {
         double result = Math.sqrt(Math.pow(that.x - this.x, 2) + Math.pow(that.y - this.y, 2));
