@@ -7,11 +7,11 @@ package ru.job4j.condition;
 public class DummyBot {
 
     //phrase one
-    String phraseone = "Привет, умник.";
+    private String phraseone = "Привет, умник.";
     //phrase two
-    String phrasetwo = "До скорой встречи.";
+    private String phrasetwo = "До скорой встречи.";
     //any other phrase
-    String anyotherpgraze = "Это ставит меня в тупик. Спросите другой вопрос.";
+    private String anyotherpgraze = "Это ставит меня в тупик. Спросите другой вопрос.";
 
     /**
      * Отвечает на вопросы.
