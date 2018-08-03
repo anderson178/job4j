@@ -7,20 +7,17 @@ package ru.job4j.max;
  */
 
 public class Max {
+    // результат содержащий максимальное число
+    int result;
+
     /**
      *
      * @param a - first number.
      * @param b - second number.
      * @return - the result of comparing two numbers.
      */
-    public String summation(int a, int b) {
-        String result;
-        if (a > b) {
-            result = "Первое число " + a + " больше чем второе число " + b;
-
-        } else {
-            result = "Второе число " + b + " больше чем первое " + a;
-        }
+    public int summation(int a, int b) {
+       result = (a>b) ? a:b;
         return result;
     }
 }

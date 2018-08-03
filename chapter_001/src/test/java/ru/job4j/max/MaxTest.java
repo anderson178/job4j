@@ -13,7 +13,7 @@ public class MaxTest {
     @Test
     public void whenFirstLessSecond() {
         Max maxim = new Max();
-        String result = maxim.summation(2, 4);
-        assertThat(result, is("Второе число " + 4 + " больше чем первое " + 2));
+        int result = maxim.summation(2, 4);
+        assertThat(result, is(4));
     }
 }
