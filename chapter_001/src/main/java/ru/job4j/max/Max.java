@@ -17,7 +17,7 @@ public class Max {
      * @return - the result of comparing two numbers.
      */
     public int summation(int a, int b) {
-       result = (a>b) ? a:b;
+       result = (a > b) ? a : b;
         return result;
     }
 }
