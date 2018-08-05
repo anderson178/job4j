@@ -3,7 +3,7 @@ package ru.job4j.max;
 /**
  * @author Denis Mironenko
  * @version $Id$
- * @since 03.08.2018
+ * @since 05.08.2018
  */
 
 public class Max {
@@ -29,9 +29,7 @@ public class Max {
      * @return - максимальное число
      */
     public int max(int first, int second, int third) {
-        int temp = this.summation(first, second);
-        temp = this.summation(temp, third);
-        return temp;
+        return (this.summation(third, (this.summation(first, second))));
 
     }
 }
