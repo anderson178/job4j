@@ -13,7 +13,7 @@ public class MaxTest {
     @Test
     public void whenFirstLessSecond() {
         Max maxim = new Max();
-        int result = maxim.summation(2, 4);
-        assertThat(result, is(4));
+        int result = maxim.max(2, 4, 6);
+        assertThat(result, is(6));
     }
 }
