@@ -1,44 +1,49 @@
 package ru.job4j.loop;
+import java.util.function.BiPredicate;
+
+/**
+ * @author Denis Mironenko
+ * @version $Id$
+ * @since 08.08.2018
+ */
 
 public class Paint {
-
     public String rightTrl(int height) {
-        StringBuilder screenright = new StringBuilder();
-        String ln = System.lineSeparator();
-        int weight = height;
-        for (int row = 0; row < height; row++) {
-            for (int column = 0; column < weight; column++) {
-                screenright.append((row >= column) ? "^" : " ");
-            }
-            screenright.append(ln);
-        }
-        return screenright.toString();
+        return this.loopBy(
+                height,
+                height,
+                (row, column) -> row >= column
+        );
     }
 
     public String leftTrl(int height) {
-        StringBuilder screenright = new StringBuilder();
-        String ln = System.lineSeparator();
-        int weight = height;
-        int indexWhiteSpaces = height - 1;
-        for (int row = 0; row < height; row++) {
-            for (int column = 0; column < weight; column++) {
-                screenright.append((column >= indexWhiteSpaces) ? "^" : " ");
-            }
-            screenright.append(ln);
-            indexWhiteSpaces--;
-        }
-        return screenright.toString();
+        return this.loopBy(
+                height,
+                height,
+                (row, column) -> row >= height - column - 1
+        );
     }
-    public String piramid(int height) {
-        StringBuilder screenright = new StringBuilder();
-        String ln = System.lineSeparator();
-        int weight = 2 * height - 1;
-        for (int row = 0; row < height; row++) {
-            for (int column = 0; column < weight; column++) {
-                screenright.append((row >= height - column - 1 && row + height - 1 >= column) ? "^" : " ");
+
+    public String pyramid(int height) {
+        return this.loopBy(
+                height,
+                2 * height - 1,
+                (row, column) -> row >= height - column - 1 && row + height - 1 >= column
+        );
+    }
+
+    private String loopBy(int height, int weight, BiPredicate<Integer, Integer> predict) {
+        StringBuilder screen = new StringBuilder();
+        for (int row = 0; row != height; row++) {
+            for (int column = 0; column != weight; column++) {
+                if (predict.test(row, column)) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
+                }
             }
-            screenright.append(ln);
+            screen.append(System.lineSeparator());
         }
-        return screenright.toString();
+        return screen.toString();
     }
 }
