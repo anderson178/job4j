@@ -15,10 +15,10 @@ public class Check {
     public boolean mono(boolean[] mas) {
         boolean temp = true;
         boolean temprtrn = true;
-        for (int i = 0; i < mas.length-1; i++) {
+        for (int i = 0; i < mas.length - 1; i++) {
             temp = mas[i];
-            if (mas[i+1] == temp) {
-                temp = mas[i+1];
+            if (mas[i + 1] == temp) {
+                temp = mas[i + 1];
                 temprtrn = true;
             } else {
                 temprtrn = false;
