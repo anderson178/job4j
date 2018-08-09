@@ -13,16 +13,11 @@ public class Check {
      * @return - возвращает true если все элементы массива равны одному состоянию иначе вернет false.
      */
     public boolean mono(boolean[] mas) {
-        boolean temp = true;
         boolean temprtrn = true;
         for (int i = 0; i < mas.length - 1; i++) {
-            temp = mas[i];
-            if (mas[i + 1] == temp) {
-                temp = mas[i + 1];
-                temprtrn = true;
-            } else {
+            //temp = mas[i];
+            if (mas[i] != mas[i + 1]) {
                 temprtrn = false;
-                break;
             }
         }
         return temprtrn;
