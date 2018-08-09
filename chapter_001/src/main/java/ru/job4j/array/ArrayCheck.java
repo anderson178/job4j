@@ -17,13 +17,11 @@ public class ArrayCheck {
      * массивов.
      */
     public boolean checkWord(String word, String checkSymbols) {
-        boolean result = false;
+        boolean result = true;
         char[] arrayWordSymbols = word.toCharArray();
         char[] arrayCheckSymbols = checkSymbols.toCharArray();
         for (int i = 0; (i < arrayCheckSymbols.length) & (i < arrayWordSymbols.length); i++) {
-            if (arrayWordSymbols[i] == arrayCheckSymbols[i]) {
-                result = true;
-            } else {
+            if (arrayWordSymbols[i] != arrayCheckSymbols[i]) {
                 result = false;
                 break;
             }
