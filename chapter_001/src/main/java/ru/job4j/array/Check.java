@@ -18,6 +18,7 @@ public class Check {
             //temp = mas[i];
             if (mas[i] != mas[i + 1]) {
                 temprtrn = false;
+                break;
             }
         }
         return temprtrn;
