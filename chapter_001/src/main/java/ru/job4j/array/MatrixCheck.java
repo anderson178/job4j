@@ -16,7 +16,7 @@ public class MatrixCheck {
     public boolean mono(boolean[][] mas) {
         boolean temp = mas[0][0];
         boolean result = true;
-        int countEnd = mas.length-1;
+        int countEnd = mas.length - 1;
         //прямая диагональ
         for (int i = 1; i < mas.length; i++) {
             if (mas[i][i] != temp) {
