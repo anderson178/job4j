@@ -19,7 +19,6 @@ public class MatrixCheck {
         int countEnd = mas.length-1;
         //прямая диагональ
         for (int i = 1; i < mas.length; i++) {
-            //boolean lala = mas[i][i];
             if (mas[i][i] != temp) {
                 result = false;
                 break;
