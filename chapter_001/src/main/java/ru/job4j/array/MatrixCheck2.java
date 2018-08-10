@@ -15,7 +15,6 @@ public class MatrixCheck2 {
      * первое условие проверяет прямую диагональ а второе обратную диагональ
      */
     public boolean mono2(boolean[][] mas) {
-        boolean temp = mas[0][0];
         boolean result = true;
         int countEnd = mas.length - 1;
         for (int i = 0; i < mas.length - 1; i++) {
