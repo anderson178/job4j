@@ -34,9 +34,7 @@ public class ArrayDuplicate {
             comparedValue = mas[j];
             for (int i = j; i < endIndex; i++) {
                 if (comparedValue.equals(mas[i + 1])) {
-                    temp = mas[i + 1];
                     mas[i + 1] = mas[endIndex];
-                    mas[endIndex] = temp;
                     endIndex--;
                     count++;
                     totalCount++;
@@ -53,5 +51,20 @@ public class ArrayDuplicate {
             }
         }
         return (Arrays.copyOf(mas, mas.length - totalCount));
+
+        //второй вариант
+        /*
+         int unique = array.length;
+    for (int out = 0; out < unique; out++) {
+        for (int in = out + 1; in < unique; in++) {
+            if (array[out].equals(array[in])) {
+                array[in] = array[unique - 1];
+                in--;
+                unique--;
+            }
+        }
+    }
+    return Arrays.copyOf(array, unique);
+         */
     }
 }
