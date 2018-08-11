@@ -13,13 +13,24 @@ public class ArrayDuplicate {
      * мметод удаления дубликатов
      * @param mas - входящий массив
      * @return - массив без дубликатов
+     *
      */
     public String[] remove(String[] mas) {
-        String comparedValue;
-        String temp;
+        //ключ для возврата к начальному поисковому элементу если было перемещение после первого прохода
+        boolean move = false;
+        //кол-во перемещений во внутреннем цикле
         int count = 0;
+        // общее кол-во перемещений
+        int totalCount = 0;
+        //сравниваемый элемент
+        String comparedValue;
+        //временная переменная для перетасовки элментов
+        String temp;
+        //границы внутреннего цикла
         int endIndex = mas.length - 1;
-        for (int j = 0; j < mas.length - 1; j++) {
+        //границы внешнего цикла
+        int outIndex = mas.length - 1;
+        for (int j = 0; j < outIndex; j++) {
             comparedValue = mas[j];
             for (int i = j; i < endIndex; i++) {
                 if (comparedValue.equals(mas[i + 1])) {
@@ -28,11 +39,19 @@ public class ArrayDuplicate {
                     mas[endIndex] = temp;
                     endIndex--;
                     count++;
+                    totalCount++;
+                    move = true;
+                } else {
+                    move = false;
                 }
             }
+            //условие для возврата к начальному проверяемому элементу массива
+            if (move) {
+                j = j - 1;
+                outIndex = outIndex - count;
+                count = 0;
+            }
         }
-        String[] tempMas = Arrays.copyOf(mas, mas.length - count);
-        return tempMas;
-
+        return (Arrays.copyOf(mas, mas.length - totalCount));
     }
 }
