@@ -2,10 +2,18 @@ package ru.job4j.array;
 
 import java.util.Arrays;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 11.08.2018
+ */
+
 public class ArrayDuplicate {
-
-
-
+    /**
+     * мметод удаления дубликатов
+     * @param mas - входящий массив
+     * @return - массив без дубликатов
+     */
     public String[] remove(String[] mas) {
         String comparedValue;
         String temp;
