@@ -14,19 +14,34 @@ public class ArraySortForMas3 {
      * @param masB - второй остортированный массив
      * @return - объединенный отсортированный массив
      */
+    public int minNumber (int[] a , int[] b) {
+
+
+    }
+
     public int[] sortMas3 (int[] masA, int[] masB) {
         int lengthMasAB = masA.length + masB.length;
         int[] masC = new int [lengthMasAB];
-        int j = 0;
-        for (int  i = 0; i < masA.length; i++) {
-            if (masA[i] < masB[i]) {
-                masC[j] = masA[i];
-                masC[j+1] = masB[i];
-            } else {
-                masC[j] = masB[i];
-                masC[j+1] = masA[i];
+        //int j = 1;
+        int masACount = 0;
+        int masBCount = 0;
+        int masCCount = 0;
+        for (int  i = 0; i < masC.length; i++) {
+
+            for (int j = 0; j < masA.length; j++) {
+                if (masA[masACount] < masB[masBCount]) {
+                    masC[masCCount] = masA[masACount];
+                    masACount++;
+                    masCCount++;
+
+
+                } else {
+                    masC[masCCount] = masB[masBCount];
+                    masBCount++;
+                    masCCount++;
+                    j--;
+                }
             }
-            j = j + 2;
         }
         return masC;
     }
