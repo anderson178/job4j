@@ -21,7 +21,7 @@ public class ArraySortForMas3 {
         int masBCount = 0;
         int masCCount = 0;
             for (int j = 0; j < masC.length; j++) {
-                //проверяка границ массивов
+                //проверка границ массивов
                 if ((masACount != masA.length) && (masBCount != masB.length)) {
                     //поиск минимального элемента
                     if (masA[masACount] < masB[masBCount]) {
