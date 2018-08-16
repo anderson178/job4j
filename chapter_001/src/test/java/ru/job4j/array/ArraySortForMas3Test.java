@@ -12,12 +12,32 @@ import static org.junit.Assert.assertThat;
 
 public class ArraySortForMas3Test {
     @Test
-    public void testSortMas3() {
-        int[] masA = {1, 11, 21 ,31};
+    public void testSortMas31() {
+        int[] masA = {1, 11, 21, 31};
         int[] masB = {2, 4, 5, 8};
         ArraySortForMas3 sort = new ArraySortForMas3();
         int[] result = sort.sortMas3(masA, masB);
-        int[] expect = new int[] {1, 2, 5, 7, 8, 10, 13, 15};
+        int[] expect = new int[]{1, 2, 4, 5, 8, 11, 21, 31};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void testSortMas32() {
+        int[] masA = {8, 11, 21, 31};
+        int[] masB = {2, 3, 4, 64};
+        ArraySortForMas3 sort = new ArraySortForMas3();
+        int[] result = sort.sortMas3(masA, masB);
+        int[] expect = new int[]{2, 3, 4, 8, 11, 21, 31, 64};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void testSortMas33() {
+        int[] masA = {1, 2, 3, 4};
+        int[] masB = {5, 6, 7, 8};
+        ArraySortForMas3 sort = new ArraySortForMas3();
+        int[] result = sort.sortMas3(masA, masB);
+        int[] expect = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
         assertThat(result, is(expect));
     }
 }

@@ -7,18 +7,6 @@ package ru.job4j.array;
  */
 
 public class ArraySortForMas3 {
-
-    /**
-     * метод получения нового объединенного отсортированного массива
-     * @param masA - первый отсортированный массив
-     * @param masB - второй остортированный массив
-     * @return - объединенный отсортированный массив
-     */
-    public int minNumber (int[] a , int[] b) {
-
-
-    }
-
     public int[] sortMas3 (int[] masA, int[] masB) {
         int lengthMasAB = masA.length + masB.length;
         int[] masC = new int [lengthMasAB];
@@ -26,22 +14,33 @@ public class ArraySortForMas3 {
         int masACount = 0;
         int masBCount = 0;
         int masCCount = 0;
-        for (int  i = 0; i < masC.length; i++) {
 
-            for (int j = 0; j < masA.length; j++) {
-                if (masA[masACount] < masB[masBCount]) {
-                    masC[masCCount] = masA[masACount];
-                    masACount++;
-                    masCCount++;
+            for (int j = 0; j < masC.length; j++) {
+                if ((masACount != masA.length) && (masBCount != masB.length)) {
 
 
-                } else {
-                    masC[masCCount] = masB[masBCount];
+                    if (masA[masACount] < masB[masBCount]) {
+                        masC[masCCount] = masA[masACount];
+                        masACount++;
+                        masCCount++;
+
+
+                    } else {
+
+                        masC[masCCount] = masB[masBCount];
+                        masBCount++;
+                        masCCount++;
+                        //j--;
+                    }
+                } else if (masACount == masA.length) {
+                    masC[j] = masB[masBCount];
                     masBCount++;
-                    masCCount++;
-                    j--;
+                } else {
+                    masC[j] = masA[masACount];
+                    masACount++;
                 }
-            }
+
+
         }
         return masC;
     }
