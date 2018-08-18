@@ -9,11 +9,8 @@ import java.nio.channels.Pipe;
  */
 
 public class Point {
-    //расстояние от предпологаемой точки до оси x
     private int x;
-    //расстояние от предпологаемой точки до оси y
     private int y;
-
     /**
      * Данный конструктор необходим для инициалиизации точек
      * @param x - точки по оси X
@@ -23,7 +20,6 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
     /**
      * Расчитываем расстояние от точки A до точки B.
      * @param that - коорлинаты точки b

@@ -6,12 +6,9 @@ package ru.job4j.condition;
  */
 public class DummyBot {
 
-    //phrase one
     private String phraseone = "Привет, умник.";
-    //phrase two
     private String phrasetwo = "До скорой встречи.";
-    //any other phrase
-    private String anyotherpgraze = "Это ставит меня в тупик. Спросите другой вопрос.";
+    private String any = "Это ставит меня в тупик. Спросите другой вопрос.";
 
     /**
      * Отвечает на вопросы.
@@ -19,12 +16,12 @@ public class DummyBot {
      * @return Ответ.
      */
     public String answer(String question) {
-        String answ = this.anyotherpgraze;
+        String result = this.any;
         if (question.equals("Привет, Бот.")) {
-            answ = this.phraseone;
+            result = this.phraseone;
         } else if (question.equals("Пока.")) {
-            answ = this.phrasetwo;
+            result = this.phrasetwo;
         }
-        return answ;
+        return result;
     }
 }

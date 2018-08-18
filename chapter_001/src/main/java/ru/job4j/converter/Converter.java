@@ -1,14 +1,19 @@
 package ru.job4j.converter;
+
 /**
- * Корвертор валюты.
+ * конвертер Валюты
+ * @author Denis Mironenko
+ * @version $Id$
+ * @since 18.08.2018
  */
+
 public class Converter {
     /**
-     *@dollarkurs - курс доллара.
-     *@evrokurs - курс евро.
+     *dollarkurs - курс доллара.
+     *evrokurs - курс евро.
      */
-    private int dollarkurs = 60;
-    private int evrokurs = 70;
+    private int dollarKurs = 60;
+    private int evroKurs = 70;
 
     /**
      * Конвертируем рубли в евро.
@@ -16,7 +21,7 @@ public class Converter {
      * @return Евро.
      */
     public int rubleToEuro(int value) {
-        return (value / evrokurs);
+        return (value / evroKurs);
     }
     /**
      * Конвертируем рубли в доллары.
@@ -24,7 +29,7 @@ public class Converter {
      * @return Доллары
      */
     public int rubleToDollar(int value) {
-        return (value / dollarkurs);
+        return (value / dollarKurs);
     }
     /**
      * Конвертируем евро в рубли.
@@ -32,7 +37,7 @@ public class Converter {
      * @return рубли.
      */
     public int euroToRubli(int value) {
-        return (value * evrokurs);
+        return (value * evroKurs);
     }
     /**
      * Конвертируем доллары в рубли.
@@ -40,6 +45,6 @@ public class Converter {
      * @return рубли
      */
     public int dollarToRubli(int value) {
-        return (value  * dollarkurs);
+        return (value  * dollarKurs);
     }
 }

@@ -18,10 +18,10 @@ public class ArrayCheck {
      */
     public boolean checkWord(String word, String checkSymbols) {
         boolean result = true;
-        char[] arrayWordSymbols = word.toCharArray();
-        char[] arrayCheckSymbols = checkSymbols.toCharArray();
-        for (int i = 0; (i < arrayCheckSymbols.length) & (i < arrayWordSymbols.length); i++) {
-            if (arrayWordSymbols[i] != arrayCheckSymbols[i]) {
+        char[] wordArray = word.toCharArray();
+        char[] checkArray = checkSymbols.toCharArray();
+        for (int i = 0; (i < checkArray.length) & (i < wordArray.length); i++) {
+            if (wordArray[i] != checkArray[i]) {
                 result = false;
                 break;
             }

@@ -5,11 +5,8 @@ package ru.job4j.condition;
  * @since 03.08.2018
  */
 public class Triangle {
-    //координаты точки a
     private Point a;
-    //координаты точки b
     private Point b;
-    //координаты точки c
     private Point c;
 
     /**

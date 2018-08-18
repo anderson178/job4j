@@ -15,13 +15,13 @@ public class FindLoop {
      * @return - возвращает индекс искомого элемента.
      */
     public int indexOf(int[] mas, int element) {
-        int temp = -1;
+        int result = -1;
         for (int i = 0; i < mas.length; i++) {
             if (mas[i] == element) {
-                temp = i;
+                result = i;
                 break;
             }
         }
-        return temp;
+        return result;
     }
 }

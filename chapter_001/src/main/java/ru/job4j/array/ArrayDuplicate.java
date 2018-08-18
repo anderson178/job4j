@@ -16,19 +16,12 @@ public class ArrayDuplicate {
      *
      */
     public String[] remove(String[] mas) {
-        //ключ для возврата к начальному поисковому элементу если было перемещение после первого прохода
         boolean move = false;
-        //кол-во перемещений во внутреннем цикле
         int count = 0;
-        // общее кол-во перемещений
         int totalCount = 0;
-        //сравниваемый элемент
         String comparedValue;
-        //временная переменная для перетасовки элментов
         String temp;
-        //границы внутреннего цикла
         int endIndex = mas.length - 1;
-        //границы внешнего цикла
         int outIndex = mas.length - 1;
         for (int j = 0; j < outIndex; j++) {
             comparedValue = mas[j];
@@ -43,7 +36,6 @@ public class ArrayDuplicate {
                     move = false;
                 }
             }
-            //условие для возврата к начальному проверяемому элементу массива
             if (move) {
                 j = j - 1;
                 outIndex = outIndex - count;

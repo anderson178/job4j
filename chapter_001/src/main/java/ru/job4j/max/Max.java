@@ -8,7 +8,7 @@ package ru.job4j.max;
 
 public class Max {
      /**
-     *
+     * сравнивает два значения и возвращает большее
      * @param a - first number.
      * @param b - second number.
      * @return - the result of comparing two numbers.
