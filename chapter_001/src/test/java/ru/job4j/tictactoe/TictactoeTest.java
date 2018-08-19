@@ -4,6 +4,12 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Denis Mironenko
+ * @version $Id$
+ * @since 19.08.2018
+ */
+
 public class TictactoeTest {
     @Test
     public void whenHasXWinner() {
@@ -88,7 +94,6 @@ public class TictactoeTest {
         Logic3T login = new Logic3T(table);
         assertThat(login.hasGap(), is(true));
     }
-
     /**
      * false - если все поля заняты
      */
