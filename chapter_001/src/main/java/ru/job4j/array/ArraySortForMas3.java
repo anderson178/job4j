@@ -18,17 +18,14 @@ public class ArraySortForMas3 {
         int[] masC = new int[lengthMasAB];
         int masACount = 0;
         int masBCount = 0;
-        int masCCount = 0;
             for (int j = 0; j < masC.length; j++) {
                 if ((masACount != masA.length) && (masBCount != masB.length)) {
                     if (masA[masACount] < masB[masBCount]) {
-                        masC[masCCount] = masA[masACount];
+                        masC[j] = masA[masACount];
                         masACount++;
-                        masCCount++;
                     } else {
-                        masC[masCCount] = masB[masBCount];
+                        masC[j] = masB[masBCount];
                         masBCount++;
-                        masCCount++;
                     }
                 } else if (masACount == masA.length) {
                     masC[j] = masB[masBCount];

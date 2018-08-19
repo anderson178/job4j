@@ -49,4 +49,13 @@ public class ArraySortForMas3Test {
         int[] expect = new int[]{1, 2, 5, 7, 10, 11, 45, 46};
         assertThat(result, is(expect));
     }
+    @Test
+    public void testSortMas35() {
+        int[] masA = new int[0];
+        int[] masB = {2, 4, 5, 8};
+        ArraySortForMas3 sort = new ArraySortForMas3();
+        int[] result = sort.sortMas3(masA, masB);
+        int[] expect = new int[]{2, 4, 5, 8};
+        assertThat(result, is(expect));
+    }
 }
