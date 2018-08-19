@@ -8,6 +8,7 @@ public class Logic3T {
         this.table = table;
     }
 
+
     public boolean isWinnerX() {
       boolean result = false;
       int countEnd = this.table.length - 1;
@@ -80,7 +81,7 @@ public class Logic3T {
         int countCheck = 0;
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table.length; j++) {
-                if (!this.table[i][j].hasMarkX()) {
+                if (this.table[i][j].hasMarkO()) {
                     countCheck++;
                     if (countCheck == this.table.length) {
                         result = true;
@@ -95,7 +96,7 @@ public class Logic3T {
         //проверяем столбцы
         for (int j = 0; j < this.table.length; j++) {
             for (int i = 0; i < this.table.length; i++) {
-                if (!this.table[i][j].hasMarkX()) {
+                if (this.table[i][j].hasMarkO()) {
                     countCheck++;
                     if (countCheck == this.table.length) {
                         result = true;
@@ -110,7 +111,7 @@ public class Logic3T {
 
         //прямая диагональ
         for (int i = 0; i < this.table.length; i++) {
-            if (!this.table[i][i].hasMarkX()) {
+            if (this.table[i][i].hasMarkO()) {
                 countCheck++;
                 if (countCheck == this.table.length) {
                     result = true;
@@ -123,7 +124,7 @@ public class Logic3T {
         }
         //обратная диагональ
         for (int i = 0; i < this.table.length; i++) {
-            if (!this.table[i][countEnd].hasMarkX()) {
+            if (this.table[i][countEnd].hasMarkO()) {
                 countCheck++;
                 if (countCheck == this.table.length) {
                     result = true;
@@ -140,6 +141,16 @@ public class Logic3T {
     }
 
     public boolean hasGap() {
-        return true;
+        boolean result = false;
+        int countCheck = 0;
+        for (int i = 0; i < this.table.length; i++) {
+            for (int j = 0; j < this.table.length; j++) {
+                if (!this.table[i][j].hasMarkX() && !this.table[i][j].hasMarkO()) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }
