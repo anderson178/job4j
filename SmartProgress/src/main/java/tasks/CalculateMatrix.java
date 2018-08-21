@@ -15,13 +15,14 @@ public class CalculateMatrix {
     public int[] calculateMatrixOnVector (int matrix[][], int[] vector) {
         int[] result = new int[vector.length];
         int temp = 0;
-        if (matrix.length == vector.length)
-        for (int i = 0; i < vector.length; i++) {
-            for (int j =0; j <vector.length; j++) {
-                temp += matrix[i][j] * vector[j];
+        if (matrix.length == vector.length) {
+            for (int i = 0; i < vector.length; i++) {
+                for (int j = 0; j < vector.length; j++) {
+                    temp += matrix[i][j] * vector[j];
+                }
+                result[i] = temp;
+                temp = 0;
             }
-            result[i] = temp;
-            temp = 0;
         }
         return result;
     }
