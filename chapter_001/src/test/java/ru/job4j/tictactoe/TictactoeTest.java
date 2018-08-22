@@ -74,9 +74,9 @@ public class TictactoeTest {
     @Test
     public void whenHasOBackDiagonalWinner() {
         Figure3T[][] table = {
-                {new Figure3T(), new Figure3T(), new Figure3T(false)},
+                {new Figure3T(false), new Figure3T(), new Figure3T(false)},
                 {new Figure3T(), new Figure3T(false), new Figure3T()},
-                {new Figure3T(false), new Figure3T(), new Figure3T()},
+                {new Figure3T(), new Figure3T(), new Figure3T(false)},
         };
         Logic3T login = new Logic3T(table);
         assertThat(login.isWinnerO(), is(true));

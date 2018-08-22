@@ -125,11 +125,9 @@ public class Logic3T {
                     result = true;
                     break;
                 }
-            } else {
-                i = this.table.length;
-            }
-            countCheck = 0;
+            } else break;
         }
+        countCheck = 0;
         //обратная диагональ
         for (int i = 0; i < this.table.length; i++) {
             if (this.table[i][countEnd].hasMarkO()) {
@@ -138,29 +136,27 @@ public class Logic3T {
                     result = true;
                     break;
                 }
-            } else {
-                i = this.table.length;
-            }
+            } else break;
             countEnd--;
         }
-
         return result;
-
     }
     /**
      * Проверяет все лип поля заполнены
      * @return - true если есть пустые поля, false - если все поля заполнены
      */
     public boolean hasGap() {
+        boolean temp = false;
         boolean result = false;
-        int countCheck = 0;
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table.length; j++) {
                 if (!this.table[i][j].hasMarkX() && !this.table[i][j].hasMarkO()) {
                     result = true;
+                    temp = true;
                     break;
                 }
             }
+            if (temp) break;;
         }
         return result;
     }
