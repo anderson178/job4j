@@ -7,7 +7,7 @@ package ru.job4j.profession;
 public class Doctor extends Profession {
     String type;
     String typeYears;
-    public Diagnose heal (Pacient pacient) {
+    public Diagnose heal(Pacient pacient) {
         Diagnose diagnose = new Diagnose();
         return diagnose;
     }

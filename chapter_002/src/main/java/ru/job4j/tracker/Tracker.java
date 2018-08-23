@@ -33,7 +33,7 @@ public class Tracker {
 		}
 	}
 	public Item findById(String id) {
-		Item result = new Item ("sd", "sd");
+		Item result = new Item("sd",  "sd");
 		for (int i = 0; i < this.items.length; i++) {
 			if (this.items[i].getId().equals(id)) {
 				result = this.items[i];
