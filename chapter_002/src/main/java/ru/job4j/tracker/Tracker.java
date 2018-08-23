@@ -2,21 +2,39 @@ package ru.job4j.tracker;
 
 import java.util.*;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 23.08.2018
+ */
+
 public class Tracker {
 	private Item[] items = new Item[100];
 	private int position = 0;
-	private static final Random RN = new Random();		
-		
+	private static final Random RN = new Random();
+
+	/**
+	 * метод генерации id для заявки
+	 * @return
+	 */
 	private String generatedId() {
 		return String.valueOf(System.currentTimeMillis() + RN.nextInt());
 	}
-	
-	
+	/**
+	 * добавление новой заявки в трекер
+	 * @param item - заявка
+	 * @return
+	 */
 	public Item add(Item item) {
 		item.setId(this.generatedId());		
 		items[position++] = item;
 		return item;		
 	}
+
+	/**
+	 * выводит список всех заявок в трекере
+	 * @return
+	 */
 	public Item[] getAll() {
 		Item[] result = new Item[this.position];
 		for (int i = 0; i < this.position; i++) {
@@ -24,6 +42,12 @@ public class Tracker {
 		}
 		return result;
 	}
+
+	/**
+	 * заменяет существущую заявку на другую по id
+	 * @param id - идентификатор заявки
+	 * @param item - заявка
+	 */
 	public void replace(String id, Item item) {
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
@@ -32,6 +56,12 @@ public class Tracker {
 			}			
 		}
 	}
+
+	/**
+	 * поиск заявки по id
+	 * @param id - идентификатор заявки
+	 * @return
+	 */
 	public Item findById(String id) {
 		Item result = null;
 		for (int i = 0; i < this.position; i++) {
@@ -42,7 +72,12 @@ public class Tracker {
 		}
 		return result;
 	}
-	//для того чтобы посчитать кол-во совпадений для создания массива нужной длины
+
+	/**
+	 * метод подсчета кол-ва совпадающих по имени заявок
+	 * @param key
+	 * @return
+	 */
 	public int countCoincides(String key) {		
 		int index = 0;
 		for (int i = 0; i < this.position; i++) {
@@ -51,8 +86,12 @@ public class Tracker {
 			}
 		}
 		return index;
-		
-	}	
+	}
+	/**
+	 * метод поиска заявки по имени
+	 * @param keyName - имя заявки
+	 * @return
+	 */
 	public Item[] findByName(String keyName) {		
 		int sizeArray = countCoincides(keyName);
 		int index = 0;
@@ -64,6 +103,39 @@ public class Tracker {
 		}					
 		return result;
 	}
+	/**
+	 * метод определения индекса заявки по id
+	 * @param id - идентификатор заявки
+	 * @return
+	 */
+	public int findIndexById(String id) {
+		int result = 0;
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getId().equals(id)) {
+				result = i;
+				break;
+			}			
+		}
+		return result;
+	}
+
+	/**
+	 * метод удаления заявки по id
+	 * @param id - идентификатор заявки
+	 * @return
+	 */
+	public Item[] removeItemById(String id) {
+		Item[] result = new Item[this.position - 1];	
+		int indexResult = 0;
+		int indexById = findIndexById(id);
+		for (int i = 0; i < this.position; i++) {
+			if (i != indexById) {
+				result[indexResult++] = this.items[i];
+			}			
+		}
+		return result;		
+	}
+	
 	
 	
 }

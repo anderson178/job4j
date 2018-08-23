@@ -4,6 +4,13 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Метод-тесты для операций в трекере
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 23.08.2018
+ */
+
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
@@ -37,11 +44,26 @@ public class TrackerTest {
         assertThat(tracker.findByName("test1"), is(items));
     }
     @Test
-    public void whenFindidreturnItem() {
+    public void whenFindiIdReturnItem() {
         Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription1");
         tracker.add(first);
         String id = first.getId();
         assertThat(tracker.findById(id), is(first));
+    }
+    @Test
+    public void removeWhenById() {
+        Tracker tracker = new Tracker();
+        Item first = new Item("test1", "testDescription1");
+        tracker.add(first);
+        Item second = new Item("test2", "testDescription2");
+        tracker.add(second);
+        Item third = new Item("test3", "testDescription3");
+        tracker.add(third);
+        String id = second.getId();
+        Item[] items = new Item[2];
+        items[0] = first;
+        items[1] = third;
+        assertThat(tracker.removeItemById(id), is(items));
     }
 }
