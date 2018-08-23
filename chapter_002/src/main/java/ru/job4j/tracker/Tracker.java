@@ -18,14 +18,14 @@ public class Tracker {
 		return item;		
 	}
 	public Item[] getAll() {
-		Item[] result = new Item[this.items.length];
-		for (int i = 0; i < this.items.length; i++) {
+		Item[] result = new Item[this.position];
+		for (int i = 0; i < this.position; i++) {
 			result[i] = this.items[i];
 		}
 		return result;
 	}
 	public void replace(String id, Item item) {
-		for (int i = 0; i < this.items.length; i++) {
+		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				this.items[i] = item;
 				break;
@@ -33,13 +33,35 @@ public class Tracker {
 		}
 	}
 	public Item findById(String id) {
-		Item result = new Item("sd",  "sd");
-		for (int i = 0; i < this.items.length; i++) {
+		Item result = null;
+		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				result = this.items[i];
 				break;
 			}			
 		}
+		return result;
+	}
+	//для того чтобы посчитать кол-во совпадений для создания массива нужной длины
+	public int countCoincides(String key) {		
+		int index = 0;
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getName().equals(key)) {
+				index++;
+			}
+		}
+		return index;
+		
+	}	
+	public Item[] findByName(String keyName) {		
+		int sizeArray = countCoincides(keyName);
+		int index = 0;
+		Item[] result = new Item[sizeArray];
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getName().equals(keyName)) {
+				result[index++] = this.items[i];
+			}
+		}					
 		return result;
 	}
 	
