@@ -30,7 +30,6 @@ public class Tracker {
 		items[position++] = item;
 		return item;		
 	}
-
 	/**
 	 * выводит список всех заявок в трекере
 	 * @return
@@ -42,7 +41,6 @@ public class Tracker {
 		}
 		return result;
 	}
-
 	/**
 	 * заменяет существущую заявку на другую по id
 	 * @param id - идентификатор заявки
@@ -56,7 +54,6 @@ public class Tracker {
 			}			
 		}
 	}
-
 	/**
 	 * поиск заявки по id
 	 * @param id - идентификатор заявки
@@ -72,7 +69,6 @@ public class Tracker {
 		}
 		return result;
 	}
-
 	/**
 	 * метод подсчета кол-ва совпадающих по имени заявок
 	 * @param key
@@ -118,7 +114,6 @@ public class Tracker {
 		}
 		return result;
 	}
-
 	/**
 	 * метод удаления заявки по id
 	 * @param id - идентификатор заявки
@@ -134,8 +129,5 @@ public class Tracker {
 			}			
 		}
 		return result;		
-	}
-	
-	
-	
+	}	
 }
