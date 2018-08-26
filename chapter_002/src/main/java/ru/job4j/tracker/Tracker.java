@@ -35,11 +35,7 @@ public class Tracker {
 	 * @return
 	 */
 	public Item[] getAll() {
-		Item[] result = new Item[this.position];
-		for (int i = 0; i < this.position; i++) {
-			result[i] = this.items[i];
-		}
-		return result;
+		return (Arrays.copyOf(this.items, this.position));
 	}
 	/**
 	 * заменяет существущую заявку на другую по id
@@ -70,34 +66,20 @@ public class Tracker {
 		return result;
 	}
 	/**
-	 * метод подсчета кол-ва совпадающих по имени заявок
-	 * @param key
-	 * @return
-	 */
-	public int countCoincides(String key) {		
-		int index = 0;
-		for (int i = 0; i < this.position; i++) {
-			if (this.items[i].getName().equals(key)) {
-				index++;
-			}
-		}
-		return index;
-	}
-	/**
 	 * метод поиска заявки по имени
 	 * @param keyName - имя заявки
 	 * @return
 	 */
-	public Item[] findByName(String keyName) {		
-		int sizeArray = countCoincides(keyName);
+	public Item[] findByName(String keyName) {
 		int index = 0;
-		Item[] result = new Item[sizeArray];
+		int count = 0;
+		Item[] result = new Item[this.position];
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getName().equals(keyName)) {
 				result[index++] = this.items[i];
 			}
 		}					
-		return result;
+		return (Arrays.copyOf(result, index));
 	}
 	/**
 	 * метод определения индекса заявки по id
@@ -119,7 +101,7 @@ public class Tracker {
 	 * @param id - идентификатор заявки
 	 * @return
 	 */
-	public Item[] removeItemById(String id) {
+	public Item[] remove(String id) {
 		Item[] result = new Item[this.position - 1];	
 		int indexResult = 0;
 		int indexById = findIndexById(id);
