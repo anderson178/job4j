@@ -7,9 +7,8 @@ import static org.junit.Assert.assertThat;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 25.08.2018
+ * @since 26.08.2018
  */
-
 public class StringReverseTest {
     @Test
     public  void reserveLine() {

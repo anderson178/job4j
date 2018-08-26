@@ -14,7 +14,7 @@ public class Register {
 	 * @param line - incoming line
 	 * @return
 	 */
-	public String normaslRegister(String line) {
+	public String normalsRegister(String line) {
 		String[] splitLine = line.split(" ");
 		String result = "";
 		Character[] tempCharArray;

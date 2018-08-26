@@ -15,7 +15,7 @@ public class RegisterTest {
     public  void normalRegisterWhenLine() {
         String temp = "ИвАНОВ иВАн иВАНоВич";
         Register register = new Register();
-        String result = register.normaslRegister(temp);
+        String result = register.normalsRegister(temp);
         assertThat(result, is ("Иванов Иван Иванович"));
     }
 }
