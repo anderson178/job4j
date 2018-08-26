@@ -86,7 +86,7 @@ public class Tracker {
 	 * @param id - идентификатор заявки
 	 * @return
 	 */
-	public int findIndexById(String id) {
+	private int findIndexById(String id) {
 		int result = 0;
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
