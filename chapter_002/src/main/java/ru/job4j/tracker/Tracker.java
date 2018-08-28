@@ -101,15 +101,19 @@ public class Tracker {
 	 * @param id - идентификатор заявки
 	 * @return
 	 */
-	public Item[] remove(String id) {
+	public void remove(String id) {
 		Item[] result = new Item[this.position - 1];	
 		int indexResult = 0;
 		int indexById = findIndexById(id);
 		for (int i = 0; i < this.position; i++) {
 			if (i != indexById) {
 				result[indexResult++] = this.items[i];
-			}			
+			} else if (i == indexById){
+				this.items[i] = null;
+			}
 		}
-		return result;		
+		this.position--;
+		this.items = Arrays.copyOf(result,this.items.length);
+		int o =0;
 	}	
 }
