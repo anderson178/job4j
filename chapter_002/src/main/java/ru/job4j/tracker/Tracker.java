@@ -109,7 +109,7 @@ public class Tracker {
 			if (i != indexById) {
 				result[indexResult++] = this.items[i];
 			} else if (i == indexById){
-				this.items[i] = null;
+				//this.items[i] = null;
 			}
 		}
 		this.position--;

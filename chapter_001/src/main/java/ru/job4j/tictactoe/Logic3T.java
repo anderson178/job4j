@@ -156,7 +156,7 @@ public class Logic3T {
                     break;
                 }
             }
-            if (temp) break;;
+            if (temp) break;
         }
         return result;
     }
