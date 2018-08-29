@@ -1,12 +1,18 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 29.08.2018
+ */
 
 public class Item {
 	private String id;
 	private String name;
 	private String description;
-	private String create = new Date().toString();
+	private String create;
+
 	
 	Item(String name, String description) {
 		this.name = name;
@@ -29,13 +35,14 @@ public class Item {
 	public String getDescription() {
 		return this.description;
 	}
-	public String setDescription() {
+	public String setDescription(String desc) {
 		return this.description;
 	}
 	public String getCreate() {
 		return this.create;
 	}
-	public String setCreate() {
+	public String setCreate(String create) {
+		this.create = create;
 		return this.create;
 	}
 }
