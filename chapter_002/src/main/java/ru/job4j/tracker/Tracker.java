@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 23.08.2018
+ * @since 29.08.2018
  */
 
 public class Tracker {
@@ -26,10 +26,13 @@ public class Tracker {
 	 * @return
 	 */
 	public Item add(Item item) {
-		item.setId(this.generatedId());		
+		String create = new Date().toString();
+		item.setId(this.generatedId());
+		item.setCreate(create);
 		items[position++] = item;
 		return item;		
 	}
+
 	/**
 	 * выводит список всех заявок в трекере
 	 * @return
@@ -37,12 +40,14 @@ public class Tracker {
 	public Item[] getAll() {
 		return (Arrays.copyOf(this.items, this.position));
 	}
+
 	/**
 	 * заменяет существущую заявку на другую по id
 	 * @param id - идентификатор заявки
 	 * @param item - заявка
 	 */
 	public void replace(String id, Item item) {
+
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				this.items[i] = item;
@@ -50,6 +55,22 @@ public class Tracker {
 			}			
 		}
 	}
+
+	/**
+	 * заменяет существущую заявку на другую по id (Знаю что это дубль метода
+	 * edit но пока он мне нужен).
+	 * @param id - идентификатор заявки
+	 * @param name - новое имя
+	 * @param desc - новое описание
+	 */
+	public void edit(String id, String name, String desc) {
+		int index = this.findIndexById(id);
+		Item newItem = new Item(name, desc);
+		newItem.setId(this.items[index].getId());
+		newItem.setCreate(this.items[index].getCreate());
+		this.items[index] = newItem;
+	}
+
 	/**
 	 * поиск заявки по id
 	 * @param id - идентификатор заявки
@@ -65,6 +86,7 @@ public class Tracker {
 		}
 		return result;
 	}
+
 	/**
 	 * метод поиска заявки по имени
 	 * @param keyName - имя заявки
@@ -81,6 +103,7 @@ public class Tracker {
 		}					
 		return (Arrays.copyOf(result, index));
 	}
+
 	/**
 	 * метод определения индекса заявки по id
 	 * @param id - идентификатор заявки
@@ -96,6 +119,7 @@ public class Tracker {
 		}
 		return result;
 	}
+
 	/**
 	 * метод удаления заявки по id
 	 * @param id - идентификатор заявки
@@ -108,12 +132,9 @@ public class Tracker {
 		for (int i = 0; i < this.position; i++) {
 			if (i != indexById) {
 				result[indexResult++] = this.items[i];
-			} else if (i == indexById){
-				//this.items[i] = null;
 			}
 		}
 		this.position--;
-		this.items = Arrays.copyOf(result,this.items.length);
-		int o =0;
+		this.items = Arrays.copyOf(result, this.items.length);
 	}	
 }
