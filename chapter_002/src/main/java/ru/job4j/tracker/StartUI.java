@@ -8,7 +8,6 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
-    private static String menu = "0: ADD\n1: SHOW_ALL\n2: EDIT\n3: DELETE\n4: FIND_BY_ID\n5: FIND_BY_NAME\n6: EXIT";
     private static final String ADD = "0";
     private static final String SHOW_ALL = "1";
     private static final String EDIT = "2";
@@ -16,17 +15,22 @@ public class StartUI {
     private static final String FIND_BY_ID = "4";
     private static final String FIND_BY_NAME = "5";
     private static final String EXIT = "6";
-    private Tracker tracker = new Tracker();
+    private Tracker tracker;
     private Item[] items;
-    private ConsoleInput input = new ConsoleInput();
+    private Input input;
     private int countWrong = 0;
+
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
 
     /**
      * Метод запроса повторноо выобра команды меню
      */
     private void checkAnswer() {
-        ConsoleInput input = new ConsoleInput();
-        String answer = input.ask("Do you want to continue working in the tracker? (y/n)");
+
+        String answer = this.input.ask("Do you want to continue working in the tracker? (y/n)");
         if (answer.equals("y")) {
             startProgr();
         } else {
@@ -39,7 +43,7 @@ public class StartUI {
      */
     private void exit() {
         System.out.println("Goode bye");
-        System.exit(0);
+
     }
 
     /**
@@ -107,11 +111,17 @@ public class StartUI {
         System.out.println("You selection FIND_BY_ID");
         String id = this.input.ask("input id item:");
         Item item = tracker.findById(id);
-        System.out.print("id: " + item.getId() + ". ");
-        System.out.print("Name: " + item.getName() + ". ");
-        System.out.print("Description: " + item.getDescription() + ". ");
-        System.out.print("Date create: " + item.getCreate() + ".\n");
-        this.checkAnswer();
+        if (item != null) {
+            System.out.print("id: " + item.getId() + ". ");
+            System.out.print("Name: " + item.getName() + ". ");
+            System.out.print("Description: " + item.getDescription() + ". ");
+            System.out.print("Date create: " + item.getCreate() + ".\n");
+            this.checkAnswer();
+        } else {
+            System.out.println("По данному id: " + id + " заявок не найдено");
+            this.checkAnswer();
+        }
+
     }
 
     /**
@@ -168,15 +178,18 @@ public class StartUI {
      * метод вывода диалогового меню с дальнейшей обработкой введенных команд
      */
     public void startProgr() {
-        System.out.println("-----------MENU--------");
+        StringBuilder menu = new StringBuilder();
+        String ln = System.lineSeparator();
+        menu.append("-----------MENU--------" + ln);
+        menu.append("0: ADD" + ln + "1: SHOW_ALL" + ln + "2: EDIT" + ln + "3: DELETE" + ln);
+        menu.append("4: FIND_BY_ID" + ln + "5: FIND_BY_NAME" + ln + "6: EXIT" + ln);
+        menu.append("-----------------------" + ln);
         System.out.println(menu);
-        System.out.println("-----------------------\n");
         String answer = this.input.ask("Select the desired menu item:");
         executeMenu(answer);
     }
 
     public static void main(String[] args) {
-        StartUI start = new StartUI();
-        start.startProgr();
+        new StartUI(new ConsoleInput(), new Tracker()).startProgr();
     }
 }

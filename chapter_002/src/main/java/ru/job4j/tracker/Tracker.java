@@ -42,11 +42,12 @@ public class Tracker {
 	}
 
 	/**
-	 * заменяет существущую заявку на другую по id
+	 * заменяет существущую заявку на другую по id (Знаю что это дубль метода
+	 * edit но пока он мне нужен).
 	 * @param id - идентификатор заявки
 	 * @param item - заявка
 	 */
-	public void replace(String id, Item item) {
+	/*public void replace(String id, Item item) {
 
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
@@ -54,11 +55,10 @@ public class Tracker {
 				break;
 			}			
 		}
-	}
+	}*/
 
 	/**
-	 * заменяет существущую заявку на другую по id (Знаю что это дубль метода
-	 * edit но пока он мне нужен).
+	 * заменяет существущую заявку на другую по id
 	 * @param id - идентификатор заявки
 	 * @param name - новое имя
 	 * @param desc - новое описание
