@@ -64,8 +64,6 @@ public class Tracker {
 	 */
 	public boolean edit(String id, Item item) {
 		boolean result = false;
-		//int index = this.findIndexById(id);
-		//Item newItem = new Item(name, desc);
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				item.setId(this.items[i].getId());
@@ -109,22 +107,6 @@ public class Tracker {
 		}					
 		return (Arrays.copyOf(result, index));
 	}
-
-	/**
-	 * метод определения индекса заявки по id
-	 * @param id - идентификатор заявки
-	 * @return
-	 */
-	/*private int findIndexById(String id) {
-		int result = 0;
-		for (int i = 0; i < this.position; i++) {
-			if (this.items[i].getId().equals(id)) {
-				result = i;
-				break;
-			}			
-		}
-		return result;
-	}*/
 
 	/**
 	 * метод удаления заявки по id

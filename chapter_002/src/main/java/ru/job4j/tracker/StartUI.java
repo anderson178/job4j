@@ -30,14 +30,12 @@ public class StartUI {
      */
     private void exit() {
         System.out.println("Goode bye");
-
     }
 
     /**
      * Метод добавления новой заявки
      */
     public void add() {
-        this.countWrong = 0;
         System.out.println("You selection ADD");
         String name = this.input.ask("input name Item");
         String desc = input.ask("input description");
@@ -51,7 +49,6 @@ public class StartUI {
      * @param items - массив заявок
      */
     public void showAll(Item[] items) {
-        this.countWrong = 0;
         if (items.length != 0) {
             for (int i = 0; i < items.length; i++) {
                 System.out.print("id: " + items[i].getId() + ". ");
@@ -69,7 +66,6 @@ public class StartUI {
      * метод удаления заявки
      */
     public void remove() {
-        this.countWrong = 0;
         System.out.println("You selection DELETE");
         String id = this.input.ask("input id item:");
         if(this.tracker.remove(id)) {
@@ -84,7 +80,6 @@ public class StartUI {
      * Метод редактирвоания заявки
      */
     public void edit() {
-        this.countWrong = 0;
         System.out.println("You selection EDIT");
         String id = this.input.ask("input id item:");
         String name = this.input.ask("input new name:");
@@ -99,18 +94,26 @@ public class StartUI {
     }
 
     /**
+     * метод преобразовыет поля item в строку
+     * @param id - id item
+     * @param name - name item
+     * @param desc - description item
+     * @param create - date create item
+     * @return
+     */
+    private String toStringItem(String id, String name, String desc, String create) {
+        return String.format("Item id: %s, Name: %s, Description: %s Create: %s", id, name, desc, create);
+    }
+
+    /**
      * метод поиска заявки по id
      */
     public void findById() {
-        this.countWrong = 0;
         System.out.println("You selection FIND_BY_ID");
         String id = this.input.ask("input id item:");
         Item item = tracker.findById(id);
         if (item != null) {
-            System.out.print("id: " + item.getId() + ". ");
-            System.out.print("Name: " + item.getName() + ". ");
-            System.out.print("Description: " + item.getDescription() + ". ");
-            System.out.print("Date create: " + item.getCreate() + ".\n");
+            System.out.println(this.toStringItem(item.getId(), item.getName(), item.getDescription(), item.getCreate()));
         } else {
             System.out.println("По данному id: " + id + " заявок не найдено");
         }
@@ -121,7 +124,6 @@ public class StartUI {
      * метод поиска заявок по имени
      */
     public void finfByName() {
-        this.countWrong = 0;
         System.out.println("You selection FIND_BY_NAME");
         String name = this.input.ask("input name:");
         Item[] items = tracker.findByName(name);
