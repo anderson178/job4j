@@ -68,7 +68,7 @@ public class StartUI {
     public void remove() {
         System.out.println("You selection DELETE");
         String id = this.input.ask("input id item:");
-        if(this.tracker.remove(id)) {
+        if (this.tracker.remove(id)) {
             System.out.println("Item remove");
         } else {
             System.out.println("Item not found");
@@ -84,8 +84,8 @@ public class StartUI {
         String id = this.input.ask("input id item:");
         String name = this.input.ask("input new name:");
         String desc = this.input.ask("input new description:");
-        Item item = new Item(name,desc);
-        if(this.tracker.edit(id, item)) {
+        Item item = new Item(name, desc);
+        if (this.tracker.edit(id, item)) {
             System.out.println("Item is update");
         } else {
             System.out.println("Item with id: " + id + " not found");

@@ -116,14 +116,13 @@ public class Tracker {
 	public boolean remove(String id) {
 		boolean res = false;
 		Item[] result = new Item[this.items.length];
-		int indexById = 0;
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
-				indexById = i;
-				System.arraycopy(this.items,0,result,0,indexById);
-				System.arraycopy(this.items,indexById+1, result,indexById,this.items.length - indexById -1);
-				System.arraycopy(result,0,this.items,0,this.items.length);
+				System.arraycopy(this.items, 0, result, 0, i);
+				System.arraycopy(this.items, i + 1, result, i, this.items.length - i - 1);
+				System.arraycopy(result, 0, this.items, 0, this.items.length);
 				res = true;
+				this.position--;
 				break;
 			}
 		}
