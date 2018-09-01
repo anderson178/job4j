@@ -35,9 +35,7 @@ public class StartUITest {
         String id = this.item1.getId();
         Input input = new StubInput(new String[] {"3", id, "y", "1", "n"});
         new StartUI(input, this.tracker).startProgr();
-        Item[] result = this.tracker.getAll();
-        Item[] expected = new Item[1];
-        expected[0] = this.item2;
-       assertThat(this.tracker.getAll(), is (expected));
+        Item[] expected = new Item[]{this.item2};
+        assertThat(this.tracker.getAll(), is (expected));
     }
 }
