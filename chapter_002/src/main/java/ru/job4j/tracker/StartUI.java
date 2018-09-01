@@ -26,19 +26,6 @@ public class StartUI {
     }
 
     /**
-     * Метод запроса повторноо выобра команды меню
-     */
-    private void checkAnswer() {
-
-        String answer = this.input.ask("Do you want to continue working in the tracker? (y/n)");
-        if (answer.equals("y")) {
-            startProgr();
-        } else {
-            this.exit();
-        }
-    }
-
-    /**
      * выход из консоли
      */
     private void exit() {
@@ -56,7 +43,7 @@ public class StartUI {
         String desc = input.ask("input description");
         this.tracker.add(new Item(name, desc));
         System.out.println("Item create");
-        this.checkAnswer();
+        this.startProgr();
     }
 
     /**
@@ -75,7 +62,7 @@ public class StartUI {
         } else {
             System.out.println("Список пуст");
         }
-        this.checkAnswer();
+        this.startProgr();
     }
 
     /**
@@ -85,9 +72,12 @@ public class StartUI {
         this.countWrong = 0;
         System.out.println("You selection DELETE");
         String id = this.input.ask("input id item:");
-        this.tracker.remove(id);
-        System.out.println("Item remove");
-        this.checkAnswer();
+        if(this.tracker.remove(id)) {
+            System.out.println("Item remove");
+        } else {
+            System.out.println("Item not found");
+        }
+        this.startProgr();
     }
 
     /**
@@ -99,8 +89,13 @@ public class StartUI {
         String id = this.input.ask("input id item:");
         String name = this.input.ask("input new name:");
         String desc = this.input.ask("input new description:");
-        this.tracker.edit(id, name, desc);
-        this.checkAnswer();
+        Item item = new Item(name,desc);
+        if(this.tracker.edit(id, item)) {
+            System.out.println("Item is update");
+        } else {
+            System.out.println("Item with id: " + id + " not found");
+        }
+        this.startProgr();
     }
 
     /**
@@ -116,12 +111,10 @@ public class StartUI {
             System.out.print("Name: " + item.getName() + ". ");
             System.out.print("Description: " + item.getDescription() + ". ");
             System.out.print("Date create: " + item.getCreate() + ".\n");
-            this.checkAnswer();
         } else {
             System.out.println("По данному id: " + id + " заявок не найдено");
-            this.checkAnswer();
         }
-
+        this.startProgr();
     }
 
     /**
@@ -133,20 +126,6 @@ public class StartUI {
         String name = this.input.ask("input name:");
         Item[] items = tracker.findByName(name);
         this.showAll(items);
-    }
-
-    /**
-     * метод проверки корректности ввода номера команд
-     */
-    private void wrongMenu() {
-        this.countWrong++;
-        if (countWrong < 3) {
-            System.out.println("Вы выбрали неверный пункт меню, введите корректный");
-            this.checkAnswer();
-        } else {
-            System.out.println("Вы три раза ввели неверный номер команды");
-            this.exit();
-        }
     }
 
     /**
@@ -170,7 +149,7 @@ public class StartUI {
         } else if (EXIT.equals(answer)) {
             this.exit();
         } else {
-            this.wrongMenu();
+            this.startProgr();
         }
     }
 

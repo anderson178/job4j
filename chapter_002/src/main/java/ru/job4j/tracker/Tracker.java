@@ -60,15 +60,22 @@ public class Tracker {
 	/**
 	 * заменяет существущую заявку на другую по id
 	 * @param id - идентификатор заявки
-	 * @param name - новое имя
-	 * @param desc - новое описание
+	 * @item - заявка
 	 */
-	public void edit(String id, String name, String desc) {
-		int index = this.findIndexById(id);
-		Item newItem = new Item(name, desc);
-		newItem.setId(this.items[index].getId());
-		newItem.setCreate(this.items[index].getCreate());
-		this.items[index] = newItem;
+	public boolean edit(String id, Item item) {
+		boolean result = false;
+		//int index = this.findIndexById(id);
+		//Item newItem = new Item(name, desc);
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getId().equals(id)) {
+				item.setId(this.items[i].getId());
+				item.setCreate(this.items[i].getCreate());
+				this.items[i] = item;
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -94,7 +101,6 @@ public class Tracker {
 	 */
 	public Item[] findByName(String keyName) {
 		int index = 0;
-		int count = 0;
 		Item[] result = new Item[this.position];
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getName().equals(keyName)) {
@@ -109,7 +115,7 @@ public class Tracker {
 	 * @param id - идентификатор заявки
 	 * @return
 	 */
-	private int findIndexById(String id) {
+	/*private int findIndexById(String id) {
 		int result = 0;
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
@@ -118,23 +124,27 @@ public class Tracker {
 			}			
 		}
 		return result;
-	}
+	}*/
 
 	/**
 	 * метод удаления заявки по id
 	 * @param id - идентификатор заявки
 	 * @return
 	 */
-	public void remove(String id) {
-		Item[] result = new Item[this.position - 1];	
-		int indexResult = 0;
-		int indexById = findIndexById(id);
+	public boolean remove(String id) {
+		boolean res = false;
+		Item[] result = new Item[this.items.length];
+		int indexById = 0;
 		for (int i = 0; i < this.position; i++) {
-			if (i != indexById) {
-				result[indexResult++] = this.items[i];
+			if (this.items[i].getId().equals(id)) {
+				indexById = i;
+				System.arraycopy(this.items,0,result,0,indexById);
+				System.arraycopy(this.items,indexById+1, result,indexById,this.items.length - indexById -1);
+				System.arraycopy(result,0,this.items,0,this.items.length);
+				res = true;
+				break;
 			}
 		}
-		this.position--;
-		this.items = Arrays.copyOf(result, this.items.length);
+		return res;
 	}	
 }
