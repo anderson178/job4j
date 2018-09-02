@@ -92,10 +92,6 @@ public class Tracker {
 		return (Arrays.copyOf(result, index));
 	}
 
-	private Item[] arrCopy(int i) {
-		System.arraycopy(this.items, 0, this.items, 0, i);
-		return this.items;
-	}
 	/**
 	 * метод удаления заявки по id
 	 * @param id - идентификатор заявки
@@ -106,7 +102,7 @@ public class Tracker {
 		Item[] temp = new Item[this.items.length];
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
-				System.arraycopy(this.items, i + 1, this.arrCopy(i), i, this.items.length - i - 1);
+				System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
 				res = true;
 				this.position--;
 				break;
