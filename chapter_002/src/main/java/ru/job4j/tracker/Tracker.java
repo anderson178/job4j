@@ -99,7 +99,6 @@ public class Tracker {
 	 */
 	public boolean remove(String id) {
 		boolean res = false;
-		Item[] temp = new Item[this.items.length];
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
