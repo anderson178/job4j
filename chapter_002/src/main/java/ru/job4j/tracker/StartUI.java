@@ -3,7 +3,7 @@ package ru.job4j.tracker;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 29.08.2018
+ * @since 02.09.2018
  */
 
 public class StartUI {

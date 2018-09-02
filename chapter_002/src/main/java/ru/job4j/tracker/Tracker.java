@@ -93,7 +93,7 @@ public class Tracker {
 	}
 
 	private Item[] arrCopy(int i) {
-		System.arraycopy(this.items, 0,this.items, 0, i);
+		System.arraycopy(this.items, 0, this.items, 0, i);
 		return this.items;
 	}
 	/**
