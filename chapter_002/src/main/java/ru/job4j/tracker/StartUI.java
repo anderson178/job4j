@@ -16,9 +16,12 @@ public class StartUI {
     private static final String FIND_BY_NAME = "5";
     private static final String EXIT = "6";
     private Tracker tracker;
-    private Item[] items;
     private Input input;
-    private int countWrong = 0;
+    private String ln = System.lineSeparator();
+    private StringBuilder menu = new StringBuilder("-----------MENU--------" + ln + "0: ADD" + ln
+            + "1: SHOW_ALL" + ln + "2: EDIT" + ln + "3: DELETE"
+            + ln + "4: FIND_BY_ID" + ln + "5: FIND_BY_NAME" + ln + "6: EXIT"
+            + ln + "-----------------------" + ln);
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -41,7 +44,7 @@ public class StartUI {
         String desc = input.ask("input description");
         this.tracker.add(new Item(name, desc));
         System.out.println("Item create");
-        this.startProgr();
+        this.startProgram();
     }
 
     /**
@@ -59,7 +62,7 @@ public class StartUI {
         } else {
             System.out.println("Список пуст");
         }
-        this.startProgr();
+        this.startProgram();
     }
 
     /**
@@ -73,7 +76,7 @@ public class StartUI {
         } else {
             System.out.println("Item not found");
         }
-        this.startProgr();
+        this.startProgram();
     }
 
     /**
@@ -90,7 +93,7 @@ public class StartUI {
         } else {
             System.out.println("Item with id: " + id + " not found");
         }
-        this.startProgr();
+        this.startProgram();
     }
 
     /**
@@ -117,7 +120,7 @@ public class StartUI {
         } else {
             System.out.println("По данному id: " + id + " заявок не найдено");
         }
-        this.startProgr();
+        this.startProgram();
     }
 
     /**
@@ -151,26 +154,20 @@ public class StartUI {
         } else if (EXIT.equals(answer)) {
             this.exit();
         } else {
-            this.startProgr();
+            this.startProgram();
         }
     }
 
     /**
      * метод вывода диалогового меню с дальнейшей обработкой введенных команд
      */
-    public void startProgr() {
-        StringBuilder menu = new StringBuilder();
-        String ln = System.lineSeparator();
-        menu.append("-----------MENU--------" + ln);
-        menu.append("0: ADD" + ln + "1: SHOW_ALL" + ln + "2: EDIT" + ln + "3: DELETE" + ln);
-        menu.append("4: FIND_BY_ID" + ln + "5: FIND_BY_NAME" + ln + "6: EXIT" + ln);
-        menu.append("-----------------------" + ln);
+    public void startProgram() {
         System.out.println(menu);
         String answer = this.input.ask("Select the desired menu item:");
         executeMenu(answer);
     }
 
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).startProgr();
+        new StartUI(new ConsoleInput(), new Tracker()).startProgram();
     }
 }

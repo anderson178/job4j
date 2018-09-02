@@ -42,22 +42,6 @@ public class Tracker {
 	}
 
 	/**
-	 * заменяет существущую заявку на другую по id (Знаю что это дубль метода
-	 * edit но пока он мне нужен).
-	 * @param id - идентификатор заявки
-	 * @param item - заявка
-	 */
-	/*public void replace(String id, Item item) {
-
-		for (int i = 0; i < this.position; i++) {
-			if (this.items[i].getId().equals(id)) {
-				this.items[i] = item;
-				break;
-			}			
-		}
-	}*/
-
-	/**
 	 * заменяет существущую заявку на другую по id
 	 * @param id - идентификатор заявки
 	 * @item - заявка
@@ -108,6 +92,10 @@ public class Tracker {
 		return (Arrays.copyOf(result, index));
 	}
 
+	private Item[] arrCopy(int i) {
+		System.arraycopy(this.items, 0,this.items, 0, i);
+		return this.items;
+	}
 	/**
 	 * метод удаления заявки по id
 	 * @param id - идентификатор заявки
@@ -115,12 +103,10 @@ public class Tracker {
 	 */
 	public boolean remove(String id) {
 		boolean res = false;
-		Item[] result = new Item[this.items.length];
+		Item[] temp = new Item[this.items.length];
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
-				System.arraycopy(this.items, 0, result, 0, i);
-				System.arraycopy(this.items, i + 1, result, i, this.items.length - i - 1);
-				System.arraycopy(result, 0, this.items, 0, this.items.length);
+				System.arraycopy(this.items, i + 1, this.arrCopy(i), i, this.items.length - i - 1);
 				res = true;
 				this.position--;
 				break;
