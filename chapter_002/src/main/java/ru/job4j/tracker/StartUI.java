@@ -57,7 +57,7 @@ public class StartUI {
                 System.out.print("id: " + items[i].getId() + ". ");
                 System.out.print("Name: " + items[i].getName() + ". ");
                 System.out.print("Description: " + items[i].getDescription() + ". ");
-                System.out.print("Date create: " + items[i].getCreate() + ".\n");
+                System.out.print("Date create: " + items[i].getCreate() + this.ln);
             }
         } else {
             System.out.println("Список пуст");

@@ -18,24 +18,24 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Input input = new StubInput(new String[] {"0", "test name", "desc", "y", "0", "test2 name2", "desc2", "n"});
-        new StartUI(input, this.tracker).startProgr();
+        Input input = new StubInput(new String[] {"0", "test name", "desc", "0", "test2 name2", "desc2", "6"});
+        new StartUI(input, this.tracker).startProgram();
         assertThat(this.tracker.getAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
     @Test
     public void whenUserEditItem() {
         String id = this.item1.getId();
-        Input input = new StubInput(new String[] {"2", id, "test3 name3", "desc3", "y", "1", "n"});
-        new StartUI(input, this.tracker).startProgr();
-        assertThat(this.tracker.findById(this.item1.getId()).getName(), is ("test3 name3"));
+        Input input = new StubInput(new String[] {"2", id, "test3 name3", "desc3", "6"});
+        new StartUI(input, this.tracker).startProgram();
+        assertThat(this.tracker.findById(this.item1.getId()).getName(), is("test3 name3"));
     }
 
     @Test
     public void whenUserRemoveItem() {
         String id = this.item1.getId();
-        Input input = new StubInput(new String[] {"3", id, "y", "1", "n"});
-        new StartUI(input, this.tracker).startProgr();
+        Input input = new StubInput(new String[] {"3", id, "6"});
+        new StartUI(input, this.tracker).startProgram();
         Item[] expected = new Item[]{this.item2};
-        assertThat(this.tracker.getAll(), is (expected));
+        assertThat(this.tracker.getAll(), is(expected));
     }
 }

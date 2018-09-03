@@ -64,6 +64,8 @@ public class TrackerTest {
         Item[] items = new Item[2];
         items[0] = first;
         items[1] = third;
-        //assertThat(tracker.remove(id), is(items));
+        tracker.remove(id);
+        boolean result = items[0] == tracker.getAll()[0] && items[1] == tracker.getAll()[1] && items.length == tracker.setposition();
+        assertThat(result, is(true));
     }
 }

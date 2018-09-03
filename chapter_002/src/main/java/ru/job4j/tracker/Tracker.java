@@ -13,6 +13,10 @@ public class Tracker {
 	private int position = 0;
 	private static final Random RN = new Random();
 
+	public int setposition() {
+		return this.position;
+	}
+
 	/**
 	 * метод генерации id для заявки
 	 * @return
