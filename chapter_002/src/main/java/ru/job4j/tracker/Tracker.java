@@ -13,7 +13,7 @@ public class Tracker {
 	private int position = 0;
 	private static final Random RN = new Random();
 
-	public int setposition() {
+	public int getPosition() {
 		return this.position;
 	}
 
