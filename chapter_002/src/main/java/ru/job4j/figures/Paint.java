@@ -19,10 +19,8 @@ public class Paint {
 
     public static void main(String[] args) {
         int size = 4;
-        Shape shape = new Triangle();
         Paint paint = new Paint();
-        paint.draw(shape, size);
-        shape = new Square();
-        paint.draw(shape, size);
+        paint.draw(new Triangle(), size);
+        paint.draw(new Square(), size);
     }
 }
