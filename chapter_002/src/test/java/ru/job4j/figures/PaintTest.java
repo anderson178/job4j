@@ -1,4 +1,6 @@
 package ru.job4j.figures;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -13,55 +15,57 @@ import java.io.PrintStream;
  */
 
 public class PaintTest {
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private int size = 4;
+    private String ln = System.lineSeparator();
+
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+    }
     @Test
     public void whenDrawSquare() {
-        int size = 4;
-        String ln = System.lineSeparator();
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        new Paint().draw(new Square(), size);
+        new Paint().draw(new Square(), this.size);
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
                                 .append("# # # # ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append("# # # # ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append("# # # # ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append("# # # # ")
-                                .append(ln)
+                                .append(this.ln)
                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
     @Test
     public void whenDrawTriangle() {
-        int size = 4;
-        String ln = System.lineSeparator();
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        new Paint().draw(new Triangle(), size);
+        new Paint().draw(new Triangle(), this.size);
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
                                 .append("   ^   ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append("  ^^^  ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append(" ^^^^^ ")
-                                .append(ln)
+                                .append(this.ln)
                                 .append("^^^^^^^")
-                                .append(ln)
+                                .append(this.ln)
                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
 }
 
