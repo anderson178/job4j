@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 05.09.2018
+ * @since 06.09.2018
  */
 public class ConsoleIn implements Answer {
     private Scanner scaner = new Scanner(System.in);

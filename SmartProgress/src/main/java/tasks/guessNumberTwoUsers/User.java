@@ -3,11 +3,12 @@ package tasks.guessNumberTwoUsers;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 05.09.2018
+ * @since 06.09.2018
  */
 public class User {
     private String name;
     private int number;
+    private String type;
     public User(String name) {
         this.name = name;
     }
@@ -25,6 +26,14 @@ public class User {
     }
 
     public int getNumber() {
-        return number;
+        return this.number;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
