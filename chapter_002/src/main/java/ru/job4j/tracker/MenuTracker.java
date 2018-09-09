@@ -17,14 +17,23 @@ public class MenuTracker {
         this.input = input;
         this.tracker = tracker;
     }
+    /**
+     * Метод для получения массива меню.
+     *
+     * @return длину массива
+     */
+    public int getActionsLentgh() {
+        return this.listActions.size();
+    }
+
     public void fillActions() {
-        listActions.add(new AddItem(0));
-        listActions.add(new ShowAllItem(1));
-        listActions.add(new EditItem(2));
-        listActions.add(new DeleteItem(3));
-        listActions.add(new FindByIdItem(4));
-        listActions.add(new FinfByNameItem(5));
-        listActions.add(new Exit(6));
+        this.listActions.add(new AddItem(0));
+        this.listActions.add(new ShowAllItem(1));
+        this.listActions.add(new EditItem(2));
+        this.listActions.add(new DeleteItem(3));
+        this.listActions.add(new FindByIdItem(4));
+        this.listActions.add(new FinfByNameItem(5));
+        this.listActions.add(new Exit(6));
     }
     public void select(int key) {
         this.listActions.get(key).execute(this.input, this.tracker);
