@@ -15,13 +15,10 @@ import static org.junit.Assert.assertThat;
  * Метод-тесты для операций в трекере
  * @author Денис Мироненко
  * @version $Id$
- * @since 04.09.2018
+ * @since 06.09.2018
  */
 
 public class StartUITest {
-    private Tracker tracker = new Tracker();
-    private Item item1 = tracker.add(new Item("test name", "desc"));
-    private Item item2 = tracker.add(new Item("test2 name2", "desc2"));
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private String ln = System.lineSeparator();
@@ -43,7 +40,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[] {"0", "test name3", "desc3", "1", "6"});
         Tracker trackerTemp = new Tracker();
-        new StartUI(input, trackerTemp).startProgram();
+        new StartUI(input, trackerTemp).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
                                                             .append(this.menu)
                                                             .append(ln)
@@ -67,9 +64,12 @@ public class StartUITest {
     }
     @Test
     public void whenUserEditItem() {
-        String id = this.item1.getId();
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test2 name2", "desc2"));
+        String id = item1.getId();
         Input input = new StubInput(new String[] {"2", id, "test3 name3", "desc3", "1", "6"});
-        new StartUI(input, this.tracker).startProgram();
+        new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
                                                         .append(this.menu)
                                                         .append(ln)
@@ -79,15 +79,15 @@ public class StartUITest {
                                                         .append(ln)
                                                         .append(menu)
                                                         .append(ln)
-                                                        .append("id: " + this.tracker.getAll()[0].getId() + ". ")
-                                                        .append("Name: " + this.tracker.getAll()[0].getName() + ". ")
-                                                        .append("Description: " + this.tracker.getAll()[0].getDescription() + ". ")
-                                                        .append("Date create: " + this.tracker.getAll()[0].getCreate())
+                                                        .append("id: " + tracker.getAll()[0].getId() + ". ")
+                                                        .append("Name: " + tracker.getAll()[0].getName() + ". ")
+                                                        .append("Description: " + tracker.getAll()[0].getDescription() + ". ")
+                                                        .append("Date create: " + tracker.getAll()[0].getCreate())
                                                         .append(ln)
-                                                        .append("id: " + this.tracker.getAll()[1].getId() + ". ")
-                                                        .append("Name: " + this.tracker.getAll()[1].getName() + ". ")
-                                                        .append("Description: " + this.tracker.getAll()[1].getDescription() + ". ")
-                                                        .append("Date create: " + this.tracker.getAll()[1].getCreate())
+                                                        .append("id: " + tracker.getAll()[1].getId() + ". ")
+                                                        .append("Name: " + tracker.getAll()[1].getName() + ". ")
+                                                        .append("Description: " + tracker.getAll()[1].getDescription() + ". ")
+                                                        .append("Date create: " + tracker.getAll()[1].getCreate())
                                                         .append(ln)
                                                         .append(menu)
                                                         .append(ln)
@@ -99,9 +99,12 @@ public class StartUITest {
 
     @Test
     public void whenUserRemoveItem() {
-        String id = this.item1.getId();
+        Tracker tracker = new Tracker();
+        Item item1 = tracker.add(new Item("test name", "desc"));
+        Item item2 = tracker.add(new Item("test2 name2", "desc2"));
+        String id = item1.getId();
         Input input = new StubInput(new String[] {"3", id, "1", "6"});
-        new StartUI(input, this.tracker).startProgram();
+        new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
                                                         .append(this.menu)
                                                         .append(ln)
@@ -111,10 +114,10 @@ public class StartUITest {
                                                         .append(ln)
                                                         .append(this.menu)
                                                         .append(ln)
-                                                        .append("id: " + this.tracker.getAll()[0].getId() + ". ")
-                                                        .append("Name: " + this.tracker.getAll()[0].getName() + ". ")
-                                                        .append("Description: " + this.tracker.getAll()[0].getDescription() + ". ")
-                                                        .append("Date create: " + this.tracker.getAll()[0].getCreate())
+                                                        .append("id: " + tracker.getAll()[0].getId() + ". ")
+                                                        .append("Name: " + tracker.getAll()[0].getName() + ". ")
+                                                        .append("Description: " + tracker.getAll()[0].getDescription() + ". ")
+                                                        .append("Date create: " + tracker.getAll()[0].getCreate())
                                                         .append(ln)
                                                         .append(menu)
                                                         .append(ln)
