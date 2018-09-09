@@ -11,10 +11,11 @@ public class StubInput implements Input {
     }
 
     public String ask(String questions) {
-            return answer[position++];
+        return answer[position++];
     }
+
     public int ask(String question, ArrayList<Integer> range) {
         //throw new Exception("Nosupported operation");
-    return -1;
+        return -1;
     }
 }

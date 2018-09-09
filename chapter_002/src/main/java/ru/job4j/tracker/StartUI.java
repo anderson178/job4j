@@ -1,10 +1,11 @@
 package ru.job4j.tracker;
+
 import java.util.ArrayList;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 07.09.2018
+ * @since 09.09.2018
  */
 
 public class StartUI {
@@ -16,6 +17,9 @@ public class StartUI {
         this.tracker = tracker;
     }
 
+    /**
+     * Основной метод для инициалазии программы
+     */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         ArrayList<Integer> range = new ArrayList<>();

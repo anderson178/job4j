@@ -1,10 +1,11 @@
 package ru.job4j.tracker;
+
 import java.util.ArrayList;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 07.09.2018
+ * @since 09.09.2018
  */
 
 public class MenuTracker {
@@ -17,6 +18,7 @@ public class MenuTracker {
         this.input = input;
         this.tracker = tracker;
     }
+
     /**
      * Метод для получения массива меню.
      *
@@ -26,25 +28,44 @@ public class MenuTracker {
         return this.listActions.size();
     }
 
+    /**
+     * Метод заполнения меню.
+     */
     public void fillActions() {
-        this.listActions.add(new AddItem(0));
-        this.listActions.add(new ShowAllItem(1));
-        this.listActions.add(new EditItem(2));
-        this.listActions.add(new DeleteItem(3));
-        this.listActions.add(new FindByIdItem(4));
-        this.listActions.add(new FinfByNameItem(5));
-        this.listActions.add(new Exit(6));
+        this.listActions.add(new AddItem(0, "ADD"));
+        this.listActions.add(new ShowAllItem(1, "SHOW_ALL"));
+        this.listActions.add(new EditItem(2, "EDIT"));
+        this.listActions.add(new DeleteItem(3, "DELETE"));
+        this.listActions.add(new FindByIdItem(4, "FIND_BY_ID"));
+        this.listActions.add(new FinfByNameItem(5, "FIND_BY_NAME"));
+        this.listActions.add(new Exit(6, "EXIT"));
     }
+
+    /**
+     * метод выполнения команды меню по заданному ключу
+     *
+     * @param key
+     */
     public void select(int key) {
         this.listActions.get(key).execute(this.input, this.tracker);
     }
+
+    /**
+     * Вывод меню
+     */
     public void show() {
-        for (UserAction action: this.listActions) {
+        for (UserAction action : this.listActions) {
             if (action != null) {
                 System.out.println(action.info());
             }
         }
     }
+
+    /**
+     * Общий метод для вывода списка данных запроса
+     *
+     * @param items - массив заявок
+     */
     private void showAllItems(Item[] items) {
         if (items.length != 0) {
             for (int i = 0; i < items.length; i++) {
@@ -57,56 +78,80 @@ public class MenuTracker {
             System.out.println("Список пуст");
         }
     }
+
+    /**
+     * внутренний класс для додавбления новой заявки
+     */
     private class AddItem implements UserAction {
         private int key;
-        private AddItem(int key) {
+        private String action;
+
+        private AddItem(int key, String action) {
             this.key = key;
+            this.action = action;
         }
-      @Override
-       public int key() {
-           return this.key;
-       }
 
-       @Override
-       public void execute(Input input, Tracker tracker) {
-           System.out.println();
-           String name = input.ask("Please enter the task name: ");
-           String desc = input.ask("Please enter the task description: ");
-           tracker.add(new Item(name, desc));
-       }
+        @Override
+        public int key() {
+            return this.key;
+        }
 
-       @Override
-       public String info() {
-           return String.format("%s: %s", this.key(), "ADD");
-       }
-   }
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println();
+            String name = input.ask("Please enter the task name: ");
+            String desc = input.ask("Please enter the task description: ");
+            tracker.add(new Item(name, desc));
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s: %s", this.key, this.action);
+        }
+    }
+
+    /**
+     * внутренний класс для вывода массива запрашиваемых заявок
+     */
     private class ShowAllItem implements UserAction {
-       private int key;
-       private ShowAllItem(int key) {
-           this.key = key;
-       }
-       @Override
-       public int key() {
-           return this.key;
-       }
+        private int key;
+        private String action;
 
-       @Override
-       public void execute(Input input, Tracker tracker) {
-           Item[] items = tracker.getAll();
-           System.out.println("You selection SHOW_ALL");
-           showAllItems(items);
-       }
+        private ShowAllItem(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
 
-       @Override
-       public String info() {
-           return String.format("%s: %s", this.key(), "SHOW_ALL");
-       }
-   }
+        @Override
+        public int key() {
+            return this.key;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            Item[] items = tracker.getAll();
+            System.out.println("You selection SHOW_ALL");
+            showAllItems(items);
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s: %s", this.key, this.action);
+        }
+    }
+
+    /**
+     * внутренний класс для редактирования заявок
+     */
     private class EditItem implements UserAction {
-       private int key;
-       private EditItem(int key) {
-           this.key = key;
-       }
+        private int key;
+        private String action;
+
+        private EditItem(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
+
         @Override
         public int key() {
             return this.key;
@@ -128,14 +173,22 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%s: %s", this.key(), "EDIT");
+            return String.format("%s: %s", this.key, this.action);
         }
     }
+
+    /**
+     * внутренний класс для удаления заявок
+     */
     private class DeleteItem implements UserAction {
-       private int key;
-       private DeleteItem(int key) {
-           this.key = key;
-       }
+        private int key;
+        private String action;
+
+        private DeleteItem(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
+
         @Override
         public int key() {
             return this.key;
@@ -154,14 +207,22 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%s: %s", this.key(), "DELETE");
+            return String.format("%s: %s", this.key, this.action);
         }
     }
+
+    /**
+     * внутренний класс для поиска заявки по id
+     */
     private class FindByIdItem implements UserAction {
-       private int key;
-       private FindByIdItem(int key) {
-           this.key = key;
-       }
+        private int key;
+        private String action;
+
+        private FindByIdItem(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
+
         @Override
         public int key() {
             return this.key;
@@ -185,53 +246,69 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return String.format("%s: %s", this.key(), "FIND_BY_ID");
+            return String.format("%s: %s", this.key, this.action);
         }
-   }
+    }
+
+    /**
+     * внутренний класс для поиска заявок по имени
+     */
     private class FinfByNameItem implements UserAction {
-       private int key;
-       private FinfByNameItem(int key) {
-           this.key = key;
-       }
-       @Override
-       public int key() {
-           return this.key;
-       }
+        private int key;
+        private String action;
 
-       @Override
-       public void execute(Input input, Tracker tracker) {
-           System.out.println("You selection FIND_BY_NAME");
-           String name = input.ask("input name:");
-           Item[] items = tracker.findByName(name);
-           showAllItems(items);
-       }
+        private FinfByNameItem(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
 
-       @Override
-       public String info() {
-           return String.format("%s: %s", this.key(), "FIND_BY_NAME");
-       }
-   }
-    private static class Exit implements UserAction  {
-       private int key;
-       private Exit(int key) {
-           this.key = key;
-       }
-       @Override
-       public int key() {
-            return this.key;
-       }
         @Override
-       public void execute(Input input, Tracker tracker) {
+        public int key() {
+            return this.key;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("You selection FIND_BY_NAME");
+            String name = input.ask("input name:");
+            Item[] items = tracker.findByName(name);
+            showAllItems(items);
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s: %s", this.key, this.action);
+        }
+    }
+
+    /**
+     * внутренний класс для выхода из программы
+     */
+    private static class Exit implements UserAction {
+        private int key;
+        private String action;
+
+        private Exit(int key, String action) {
+            this.key = key;
+            this.action = action;
+        }
+
+        @Override
+        public int key() {
+            return this.key;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
             System.out.println("You selection EXIT");
             System.out.println("Goode bye");
             System.exit(0);
-       }
+        }
+
         @Override
-       public String info() {
-            return String.format("%s: %s", this.key(), "EXIT");
-       }
+        public String info() {
+            return String.format("%s: %s", this.key, this.action);
+        }
     }
-
-
 
 }
