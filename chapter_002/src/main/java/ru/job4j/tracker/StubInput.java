@@ -2,6 +2,12 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 10.09.2018
+ */
+
 public class StubInput implements Input {
     private String[] answer;
     private int position = 0;
@@ -14,6 +20,13 @@ public class StubInput implements Input {
         return answer[position++];
     }
 
+    /**
+     * метод валидации введенных данных при выборе меню
+     *
+     * @param question - вопрос
+     * @param range    - набор чисел меню
+     * @return - ключ иначе сообщение об ошибке
+     */
     public int ask(String question, ArrayList<Integer> range) {
         int key = Integer.valueOf(this.ask(question));
         boolean result = false;
