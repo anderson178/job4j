@@ -15,7 +15,18 @@ public class StubInput implements Input {
     }
 
     public int ask(String question, ArrayList<Integer> range) {
-        //throw new Exception("Nosupported operation");
-        return -1;
+        int key = Integer.valueOf(this.ask(question));
+        boolean result = false;
+        for (int value : range) {
+            if (value == key) {
+                result = true;
+                break;
+            }
+        }
+        if (result) {
+            return key;
+        } else {
+            throw new MenuOutExeption("out of menu range");
+        }
     }
 }

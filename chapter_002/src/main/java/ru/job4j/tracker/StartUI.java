@@ -22,21 +22,17 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        ArrayList<Integer> range = new ArrayList<>();
         menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            range.add(i);
-        }
         do {
             System.out.println("-----------MENU--------");
             menu.show();
             System.out.println("-----------------------");
-            int key = Integer.valueOf(input.ask("select: ", range));
+            int key = (input.ask("select: ", menu.fillRange()));
             menu.select(key);
         } while (!"y".equals(this.input.ask("exit ?")));
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }

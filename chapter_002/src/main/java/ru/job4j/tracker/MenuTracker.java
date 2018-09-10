@@ -13,6 +13,7 @@ public class MenuTracker {
     private Tracker tracker;
     private String ln = System.lineSeparator();
     private ArrayList<UserAction> listActions = new ArrayList<>();
+    ArrayList<Integer> range = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -40,6 +41,19 @@ public class MenuTracker {
         this.listActions.add(new FinfByNameItem(5, "FIND_BY_NAME"));
         this.listActions.add(new Exit(6, "EXIT"));
     }
+
+    /**
+     * Метод заполнения числового интервала меню
+     *
+     * @return - интервал от 0 до значения размера массива
+     */
+    public ArrayList<Integer> fillRange() {
+        for (int i = 0; i < this.getActionsLentgh(); i++) {
+            range.add(i);
+        }
+        return this.range;
+    }
+
 
     /**
      * метод выполнения команды меню по заданному ключу
