@@ -13,7 +13,7 @@ public class MenuTracker {
     private Tracker tracker;
     private String ln = System.lineSeparator();
     private ArrayList<UserAction> listActions = new ArrayList<>();
-    ArrayList<Integer> range = new ArrayList<>();
+    private ArrayList<Integer> range = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -96,18 +96,12 @@ public class MenuTracker {
     /**
      * внутренний класс для додавбления новой заявки
      */
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
         private int key;
         private String action;
 
         private AddItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
@@ -118,27 +112,17 @@ public class MenuTracker {
             tracker.add(new Item(name, desc));
         }
 
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для вывода массива запрашиваемых заявок
      */
-    private class ShowAllItem implements UserAction {
+    private class ShowAllItem extends BaseAction {
         private int key;
         private String action;
 
         private ShowAllItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
@@ -147,28 +131,17 @@ public class MenuTracker {
             System.out.println("You selection SHOW_ALL");
             showAllItems(items);
         }
-
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для редактирования заявок
      */
-    private class EditItem implements UserAction {
+    private class EditItem extends BaseAction {
         private int key;
         private String action;
 
         private EditItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
@@ -184,28 +157,17 @@ public class MenuTracker {
                 System.out.println("Item with id: " + id + " not found");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для удаления заявок
      */
-    private class DeleteItem implements UserAction {
+    private class DeleteItem extends BaseAction {
         private int key;
         private String action;
 
         private DeleteItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
@@ -219,27 +181,17 @@ public class MenuTracker {
             }
         }
 
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для поиска заявки по id
      */
-    private class FindByIdItem implements UserAction {
+    private class FindByIdItem extends BaseAction {
         private int key;
         private String action;
 
         private FindByIdItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         private String toStringItem(String id, String name, String desc, String create) {
@@ -257,28 +209,17 @@ public class MenuTracker {
                 System.out.println("По данному id: " + id + " заявок не найдено");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для поиска заявок по имени
      */
-    private class FinfByNameItem implements UserAction {
+    private class FinfByNameItem extends BaseAction {
         private int key;
         private String action;
 
         private FinfByNameItem(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
@@ -288,40 +229,23 @@ public class MenuTracker {
             Item[] items = tracker.findByName(name);
             showAllItems(items);
         }
-
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
-        }
     }
 
     /**
      * внутренний класс для выхода из программы
      */
-    private static class Exit implements UserAction {
+    private static class Exit extends BaseAction {
         private int key;
         private String action;
 
         private Exit(int key, String action) {
-            this.key = key;
-            this.action = action;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, action);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("You selection EXIT");
             System.out.println("Goode bye");
-            System.exit(0);
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s: %s", this.key, this.action);
         }
     }
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class StartUI {
     private Tracker tracker;
     private Input input;
+    private int key;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -27,8 +28,11 @@ public class StartUI {
             System.out.println("-----------MENU--------");
             menu.show();
             System.out.println("-----------------------");
-            int key = (input.ask("select: ", menu.fillRange()));
+            this.key = (input.ask("select: ", menu.fillRange()));
             menu.select(key);
+            if (this.key == 6) {
+                break;
+            }
         } while (!"y".equals(this.input.ask("exit ?")));
     }
 
