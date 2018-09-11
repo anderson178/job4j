@@ -19,6 +19,10 @@ public class Item {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Item id: %s, Name: %s, Description: %s Create: %s", this.id, this.name, this.description, this.create);
+	}
 
 	public String getId() {
 		return this.id;

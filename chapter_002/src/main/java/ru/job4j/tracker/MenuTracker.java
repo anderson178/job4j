@@ -82,11 +82,8 @@ public class MenuTracker {
      */
     private void showAllItems(Item[] items) {
         if (items.length != 0) {
-            for (int i = 0; i < items.length; i++) {
-                System.out.print("id: " + items[i].getId() + ". ");
-                System.out.print("Name: " + items[i].getName() + ". ");
-                System.out.print("Description: " + items[i].getDescription() + ". ");
-                System.out.print("Date create: " + items[i].getCreate() + ln);
+            for (Item item : items) {
+                System.out.println(item.toString());
             }
         } else {
             System.out.println("Список пуст");
