@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 29.08.2018
+ * @since 11.09.2018
  */
 
 public class Item {

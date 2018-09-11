@@ -15,6 +15,7 @@ public class MenuTracker {
     private ArrayList<UserAction> listActions = new ArrayList<>();
     private ArrayList<Integer> range = new ArrayList<>();
 
+
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
@@ -32,14 +33,14 @@ public class MenuTracker {
     /**
      * Метод заполнения меню.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.listActions.add(new AddItem(0, "ADD"));
         this.listActions.add(new ShowAllItem(1, "SHOW_ALL"));
         this.listActions.add(new EditItem(2, "EDIT"));
         this.listActions.add(new DeleteItem(3, "DELETE"));
         this.listActions.add(new FindByIdItem(4, "FIND_BY_ID"));
         this.listActions.add(new FinfByNameItem(5, "FIND_BY_NAME"));
-        this.listActions.add(new Exit(6, "EXIT"));
+        this.listActions.add(new Exit(6, "EXIT", ui));
     }
 
     /**
@@ -234,15 +235,17 @@ public class MenuTracker {
     private static class Exit extends BaseAction {
         private int key;
         private String action;
+        private final StartUI ui;
 
-        private Exit(int key, String action) {
+        public Exit(int key, String action, StartUI ui) {
             super(key, action);
+            this.ui = ui;
         }
 
-        @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("You selection EXIT");
             System.out.println("Goode bye");
+            this.ui.stop();
         }
     }
 

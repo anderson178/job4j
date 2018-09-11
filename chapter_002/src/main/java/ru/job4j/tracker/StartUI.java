@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class StartUI {
     private Tracker tracker;
     private Input input;
-    private int key;
+    private boolean work = true;
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -19,21 +19,28 @@ public class StartUI {
     }
 
     /**
+     * метод для смены флага способствующий остановке программы
+     */
+    public void stop() {
+        this.work = false;
+    }
+
+    /**
      * Основной метод для инициалазии программы
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        menu.fillActions(this);
         do {
             System.out.println("-----------MENU--------");
             menu.show();
             System.out.println("-----------------------");
-            this.key = (input.ask("select: ", menu.fillRange()));
+            int key = (input.ask("select: ", menu.fillRange()));
             menu.select(key);
-            if (this.key == 6) {
+            if (key == 6) {
                 break;
             }
-        } while (!"y".equals(this.input.ask("exit ?")));
+        } while (this.work);
     }
 
     public static void main(String[] args) {
