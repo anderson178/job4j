@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 09.09.2018
+ * @since 11.09.2018
  */
 
 public class StartUI {

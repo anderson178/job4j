@@ -104,10 +104,11 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println();
+            System.out.println("You selection ADD");
             String name = input.ask("Please enter the task name: ");
             String desc = input.ask("Please enter the task description: ");
             tracker.add(new Item(name, desc));
+            System.out.println("Item create");
         }
 
     }
