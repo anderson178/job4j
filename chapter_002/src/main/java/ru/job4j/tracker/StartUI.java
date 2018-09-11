@@ -37,9 +37,6 @@ public class StartUI {
             System.out.println("-----------------------");
             int key = (input.ask("select: ", menu.fillRange()));
             menu.select(key);
-            if (key == 6) {
-                break;
-            }
         } while (this.work);
     }
 
