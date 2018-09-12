@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private String ln = System.lineSeparator();
     private ArrayList<UserAction> listActions = new ArrayList<>();
     private ArrayList<Integer> range = new ArrayList<>();
 
@@ -95,8 +94,6 @@ public class MenuTracker {
      * внутренний класс для додавбления новой заявки
      */
     private class AddItem extends BaseAction {
-        private int key;
-        private String action;
 
         private AddItem(int key, String action) {
             super(key, action);
@@ -117,8 +114,6 @@ public class MenuTracker {
      * внутренний класс для вывода массива запрашиваемых заявок
      */
     private class ShowAllItem extends BaseAction {
-        private int key;
-        private String action;
 
         private ShowAllItem(int key, String action) {
             super(key, action);
@@ -136,8 +131,6 @@ public class MenuTracker {
      * внутренний класс для редактирования заявок
      */
     private class EditItem extends BaseAction {
-        private int key;
-        private String action;
 
         private EditItem(int key, String action) {
             super(key, action);
@@ -162,8 +155,6 @@ public class MenuTracker {
      * внутренний класс для удаления заявок
      */
     private class DeleteItem extends BaseAction {
-        private int key;
-        private String action;
 
         private DeleteItem(int key, String action) {
             super(key, action);
@@ -186,8 +177,6 @@ public class MenuTracker {
      * внутренний класс для поиска заявки по id
      */
     private class FindByIdItem extends BaseAction {
-        private int key;
-        private String action;
 
         private FindByIdItem(int key, String action) {
             super(key, action);
@@ -214,8 +203,6 @@ public class MenuTracker {
      * внутренний класс для поиска заявок по имени
      */
     private class FinfByNameItem extends BaseAction {
-        private int key;
-        private String action;
 
         private FinfByNameItem(int key, String action) {
             super(key, action);
@@ -234,8 +221,6 @@ public class MenuTracker {
      * внутренний класс для выхода из программы
      */
     private static class Exit extends BaseAction {
-        private int key;
-        private String action;
         private final StartUI ui;
 
         public Exit(int key, String action, StartUI ui) {
