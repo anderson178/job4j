@@ -22,7 +22,7 @@ public class KnightWhite implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
         return new Cell[] { dest };
     }
 

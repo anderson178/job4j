@@ -1,9 +1,18 @@
 package ru.job4j.chess;
 
+import ru.job4j.chess.ExceptionChess.FigureNotFoundException;
+import ru.job4j.chess.ExceptionChess.ImpossibleMoveException;
+import ru.job4j.chess.ExceptionChess.OccupiedWayException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
-import java.util.Optional;
+import java.util.Arrays;
+
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 13.09.2018
+ */
 
 public class Logic {
     private final Figure[] figures = new Figure[32];
@@ -13,12 +22,35 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public Figure[] getFigures() {
+        return this.figures;
+    }
+
+    /**
+     * метод перемещения фигуры
+     *
+     * @param source - начальные координат фигуры
+     * @param dest   - целевые координаты фигуры
+     * @return - возвращает true если ход возможен, иначе false
+     * @throws OccupiedWayException    - исключение если клетка не пустая
+     * @throws ImpossibleMoveException - исключение если нарушается логика хождения фигуры
+     * @throws FigureNotFoundException - исключение если фигуры не сущетсвует
+     */
+    public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
         boolean rst = false;
+        //Figure[] temp = new Figure[this.figures.length];
+        //Figure[] temp = Arrays.copyOf(this.figures, this.figures.length);
         int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+        if (index == -1) {
+            throw new FigureNotFoundException("Фигуры не существует");
+        } else {
+            Cell[] steps = this.figures[index].way(source, dest, this.figures);
+            if (!(steps.length > 0)) {
+                throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+            }
+            if (!this.existFigure(steps)) {
+                throw new OccupiedWayException("Клетка не пуста");
+            } else {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
@@ -26,6 +58,28 @@ public class Logic {
         return rst;
     }
 
+    /**
+     * метод проверяет на наличие другой фигуры по пути прохождения текущей фигуры до
+     * нового места назначения текущей фигуры.
+     *
+     * @param steps - массив (дистанция)
+     * @return - false если хоть одна клетка будет занята
+     */
+    private boolean existFigure(Cell[] steps) {
+        boolean rst = true;
+        for (Figure figure : this.figures) {
+            for (Cell step : steps) {
+                if (figure.position().equals(step)) {
+                    rst = false;
+                }
+            }
+        }
+        return rst;
+    }
+
+    /**
+     * возврат фигур в исходное положение
+     */
     public void clean() {
         for (int position = 0; position != this.figures.length; position++) {
             this.figures[position] = null;
@@ -34,8 +88,9 @@ public class Logic {
     }
 
     /**
-     * получает индекс будущей клетки
-     * @param cell
+     * получает индекс фигуры. Показывает какой именно фигурой ты ходишь.
+     *
+     * @param cell - координаты фигуры
      * @return
      */
     private int findBy(Cell cell) {

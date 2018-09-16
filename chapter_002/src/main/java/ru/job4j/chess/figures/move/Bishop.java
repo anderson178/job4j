@@ -1,32 +1,29 @@
-package ru.job4j.chess.figures.white;
+package ru.job4j.chess.figures.move;
 
 import ru.job4j.chess.Chess;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.black.BishopBlack;
 
-/**
- * @author Денис Мироненко
- * @version $Id$
- * @since 13.09.2018
- */
-
-public class BishopWhite implements Figure {
-    private final Cell position;
-
-    public BishopWhite(final Cell position) {
-        this.position = position;
-    }
-
-    @Override
+public abstract class Bishop implements Figure {
+    public  final Cell source;
+    public  final Cell dest;
+    /*@Override
     public Cell position() {
-        return this.position;
+        return null;
+    }*/
+
+    public Bishop(Cell source, Cell dest) {
+        this.source = source;
+        this.dest = dest;
     }
 
     @Override
     public Cell[] way(Cell source, Cell dest, Figure[] figure) {
         Cell[] steps = new Cell[0];
         Chess chess = new Chess();
-        for (int delta = 0; delta < chess.getSize() - 1; delta++) {
+        //если фигуре так можно ходить (не выходя за преелы массива) то записываем новое место назначения
+        for (int delta = 0; delta < chess.getSize() - 1; delta++ ) {
             if ((source.y == dest.y + delta && source.x == dest.x - delta)
                     || (source.y == dest.y + delta && source.x == dest.x + delta)
                     || (source.y == dest.y - delta && source.x == dest.x - delta)
@@ -34,13 +31,15 @@ public class BishopWhite implements Figure {
                     ) {
                 steps = new Cell[]{dest};
                 break;
+            } else {
+                System.out.println("нарушение логики хода слона");
             }
         }
         return steps;
     }
 
-    @Override
+    /*@Override
     public Figure copy(Cell dest) {
-        return new BishopWhite(dest);
-    }
+        return new BishopBlack(dest);
+    }*/
 }

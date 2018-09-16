@@ -23,7 +23,7 @@ public class PawnBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
         Cell[] steps = new Cell[0];
         //если фигуре так можно ходить то записываем новое место назначения
         if (source.y == dest.y + 1 && source.x == dest.x) {
