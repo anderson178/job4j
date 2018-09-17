@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 13.09.2018
+ * @since 17.09.2018
  */
 
 public class Logic {
@@ -38,8 +38,6 @@ public class Logic {
      */
     public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
         boolean rst = false;
-        //Figure[] temp = new Figure[this.figures.length];
-        //Figure[] temp = Arrays.copyOf(this.figures, this.figures.length);
         int index = this.findBy(source);
         if (index == -1) {
             throw new FigureNotFoundException("Фигуры не существует");
@@ -90,7 +88,7 @@ public class Logic {
     /**
      * получает индекс фигуры. Показывает какой именно фигурой ты ходишь.
      *
-     * @param cell - координаты фигуры
+     * @param cell - фигура
      * @return
      */
     private int findBy(Cell cell) {
