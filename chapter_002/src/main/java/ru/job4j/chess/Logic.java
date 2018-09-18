@@ -1,8 +1,8 @@
 package ru.job4j.chess;
 
-import ru.job4j.chess.ExceptionChess.FigureNotFoundException;
-import ru.job4j.chess.ExceptionChess.ImpossibleMoveException;
-import ru.job4j.chess.ExceptionChess.OccupiedWayException;
+import ru.job4j.chess.exceptionChess.FigureNotFoundException;
+import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
+import ru.job4j.chess.exceptionChess.OccupiedWayException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -39,19 +39,17 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-        if (index == -1) {
-            throw new FigureNotFoundException("Фигуры не существует");
-        } else {
-            Cell[] steps = this.figures[index].way(source, dest, this.figures);
-            if (!(steps.length > 0)) {
-                throw new ImpossibleMoveException("Нарушение логики хода фигуры");
-            }
-            if (!this.existFigure(steps)) {
+        while (true) {
+            if (!(index == -1)) {
+                Cell[] steps = this.figures[index].way(source, dest, this.figures);
+                if (this.existFigure(steps)) {
+                    this.figures[index] = this.figures[index].copy(dest);
+                    rst = true;
+                    break;
+                }
                 throw new OccupiedWayException("Клетка не пуста");
-            } else {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
             }
+            throw new FigureNotFoundException("Фигуры не существует");
         }
         return rst;
     }
