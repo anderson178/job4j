@@ -27,7 +27,7 @@ public class PawnBlack implements Figure {
         Cell[] steps = new Cell[0];
         //если фигуре так можно ходить то записываем новое место назначения
         if (source.y == dest.y + 1 && source.x == dest.x) {
-            steps = new Cell[] { dest };
+            steps = new Cell[] {dest};
         }
         return steps;
     }

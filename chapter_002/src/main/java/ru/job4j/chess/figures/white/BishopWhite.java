@@ -24,18 +24,34 @@ public class BishopWhite implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest, Figure[] figure) {
-        Cell[] steps = new Cell[0];
-        Chess chess = new Chess();
-        for (int delta = 0; delta < chess.getSize() - 1; delta++) {
-            if ((source.y == dest.y + delta && source.x == dest.x - delta)
-                    || (source.y == dest.y + delta && source.x == dest.x + delta)
-                    || (source.y == dest.y - delta && source.x == dest.x - delta)
-                    || (source.y == dest.y - delta && source.x == dest.x + delta)
-                    ) {
-                steps = new Cell[]{dest};
-                break;
+        Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
+        int deltaY = Math.abs(source.y - dest.y);
+        int deltaX = Math.abs(source.x - dest.x);
+        int numberDest = dest.ordinal();
+        //проверяем может ли фигура так в принципе ходить
+        if ((source.y == dest.y + deltaY && source.x == dest.x - deltaX)
+                || (source.y == dest.y + deltaY && source.x == dest.x + deltaX)
+                || (source.y == dest.y - deltaY && source.x == dest.x - deltaX)
+                || (source.y == dest.y - deltaY && source.x == dest.x + deltaX)
+                ) {
+            for (int i = 0; i < steps.length; i++) {
+                //ищем путь диагонали.
+                if (dest.y < source.y && dest.x < source.x) { //Путь в верх на лево
+                    steps[i] = Cell.values()[numberDest];
+                    numberDest = numberDest + new Chess().getSize() + 1;
+                } else if (dest.y < source.y && dest.x > source.x) { //Путь в верх на право
+                    steps[i] = Cell.values()[numberDest];
+                    numberDest = numberDest - new Chess().getSize() + 1;
+                } else if (dest.y > source.y && dest.x > source.x) { //Путь вниз направо
+                    steps[i] = Cell.values()[numberDest];
+                    numberDest = numberDest - new Chess().getSize() - 1;
+                } else { //Путь вниз на лево
+                    steps[i] = Cell.values()[numberDest];
+                    numberDest = numberDest + new Chess().getSize() - 1;
+                }
             }
         }
+
         return steps;
     }
 

@@ -3,7 +3,6 @@ package ru.job4j.chess.figures.black;
 import ru.job4j.chess.Chess;
 import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
 import ru.job4j.chess.Logic;
-import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -37,18 +36,14 @@ public class BishopBlack implements Figure {
         int wayY = source.y - dest.y;
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
+        int delta = Math.abs(source.y - dest.y);
         int numberDest = dest.ordinal();
         //проверяем может ли фигура так в принципе ходить
-        if (source.x == dest.y && source.y == dest.y && deltaX != deltaY) {
-            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+        if (deltaY == deltaX ){
+            steps = new Cell[] {dest};
         } else {
-            int stepX = wayX >= 0 ? 1 : -1;
-            int stepY = wayY >= 0 ? 1 : -1;
-
-
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
         }
-
-
         return steps;
     }
 

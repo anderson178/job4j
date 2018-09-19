@@ -26,7 +26,7 @@ public class KnightBlack implements Figure {
         Cell[] steps = new Cell[0];
         //если фигуре так можно ходить то записываем новое место назначения
         if (source.y == dest.y + 2 && source.x == dest.x - 1) {
-            steps = new Cell[] { dest };
+            steps = new Cell[] {dest};
         }
         return steps;
     }

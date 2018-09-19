@@ -18,7 +18,7 @@ public class KingWhite implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest, Figure[] figure) {
-        return new Cell[] { dest };
+        return new Cell[] {dest};
     }
 
     @Override

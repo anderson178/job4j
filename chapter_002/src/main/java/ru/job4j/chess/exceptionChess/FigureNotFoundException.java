@@ -1,4 +1,4 @@
-package ru.job4j.chess.ExceptionChess;
+package ru.job4j.chess.exceptionChess;
 
 /**
  * @author Денис Мироненко

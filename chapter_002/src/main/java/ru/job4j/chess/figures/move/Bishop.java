@@ -23,7 +23,7 @@ public abstract class Bishop implements Figure {
         Cell[] steps = new Cell[0];
         Chess chess = new Chess();
         //если фигуре так можно ходить (не выходя за преелы массива) то записываем новое место назначения
-        for (int delta = 0; delta < chess.getSize() - 1; delta++ ) {
+        for (int delta = 0; delta < chess.getSize() - 1; delta++) {
             if ((source.y == dest.y + delta && source.x == dest.x - delta)
                     || (source.y == dest.y + delta && source.x == dest.x + delta)
                     || (source.y == dest.y - delta && source.x == dest.x - delta)
