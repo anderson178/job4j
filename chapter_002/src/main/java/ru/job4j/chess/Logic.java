@@ -1,12 +1,10 @@
 package ru.job4j.chess;
 
-import ru.job4j.chess.exceptionChess.FigureNotFoundException;
-import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
-import ru.job4j.chess.exceptionChess.OccupiedWayException;
+import ru.job4j.chess.exception.FigureNotFoundException;
+import ru.job4j.chess.exception.ImpossibleMoveException;
+import ru.job4j.chess.exception.OccupiedWayException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
-
-import java.util.Arrays;
 
 /**
  * @author Денис Мироненко

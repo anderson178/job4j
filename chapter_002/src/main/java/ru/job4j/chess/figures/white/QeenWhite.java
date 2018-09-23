@@ -1,13 +1,13 @@
 package ru.job4j.chess.figures.white;
 
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Денис Мироненко
  * @version $Id$
- * @since 0.1
+ * @since 23.09.2018
  */
 public class QeenWhite implements Figure {
     private final Cell position;
@@ -22,8 +22,43 @@ public class QeenWhite implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+        int deltaY = Math.abs(source.y - dest.y);
+        int deltaX = Math.abs(source.x - dest.x);
+        int size = deltaY >= deltaX ? deltaY : deltaX;
+        Cell[] steps = new Cell[size];
+        if (deltaX != deltaY && source.x != dest.x && source.y != dest.y) {
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
+        }
+        deltaX = Integer.compare(dest.x, source.x);
+        deltaY = Integer.compare(dest.y, source.y);
+        int stepX = source.x;
+        int stepY = source.y;
+        for (int i = 0; i < steps.length; i++) {
+            stepX += deltaX;
+            stepY += deltaY;
+            steps[i] = this.findPosition(stepX, stepY);
+        }
+        return steps;
+    }
+
+    /**
+     * поиск фигуры по координатам
+     *
+     * @param x - координата X
+     * @param y - координата Y
+     * @return - возвращает фигуру с координатами X  и Y иначе null
+     */
+    private Cell findPosition(int x, int y) {
+        Cell[] temp = Cell.values();
+        Cell result = null;
+        for (Cell cell : temp) {
+            if (x == cell.x && y == cell.y) {
+                result = cell;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override

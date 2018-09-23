@@ -1,17 +1,17 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Денис Мироненко
  * @version $Id$
- * @since 0.1
+ * @since 23.09.2018
  */
 public class PawnBlack implements Figure {
     private final Cell position;
-   // private Cell position;
+
 
     public PawnBlack(final Cell position) {
         this.position = position;
@@ -23,12 +23,12 @@ public class PawnBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         Cell[] steps = new Cell[0];
-        //если фигуре так можно ходить то записываем новое место назначения
-        if (source.y == dest.y + 1 && source.x == dest.x) {
-            steps = new Cell[] {dest};
+        if (source.y != dest.y + 1 || source.x != dest.x) {
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
         }
+        steps = new Cell[]{dest};
         return steps;
     }
 

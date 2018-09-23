@@ -1,14 +1,13 @@
 package ru.job4j.chess.figures.white;
 
-import ru.job4j.chess.Chess;
-import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 13.09.2018
+ * @since 23.09.2018
  */
 
 public class BishopWhite implements Figure {
@@ -24,12 +23,12 @@ public class BishopWhite implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
         if (deltaY != deltaX) {
-            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
         }
         deltaX = Integer.compare(dest.x, source.x);
         deltaY = Integer.compare(dest.y, source.y);

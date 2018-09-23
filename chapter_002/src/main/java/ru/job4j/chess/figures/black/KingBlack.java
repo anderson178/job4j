@@ -1,14 +1,13 @@
 package ru.job4j.chess.figures.black;
 
-import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Денис Мироненко
  * @version $Id$
- * @since 0.1
+ * @since 23.09.2018
  */
 public class KingBlack implements Figure {
     private final Cell position;
@@ -28,9 +27,9 @@ public class KingBlack implements Figure {
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
         if (deltaY != 1 && deltaX != 1) {
-            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
         }
-        steps = new Cell[] {dest};
+        steps = new Cell[]{dest};
         return steps;
     }
 

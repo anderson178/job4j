@@ -1,13 +1,13 @@
 package ru.job4j.chess.figures.white;
 
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
- *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Денис Мироненко
  * @version $Id$
- * @since 0.1
+ * @since 23.09.2018
  */
 public class KnightWhite implements Figure {
     private final Cell position;
@@ -22,8 +22,28 @@ public class KnightWhite implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+        Cell[] steps = new Cell[0];
+        int wayY = Math.abs(source.y - dest.y);
+        int wayX = Math.abs(source.x - dest.x);
+        if ((wayY == 2 && wayX == 1) || (wayX == 2 && wayY == 1)) {
+            steps = new Cell[]{dest};
+        } else {
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
+        }
+        return steps;
+    }
+
+    private Cell findPosition(int x, int y) {
+        Cell[] temp = Cell.values();
+        Cell result = null;
+        for (Cell cell : temp) {
+            if (x == cell.x && y == cell.y) {
+                result = cell;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override

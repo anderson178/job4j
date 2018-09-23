@@ -1,15 +1,14 @@
 package ru.job4j.chess.figures.black;
 
 
-import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
-
+import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 20.09.2018
+ * @since 23.09.2018
  */
 
 /**
@@ -35,7 +34,7 @@ public class BishopBlack implements Figure {
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
         if (deltaY != deltaX) {
-            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры " + getClass().getSimpleName());
         }
         deltaX = Integer.compare(dest.x, source.x);
         deltaY = Integer.compare(dest.y, source.y);
