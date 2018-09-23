@@ -9,7 +9,7 @@ import ru.job4j.chess.figures.Figure;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 17.09.2018
+ * @since 23.09.2018
  */
 
 public class Logic {
@@ -34,7 +34,7 @@ public class Logic {
      * @throws ImpossibleMoveException - исключение если нарушается логика хождения фигуры
      * @throws FigureNotFoundException - исключение если фигуры не сущетсвует
      */
-    public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
+    public boolean move(Cell source, Cell dest) throws OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index == -1) {
