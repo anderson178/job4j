@@ -22,20 +22,35 @@ public class QeenBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
-        Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
-        int wayX = source.x - dest.y;
-        int wayY = source.y - dest.y;
+    public Cell[] way(Cell source, Cell dest) {
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
-        int numberDest = dest.ordinal();
-        //проверяем может ли фигура так в принципе ходить
-        if (deltaX == deltaY || source.x == dest.x || source.y == dest.y) {
-            steps = new Cell[]{dest};
-        } else {
+        int size = deltaY >= deltaX ? deltaY : deltaX;
+        Cell[] steps = new Cell[size];
+        if (deltaX != deltaY && source.x != dest.x && source.y != dest.y) {
             throw new ImpossibleMoveException("Нарушение логики хода фигуры");
         }
+        deltaX = Integer.compare(dest.x, source.x);
+        deltaY = Integer.compare(dest.y, source.y);
+        int stepX = source.x;
+        int stepY = source.y;
+        for (int i = 0; i < steps.length; i++) {
+            stepX += deltaX;
+            stepY += deltaY;
+            steps[i] = this.findPosition(stepX, stepY);
+        }
         return steps;
+    }
+    private Cell findPosition(int x, int y) {
+        Cell[] temp = Cell.values();
+        Cell result = null;
+        for (Cell cell : temp) {
+            if (x == cell.x && y == cell.y) {
+                result = cell;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override

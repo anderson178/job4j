@@ -30,24 +30,21 @@ public class BishopBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest, Figure[] figure) throws ImpossibleMoveException {
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
-        int x1 = 1;
-        int x2 = - 1;
-        int y1 = 1;
-        int y2 = - 1;
-        //проверяем может ли фигура так в принципе ходить
-        if (deltaY == deltaX) {
-            for (int i = 0; i < steps.length; i++) {
-                int stepX = source.x >= dest.x ? x2-- : x1++;
-                int stepY = source.y >= dest.y ? y2-- : y1++;
-                Cell temp = this.findPosition(source.x + stepX, source.y + stepY);
-                steps[i] = temp;
-           }
-        } else {
+        if (deltaY != deltaX) {
             throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+        }
+        deltaX = Integer.compare(dest.x, source.x);
+        deltaY = Integer.compare(dest.y, source.y);
+        int stepX = source.x;
+        int stepY = source.y;
+        for (int i = 0; i < steps.length; i++) {
+            stepX += deltaX;
+            stepY += deltaY;
+            steps[i] = this.findPosition(stepX, stepY);
         }
         return steps;
     }
@@ -56,7 +53,8 @@ public class BishopBlack implements Figure {
     public Figure copy(Cell dest) {
         return new BishopBlack(dest);
     }
-    public Cell findPosition( int x, int y) {
+
+    private Cell findPosition(int x, int y) {
         Cell[] temp = Cell.values();
         Cell result = null;
         for (Cell cell : temp) {

@@ -3,7 +3,7 @@ package ru.job4j.chess.figures;
 public interface Figure {
     Cell position();
 
-    Cell[] way(Cell source, Cell dest, Figure[] figure);
+    Cell[] way(Cell source, Cell dest);
 
     default String icon() {
         return String.format(

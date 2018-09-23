@@ -1,6 +1,7 @@
 package ru.job4j.chess.figures.white;
 
 import ru.job4j.chess.Chess;
+import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -23,36 +24,35 @@ public class BishopWhite implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
+    public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
         int deltaY = Math.abs(source.y - dest.y);
         int deltaX = Math.abs(source.x - dest.x);
-        int numberDest = dest.ordinal();
-        //проверяем может ли фигура так в принципе ходить
-        if ((source.y == dest.y + deltaY && source.x == dest.x - deltaX)
-                || (source.y == dest.y + deltaY && source.x == dest.x + deltaX)
-                || (source.y == dest.y - deltaY && source.x == dest.x - deltaX)
-                || (source.y == dest.y - deltaY && source.x == dest.x + deltaX)
-                ) {
-            for (int i = 0; i < steps.length; i++) {
-                //ищем путь диагонали.
-                if (dest.y < source.y && dest.x < source.x) { //Путь в верх на лево
-                    steps[i] = Cell.values()[numberDest];
-                    numberDest = numberDest + new Chess().getSize() + 1;
-                } else if (dest.y < source.y && dest.x > source.x) { //Путь в верх на право
-                    steps[i] = Cell.values()[numberDest];
-                    numberDest = numberDest - new Chess().getSize() + 1;
-                } else if (dest.y > source.y && dest.x > source.x) { //Путь вниз направо
-                    steps[i] = Cell.values()[numberDest];
-                    numberDest = numberDest - new Chess().getSize() - 1;
-                } else { //Путь вниз на лево
-                    steps[i] = Cell.values()[numberDest];
-                    numberDest = numberDest + new Chess().getSize() - 1;
-                }
+        if (deltaY != deltaX) {
+            throw new ImpossibleMoveException("Нарушение логики хода фигуры");
+        }
+        deltaX = Integer.compare(dest.x, source.x);
+        deltaY = Integer.compare(dest.y, source.y);
+        int stepX = source.x;
+        int stepY = source.y;
+        for (int i = 0; i < steps.length; i++) {
+            stepX += deltaX;
+            stepY += deltaY;
+            steps[i] = this.findPosition(stepX, stepY);
+        }
+        return steps;
+    }
+
+    private Cell findPosition(int x, int y) {
+        Cell[] temp = Cell.values();
+        Cell result = null;
+        for (Cell cell : temp) {
+            if (x == cell.x && y == cell.y) {
+                result = cell;
+                break;
             }
         }
-
-        return steps;
+        return result;
     }
 
     @Override

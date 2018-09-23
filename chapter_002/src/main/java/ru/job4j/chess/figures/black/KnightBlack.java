@@ -1,5 +1,6 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.exceptionChess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -22,13 +23,28 @@ public class KnightBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
+    public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
+        int wayY = Math.abs(source.y - dest.y);
+        int wayX = Math.abs(source.x - dest.x);
         //если фигуре так можно ходить то записываем новое место назначения
-        if (source.y == dest.y + 2 && source.x == dest.x - 1) {
+        if ((wayY == 2 && wayX == 1) || (wayX == 2 && wayY == 1)) {
             steps = new Cell[] {dest};
+        } else {
+            throw new ImpossibleMoveException("Нарушение логики хода коня");
         }
         return steps;
+    }
+    private Cell findPosition(int x, int y) {
+        Cell[] temp = Cell.values();
+        Cell result = null;
+        for (Cell cell : temp) {
+            if (x == cell.x && y == cell.y) {
+                result = cell;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override

@@ -19,7 +19,7 @@ public abstract class Bishop implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest, Figure[] figure) {
+    public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
         Chess chess = new Chess();
         //если фигуре так можно ходить (не выходя за преелы массива) то записываем новое место назначения

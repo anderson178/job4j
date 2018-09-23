@@ -39,17 +39,16 @@ public class Logic {
     public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-        while (true) {
-            if (!(index == -1)) {
-                Cell[] steps = this.figures[index].way(source, dest, this.figures);
-                if (this.existFigure(steps)) {
-                    this.figures[index] = this.figures[index].copy(dest);
-                    rst = true;
-                    break;
-                }
-                throw new OccupiedWayException("Клетка не пуста");
-            }
+        if (index == -1) {
             throw new FigureNotFoundException("Фигуры не существует");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        if (!this.existFigure(steps)) {
+            throw new OccupiedWayException("Клетка не пуста");
+        }
+        if (steps.length > 0) {
+            this.figures[index] = this.figures[index].copy(dest);
+            rst = true;
         }
         return rst;
     }
