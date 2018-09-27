@@ -134,40 +134,21 @@ public class FiguresTest {
         assertThat(actual, is(true));
     }
 
-    @Test
+    @Test (expected = OccupiedWayException.class)
     public void testlogicWhenRookBlackError() {
         this.fillFigures(this.logicFigure);
-        boolean actual = true;
-        try {
-            logicFigure.move(Cell.A8, Cell.A4);
-        } catch (OccupiedWayException owe) {
-            actual = false;
-        }
-        assertThat(actual, is(false));
+        logicFigure.move(Cell.A8, Cell.A4);
     }
 
-    @Test
+    @Test(expected = FigureNotFoundException.class)
     public void testlogicWhenFigureNotExist() {
-        this.fillFigures(this.logicFigure);
-        boolean actual = true;
-        try {
             logicFigure.move(Cell.A6, Cell.A4);
-        } catch (FigureNotFoundException nfe) {
-            actual = false;
-        }
-        assertThat(actual, is(false));
     }
 
-    @Test
+    @Test(expected = ImpossibleMoveException.class)
     public void testLogicFigureRookBlackWhenImpossibleMove() {
         RookBlack rook = new RookBlack(Cell.A8);
-        boolean result = true;
-        try {
-            Cell[] actual = rook.way(rook.position(), Cell.B1);
-        } catch (ImpossibleMoveException ime) {
-            result = false;
-        }
-        assertThat(result, is(false));
+        rook.way(rook.position(), Cell.B1);
     }
 
 }

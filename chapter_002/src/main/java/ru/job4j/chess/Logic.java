@@ -34,7 +34,7 @@ public class Logic {
      * @throws ImpossibleMoveException - исключение если нарушается логика хождения фигуры
      * @throws FigureNotFoundException - исключение если фигуры не сущетсвует
      */
-    public boolean move(Cell source, Cell dest) throws OccupiedWayException, FigureNotFoundException {
+    public boolean move(Cell source, Cell dest) throws OccupiedWayException, ImpossibleMoveException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index == -1) {
