@@ -1,148 +1,66 @@
 package ru.job4j.tictactoe;
 
+import java.util.function.Predicate;
+
 /**
  * @author Denis Mironenko
  * @version $Id$
- * @since 19.08.2018
+ * @since 27.09.2018
  */
 
 public class Logic3T {
     private final Figure3T[][] table;
-
-
     public Logic3T(Figure3T[][] table) {
         this.table = table;
     }
-   /**
-     * Проверяет выиграли ли крестики
-     * Первый цикл проверяет горизонталь, второй - вертикаль, третий - диагональ, четвертый - обратная диагональ
-     * @return - true если хотя бы один ряд заполнен иначе false
-     */
-    public boolean isWinnerX() {
-      boolean result = false;
-      int countEnd = this.table.length - 1;
-      int countCheck = 0;
-        for (int i = 0; i < this.table.length; i++) {
-            for (int j = 0; j < this.table.length; j++) {
-                if (this.table[i][j].hasMarkX()) {
-                    countCheck++;
-                    if (countCheck == this.table.length) {
-                        result = true;
-                        break;
-                    }
-                } else {
-                    j = this.table.length;
-                }
-            }
-            countCheck = 0;
-        }
-        for (int j = 0; j < this.table.length; j++) {
-            for (int i = 0; i < this.table.length; i++) {
-                if (this.table[i][j].hasMarkX()) {
-                    countCheck++;
-                    if (countCheck == this.table.length) {
-                        result = true;
-                        break;
-                    }
-                } else {
-                    i = this.table.length;
-                }
-            }
-            countCheck = 0;
-        }
-        for (int i = 0; i < this.table.length; i++) {
-                if (this.table[i][i].hasMarkX()) {
-                    countCheck++;
-                    if (countCheck == this.table.length) {
-                        result = true;
-                        break;
-                    }
-                } else {
-                    i = this.table.length;
-                }
-            countCheck = 0;
-        }
-        for (int i = 0; i < this.table.length; i++) {
-            if (this.table[i][countEnd].hasMarkX()) {
-                countCheck++;
-                if (countCheck == this.table.length) {
-                    result = true;
-                    break;
-                }
-            } else {
-                i = this.table.length;
-            }
-            countEnd--;
-        }
 
-       return result;
-    }
-    /**
-     * Проверяет выиграли ли нолики
-     * Первый цикл проверяет горизонталь, второй - вертикаль, третий - диагональ, четвертый - обратная диагональ
-     * @return - true если хотя бы один ряд заполнен иначе false
-     */
-    public boolean isWinnerO() {
-        boolean result = false;
-        int countEnd = this.table.length - 1;
-        //проверяем строки
-        int countCheck = 0;
-        for (int i = 0; i < this.table.length; i++) {
-            for (int j = 0; j < this.table.length; j++) {
-                if (this.table[i][j].hasMarkO()) {
-                    countCheck++;
-                    if (countCheck == this.table.length) {
-                        result = true;
-                        break;
-                    }
-                } else {
-                    j = this.table.length;
-                }
+    public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+        boolean result = true;
+        for (int index = 0; index != this.table.length; index++) {
+            Figure3T cell = this.table[startX][startY];
+            startX += deltaX;
+            startY += deltaY;
+            if (!predicate.test(cell)) {
+                result = false;
+                break;
             }
-            countCheck = 0;
-        }
-        //проверяем столбцы
-        for (int j = 0; j < this.table.length; j++) {
-            for (int i = 0; i < this.table.length; i++) {
-                if (this.table[i][j].hasMarkO()) {
-                    countCheck++;
-                    if (countCheck == this.table.length) {
-                        result = true;
-                        break;
-                    }
-                } else {
-                    i = this.table.length;
-                }
-            }
-            countCheck = 0;
-        }
-
-        //прямая диагональ
-        for (int i = 0; i < this.table.length; i++) {
-            if (this.table[i][i].hasMarkO()) {
-                countCheck++;
-                if (countCheck == this.table.length) {
-                    result = true;
-                    break;
-                }
-            } else break;
-        }
-        countCheck = 0;
-        //обратная диагональ
-        for (int i = 0; i < this.table.length; i++) {
-            if (this.table[i][countEnd].hasMarkO()) {
-                countCheck++;
-                if (countCheck == this.table.length) {
-                    result = true;
-                    break;
-                }
-            } else break;
-            countEnd--;
         }
         return result;
     }
+
+    /**
+     *Проверяет выиграли ли крестики
+     * @return - true если хотя бы один из рядов заполнен, иначе false
+     */
+    public boolean isWinnerX() {
+        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 2, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1);
+    }
+
+    /**
+     *Проверяет выиграли ли нолики
+     * @return - true если хотя бы один из рядов заполнен, иначе false
+     */
+    public boolean isWinnerO() {
+        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 1, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 2, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, this.table.length - 1 , 0, -1, 1);
+    }
+
     /**
      * Проверяет все лип поля заполнены
+     *
      * @return - true если есть пустые поля, false - если все поля заполнены
      */
     public boolean hasGap() {
