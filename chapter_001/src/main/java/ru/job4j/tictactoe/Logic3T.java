@@ -84,12 +84,10 @@ public class Logic3T {
         boolean result = false;
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table.length; j++) {
-                if (!this.table[i][j].hasMarkX()) {
-                    if (!this.table[i][j].hasMarkO()) {
+                if (!this.table[i][j].hasMarkX() && !this.table[i][j].hasMarkO()) {
                         result = true;
                         temp = true;
                         break;
-                    }
                 }
             }
             if (temp) {
