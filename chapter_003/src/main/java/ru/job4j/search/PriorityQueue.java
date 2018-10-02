@@ -19,18 +19,14 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        boolean state = false;
-        int size = this.tasks.size();
-            for (int i = 0; i < size; i++) {
-                if (this.tasks.size() != 0 && task.getPriority() < this.tasks.get(i).getPriority()) {
-                    state = true;
-                    this.tasks.add(i, task);
-                    break;
-                }
+        int index = this.tasks.size();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (task.getPriority() < this.tasks.get(i).getPriority()) {
+                index = i;
+                break;
             }
-            if (!state) {
-                this.tasks.add(task);
-            }
+        }
+        this.tasks.add(index, task);
     }
 
     /**
