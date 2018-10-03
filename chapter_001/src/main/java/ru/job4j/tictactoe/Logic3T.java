@@ -80,17 +80,15 @@ public class Logic3T {
      * @return - true если есть пустые поля, false - если все поля заполнены
      */
     public boolean hasGap() {
-        boolean temp = false;
         boolean result = false;
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table.length; j++) {
                 if (!this.table[i][j].hasMarkX() && !this.table[i][j].hasMarkO()) {
                         result = true;
-                        temp = true;
                         break;
                 }
             }
-            if (temp) {
+            if (result) {
                 break;
             }
         }
