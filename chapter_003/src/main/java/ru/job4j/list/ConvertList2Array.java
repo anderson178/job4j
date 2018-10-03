@@ -21,22 +21,9 @@ public class ConvertList2Array {
         int collumns = list.size() / rows + temp;
         int count = 0;
         int[][] mass = new int[rows][collumns];
-        if (list.size() % rows == 0) {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < collumns; j++) {
-                    mass[i][j] = list.get(count++);
-                }
-            }
-        } else {
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < collumns; j++) {
-                    if (count == list.size()) {
-                        break;
-                    } else {
-                        mass[i][j] = list.get(count++);
-                    }
-
-                }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < collumns && count != list.size(); j++) {
+                mass[i][j] = list.get(count++);
             }
         }
         return mass;
