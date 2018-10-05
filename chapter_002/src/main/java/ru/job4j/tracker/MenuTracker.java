@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 09.09.2018
+ * @since 05.10.2018
  */
 
 public class MenuTracker {
@@ -80,8 +80,8 @@ public class MenuTracker {
      *
      * @param items - массив заявок
      */
-    private void showAllItems(Item[] items) {
-        if (items.length != 0) {
+    private void showAllItems(ArrayList<Item> items) {
+        if (items.size() != 0) {
             for (Item item : items) {
                 System.out.println(item.toString());
             }
@@ -121,7 +121,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            Item[] items = tracker.getAll();
+            ArrayList<Item> items = tracker.getAll();
             System.out.println("You selection SHOW_ALL");
             showAllItems(items);
         }
@@ -212,7 +212,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("You selection FIND_BY_NAME");
             String name = input.ask("input name:");
-            Item[] items = tracker.findByName(name);
+            ArrayList<Item> items = tracker.findByName(name);
             showAllItems(items);
         }
     }

@@ -1,23 +1,24 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 10.09.2018
+ * @since 05.10.2018
  */
 
 public class StubInput implements Input {
-    private String[] answer;
+    private List<String> answer = new ArrayList<>();
     private int position = 0;
 
-    public StubInput(String[] answer) {
+    public StubInput(ArrayList<String> answer) {
         this.answer = answer;
     }
 
     public String ask(String questions) {
-        return answer[position++];
+        return answer.get(position++);
     }
 
     /**
@@ -41,8 +42,6 @@ public class StubInput implements Input {
         } else {
             return key;
         }
-
-
     }
 
 }

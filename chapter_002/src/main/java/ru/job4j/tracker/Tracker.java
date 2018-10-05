@@ -5,17 +5,12 @@ import java.util.*;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 29.08.2018
+ * @since 05.10.2018
  */
 
 public class Tracker {
-    private Item[] items = new Item[100];
-    private int position = 0;
+    private ArrayList<Item> items = new ArrayList<>();
     private static final Random RN = new Random();
-
-    public int getPosition() {
-        return this.position;
-    }
 
     /**
      * метод генерации id для заявки
@@ -36,7 +31,7 @@ public class Tracker {
         String create = new Date().toString();
         item.setId(this.generatedId());
         item.setCreate(create);
-        items[position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -45,8 +40,8 @@ public class Tracker {
      *
      * @return
      */
-    public Item[] getAll() {
-        return (Arrays.copyOf(this.items, this.position));
+    public ArrayList<Item> getAll() {
+        return this.items;
     }
 
     /**
@@ -57,15 +52,15 @@ public class Tracker {
      */
     public boolean edit(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                item.setId(this.items[i].getId());
-                item.setCreate(this.items[i].getCreate());
-                this.items[i] = item;
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).getId().equals(id)) {
+                item.setId(this.items.get(i).getId());
+                item.setCreate(this.items.get(i).getCreate());
+                this.items.set(i, item);
                 result = true;
-                break;
             }
         }
+
         return result;
     }
 
@@ -77,9 +72,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                result = this.items[i];
+        for (Item item : this.items) {
+            if (item.getId().equals(id)) {
+                result = item;
                 break;
             }
         }
@@ -92,15 +87,15 @@ public class Tracker {
      * @param keyName - имя заявки
      * @return
      */
-    public Item[] findByName(String keyName) {
-        int index = 0;
-        Item[] result = new Item[this.position];
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getName().equals(keyName)) {
-                result[index++] = this.items[i];
+    public ArrayList<Item> findByName(String keyName) {
+        ArrayList<Item> result = new ArrayList<>();
+        for (Item item : this.items) {
+            if (item.getName().equals(keyName)) {
+                result.add(item);
             }
         }
-        return (Arrays.copyOf(result, index));
+
+        return result;
     }
 
     /**
@@ -111,11 +106,10 @@ public class Tracker {
      */
     public boolean remove(String id) {
         boolean res = false;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - i - 1);
+        for (Item item : this.items) {
+            if (item.getId().equals(id)) {
+                this.items.remove(item);
                 res = true;
-                this.position--;
                 break;
             }
         }

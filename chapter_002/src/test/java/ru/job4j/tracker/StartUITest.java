@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -15,7 +18,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author Денис Мироненко
  * @version $Id$
- * @since 11.09.2018
+ * @since 05.10.2018
  */
 
 public class StartUITest {
@@ -39,7 +42,7 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Input input = new StubInput(new String[]{"0", "test name3", "desc3", "1", "6"});
+        Input input = new StubInput(new ArrayList<>(Arrays.asList("0", "test name3", "desc3", "1", "6")));
         Tracker trackerTemp = new Tracker();
         new StartUI(input, trackerTemp).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
@@ -51,7 +54,7 @@ public class StartUITest {
                 .append(this.menu)
                 .append("You selection SHOW_ALL")
                 .append(ln)
-                .append(trackerTemp.getAll()[0].toString())
+                .append(trackerTemp.getAll().get(0).toString())
                 .append(ln)
                 .append(menu)
                 .append("You selection EXIT")
@@ -68,7 +71,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name", "desc"));
         Item item2 = tracker.add(new Item("test2 name2", "desc2"));
         String id = item1.getId();
-        Input input = new StubInput(new String[]{"2", id, "test3 name3", "desc3", "1", "6"});
+        Input input = new StubInput(new ArrayList<>(Arrays.asList("2", id, "test3 name3", "desc3", "1", "6")));
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
                 .append(this.menu)
@@ -79,9 +82,9 @@ public class StartUITest {
                 .append(menu)
                 .append("You selection SHOW_ALL")
                 .append(ln)
-                .append(tracker.getAll()[0].toString())
+                .append(tracker.getAll().get(0).toString())
                 .append(ln)
-                .append(tracker.getAll()[1].toString())
+                .append(tracker.getAll().get(1).toString())
                 .append(ln)
                 .append(menu)
                 .append("You selection EXIT")
@@ -98,7 +101,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name", "desc"));
         Item item2 = tracker.add(new Item("test2 name2", "desc2"));
         String id = item1.getId();
-        Input input = new StubInput(new String[]{"3", id, "1", "6"});
+        Input input = new StubInput(new ArrayList<>(Arrays.asList("3", id, "1", "6")));
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(new StringBuffer()
                 .append(this.menu)
@@ -109,7 +112,7 @@ public class StartUITest {
                 .append(this.menu)
                 .append("You selection SHOW_ALL")
                 .append(ln)
-                .append(tracker.getAll()[0].toString())
+                .append(tracker.getAll().get(0).toString())
                 .append(ln)
                 .append(menu)
                 .append("You selection EXIT")

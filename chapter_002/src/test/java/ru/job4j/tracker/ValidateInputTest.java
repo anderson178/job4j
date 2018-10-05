@@ -9,6 +9,8 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -16,7 +18,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 10.09.2018
+ * @since 05.10.2018
  */
 public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
@@ -39,7 +41,8 @@ public class ValidateInputTest {
         for (int i = 0; i < 7; i++) {
             range.add(i);
         }
-        ValidateInput input = new ValidateInput(new StubInput(new String[]{"invalid", "0"}));
+        ArrayList<String> answerList = new ArrayList<>(Arrays.asList("invalid", "0"));
+        ValidateInput input = new ValidateInput(new StubInput(answerList));
         input.ask("Select: ", range);
         assertThat(this.mem.toString(), is("Please enter validate data again" + this.ln));
     }

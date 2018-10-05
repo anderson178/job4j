@@ -1,14 +1,19 @@
 package ru.job4j.tracker;
+
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
  * Метод-тесты для операций в трекере
+ *
  * @author Денис Мироненко
  * @version $Id$
- * @since 23.08.2018
+ * @since 05.10.2018
  */
 
 public class TrackerTest {
@@ -17,32 +22,35 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription");
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
+
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription");
         tracker.add(previous);
-        Item next = new Item("test2",  "testDescription2");
+        Item next = new Item("test2", "testDescription2");
         next.setId(previous.getId());
         tracker.edit(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
+
     @Test
     public void whenCoincidesNameReturnListName() {
         Tracker tracker = new Tracker();
+        ArrayList<Item> items = new ArrayList<>();
         Item first = new Item("test1", "testDescription1");
         tracker.add(first);
         Item second = new Item("test2", "testDescription2");
         tracker.add(second);
         Item third = new Item("test1", "testDescription3");
         tracker.add(third);
-        Item[] items = new Item[2];
-        items[0] = first;
-        items[1] = third;
+        items.add(first);
+        items.add(third);
         assertThat(tracker.findByName("test1"), is(items));
     }
+
     @Test
     public void whenFindiIdReturnItem() {
         Tracker tracker = new Tracker();
@@ -51,9 +59,11 @@ public class TrackerTest {
         String id = first.getId();
         assertThat(tracker.findById(id), is(first));
     }
+
     @Test
     public void removeWhenById() {
         Tracker tracker = new Tracker();
+        ArrayList<Item> items = new ArrayList<>();
         Item first = new Item("test1", "testDescription1");
         tracker.add(first);
         Item second = new Item("test2", "testDescription2");
@@ -61,11 +71,10 @@ public class TrackerTest {
         Item third = new Item("test3", "testDescription3");
         tracker.add(third);
         String id = second.getId();
-        Item[] items = new Item[2];
-        items[0] = first;
-        items[1] = third;
+        items.add(first);
+        items.add(third);
         tracker.remove(id);
-        boolean result = items[0] == tracker.getAll()[0] && items[1] == tracker.getAll()[1] && items.length == tracker.getPosition();
+        boolean result = items.get(0) == tracker.getAll().get(0) && items.get(1) == tracker.getAll().get(1);
         assertThat(result, is(true));
     }
 }
