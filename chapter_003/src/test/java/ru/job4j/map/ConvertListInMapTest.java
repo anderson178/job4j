@@ -17,8 +17,8 @@ import static org.junit.Assert.assertThat;
  */
 
 public class ConvertListInMapTest {
-    private User user1 = new User("Denis", "Piter");
-    private User user2 = new User("Vasiliy", "Moscow");
+    private User user1 = new User(0, "Denis", "Piter");
+    private User user2 = new User(1,"Vasiliy", "Moscow");
 
     @Test
     public void convertListMap() {
@@ -28,8 +28,8 @@ public class ConvertListInMapTest {
         list.add(this.user2);
         HashMap<Integer, User> result = convert.convert(list);
         HashMap<Integer, User> expect = new HashMap<>();
-        expect.put(0, this.user1);
-        expect.put(1, this.user2);
+        expect.put(this.user1.getId(), this.user1);
+        expect.put(this.user2.getId(), this.user2);
         assertThat(result, is(expect));
     }
 

@@ -20,7 +20,7 @@ public class ConvertListInMap {
         HashMap<Integer, User> rst = new HashMap<>();
         int id = 0;
         for (User user : list) {
-            rst.put(id++, user);
+            rst.put(user.getId(), user);
         }
         return rst;
     }
