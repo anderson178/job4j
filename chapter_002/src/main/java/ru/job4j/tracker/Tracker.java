@@ -106,9 +106,9 @@ public class Tracker {
      */
     public boolean remove(String id) {
         boolean res = false;
-        for (Item item : this.items) {
-            if (item.getId().equals(id)) {
-                this.items.remove(item);
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).getId().equals(id)) {
+                this.items.remove(i);
                 res = true;
                 break;
             }
