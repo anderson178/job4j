@@ -24,12 +24,14 @@ public class TreeSetSortedTest {
                 new User("Petr", 17)
         ));
         Set<User> result = tree.sort(users);
-        Set<User> expect = new TreeSet<User>(Arrays.asList(
-                new User("Denis", 28),
-                new User("Vadim", 24),
-                new User("Alena", 29),
+        Set<User> expect = new TreeSet<>(Arrays.asList(
+                new User("Petr", 17),
                 new User("Alan", 18),
-                new User("Petr", 17)
+                new User("Vadim", 24),
+                new User("Denis", 28),
+                new User("Alena", 29)
+
+
         ));
 
         assertThat(result, is(expect));

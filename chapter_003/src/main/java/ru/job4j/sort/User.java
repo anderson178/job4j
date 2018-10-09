@@ -3,7 +3,7 @@ package ru.job4j.sort;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 09.10.2018
+ * @since 9.10.2018
  */
 public class User implements Comparable<User> {
     private final String name;
