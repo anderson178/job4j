@@ -1,5 +1,2 @@
-# job4j
-http://job4j.ru/
-Цель глобальня: научиться программировать на языке java применив на практике в реальных условиях работодателя.
-Цели пошаговые: пройти уровни курса от стажера до как минимум младшего разрабочтика.
-Сроки: уровень первый до 5-6 недель (старт 26.07.2018), второй уровень пока не расчитал по времени ( к концу уровня стажера будет ясно) .
+[![Build Status](https://travis-ci.org/anderson178/job4j.svg?branch=master)](https://travis-ci.org/anderson178/job4j)
+[![codecov](https://codecov.io/gh/anderson178/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/anderson178/job4j)
