@@ -14,13 +14,15 @@ public class ListCompare implements Comparator<String> {
         int sizeRight = right.toCharArray().length;
         int size = sizeLeft < sizeRight ? sizeLeft : sizeRight;
         int result = 0;
-        for (int i = 0; i < size; i++) {
+        int i = 0;
+        for (i = 0; i < size; i++) {
             if (left.charAt(i) != right.charAt(i)) {
                 result = left.charAt(i) < right.charAt(i) ? 1 : -1;
                 break;
-            } else if (i == size - 1 && sizeLeft != sizeRight) {
-                result = sizeLeft < sizeRight ? 1 : -1;
             }
+        }
+        if (i == size && sizeLeft != sizeRight) {
+            result = sizeLeft < sizeRight ? 1 : -1;
         }
         return result;
     }
