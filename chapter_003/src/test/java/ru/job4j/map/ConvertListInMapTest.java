@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 
 public class ConvertListInMapTest {
     private User user1 = new User(0, "Denis", "Piter");
-    private User user2 = new User(1,"Vasiliy", "Moscow");
+    private User user2 = new User(1, "Vasiliy", "Moscow");
 
     @Test
     public void convertListMap() {
