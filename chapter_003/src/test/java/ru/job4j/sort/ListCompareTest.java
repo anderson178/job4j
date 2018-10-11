@@ -31,7 +31,7 @@ public class ListCompareTest {
                 "Avanov",
                 "Ivanov"
         );
-        assertThat(rst, is(1));
+        assertThat(rst, is(-1));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ListCompareTest {
                 "Iva",
                 "Ivana"
         );
-        assertThat(rst, is(1));
+        assertThat(rst, is(-1));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ListCompareTest {
                 "Petrov",
                 "Patrov"
         );
-        assertThat(rst, is(-1));
+        assertThat(rst, is(1));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ListCompareTest {
                 "Ivana",
                 "Ivan"
         );
-        assertThat(rst, is(-1));
+        assertThat(rst, is(1));
     }
 
 }

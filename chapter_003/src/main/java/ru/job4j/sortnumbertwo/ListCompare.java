@@ -17,12 +17,12 @@ public class ListCompare implements Comparator<String> {
         int i = 0;
         for (i = 0; i < size; i++) {
             if (left.charAt(i) != right.charAt(i)) {
-                result = left.charAt(i) < right.charAt(i) ? 1 : -1;
+                result = left.charAt(i) > right.charAt(i) ? 1 : -1;
                 break;
             }
         }
         if (i == size && sizeLeft != sizeRight) {
-            result = sizeLeft < sizeRight ? 1 : -1;
+            result = sizeLeft > sizeRight ? 1 : -1;
         }
         return result;
     }
