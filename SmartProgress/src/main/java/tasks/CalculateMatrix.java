@@ -12,7 +12,7 @@ public class CalculateMatrix {
      * @param vector - входящий вектор
      * @return - результат перемножения матрицы на веторк
      */
-    public int[] calculateMatrixOnVector (int matrix[][], int[] vector) {
+    public int[] calculateMatrixOnVector(int[][] matrix, int[] vector) {
         int[] result = new int[vector.length];
         int temp = 0;
         if (matrix.length == vector.length) {

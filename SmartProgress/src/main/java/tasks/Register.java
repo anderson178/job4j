@@ -21,13 +21,13 @@ public class Register {
 		for (int i = 0; i < splitLine.length; i++) {
 			tempCharArray = ArrayUtils.toObject(splitLine[i].toCharArray());
 			for (int j = 0; j < tempCharArray.length; j++) {
-				if (j == 0 ) {
+				if (j == 0) {
 					result += Character.toUpperCase(tempCharArray[j]);
 				} else {
 					result += Character.toLowerCase(tempCharArray[j]);
 				}
 			}
-			if (i != splitLine.length-1) {
+			if (i != splitLine.length - 1) {
 				result += " ";
 			}
 		}

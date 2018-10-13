@@ -13,8 +13,8 @@ public class StringReverseTest {
     @Test
     public  void reserveLine() {
         String temp = "мАма мЫЛА рАму. маШа игрАла в мЯч.";
-        StringReverse reserve= new StringReverse();
+        StringReverse reserve = new StringReverse();
         String result = reserve.reverseLine(temp);
-        assertThat(result, is ("Умар алым амам. Чям в аларги ашам."));
+        assertThat(result, is("Умар алым амам. Чям в аларги ашам."));
     }
 }

@@ -16,6 +16,6 @@ public class RegisterTest {
         String temp = "ИвАНОВ иВАн иВАНоВич";
         Register register = new Register();
         String result = register.normalsRegister(temp);
-        assertThat(result, is ("Иванов Иван Иванович"));
+        assertThat(result, is("Иванов Иван Иванович"));
     }
 }

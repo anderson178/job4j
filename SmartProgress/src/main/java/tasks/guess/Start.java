@@ -1,4 +1,4 @@
-package tasks.guessNumberTwoUsers;
+package tasks.guess;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -50,7 +50,7 @@ public class Start {
      * метод задает максимальную границу для будущего поиска числа
      * @param inNumber - число указанное игроком или ПК
      */
-    private void checkMax(int inNumber){
+    private void checkMax(int inNumber) {
         if (inNumber < this.maxBoundaries) {
             this.maxBoundaries = inNumber;
             this.list.add(inNumber);
@@ -64,8 +64,8 @@ public class Start {
      * @return - сгенерированное число
      */
     private int generationNumber() {
-        int temp = (new Random()).ints(this.minBoundaries, this.maxBoundaries ).iterator().nextInt();
-        for (int i = 0; i < this.list.size(); i++ ) {
+        int temp = (new Random()).ints(this.minBoundaries, this.maxBoundaries).iterator().nextInt();
+        for (int i = 0; i < this.list.size(); i++) {
             if (this.list.get(i) == temp) {
                 generationNumber();
             }

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  */
 public class CalculateMatrixTest {
     @Test
-    public void CalculateMatrixOnVectorTest() {
+    public void calculateMatrixOnVectorTest() {
         CalculateMatrix calculate = new CalculateMatrix();
         int[][] matrix = {
                 {2, 4, 0},

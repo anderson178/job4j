@@ -44,7 +44,7 @@ public class StringReverse {
         String result = "";
         String[] lines = this.sentenceReserve(inLine.split("\\."));
         for (int i = 0; i < lines.length; i++) {
-            if (i == lines.length-1) {
+            if (i == lines.length - 1) {
                 result += lines[i] + ".";
             } else {
                 result += lines[i] + ". ";

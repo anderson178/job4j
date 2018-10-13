@@ -1,4 +1,4 @@
-package tasks.guessNumberTwoUsers;
+package tasks.guess;
 import java.util.Scanner;
 
 /**
