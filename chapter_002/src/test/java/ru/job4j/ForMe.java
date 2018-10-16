@@ -1,8 +1,10 @@
 package ru.job4j;
 
+import java.util.ArrayList;
+
 public class ForMe {
-    int v;
-    int p;
+    private int v;
+    private int p;
     public ForMe(int v, int p) {
         this.v = v;
         this.p = p;
@@ -13,8 +15,9 @@ public class ForMe {
         return c;
     }
 
-    public String summ(int a, int b, int d) {
+    public String summ(int a, int b, int d, ForMe s) {
         String sd = String.valueOf(a + b + d);
+        s.p = 12;
         return sd;
     }
    static int sd() {
@@ -22,8 +25,13 @@ public class ForMe {
    }
 
     public static void main(String[] args) {
-        ForMe fm = new ForMe(2, 7);
+        Object  o = new Object();
+        ForMe m = (ForMe) o;
+        /*ForMe fm = new ForMe(2, 7);
         String f = fm.summ(2, 3, 4);
-        System.out.println(f);
+        ArrayList<String> words = new ArrayList<>();
+        words.add("asdas");
+        words.add("erer");*/
+        System.out.println(m);
     }
 }
