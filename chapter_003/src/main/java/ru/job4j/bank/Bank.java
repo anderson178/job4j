@@ -2,6 +2,7 @@ package ru.job4j.bank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Bank {
@@ -40,9 +41,12 @@ public class Bank {
         return rst;
     }
 
+    public TreeMap<User, List<Account>> getUsersBank() {
+        return this.usersBank;
+    }
+
     public List<Account> getAccounts(User user) {
         return this.usersBank.get(user);
     }
-
 
 }

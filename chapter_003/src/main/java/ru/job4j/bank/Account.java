@@ -1,20 +1,25 @@
 package ru.job4j.bank;
 
 public class Account {
-    int values;
+    private int values;
     private int requisites;
 
     public Account(int values, int requisites) {
         this.values = values;
         this.requisites = requisites;
     }
-   // public void
+
 
     public int getValues() {
-        return values;
+        return this.values;
     }
 
     public int getRequisites() {
-        return requisites;
+        return this.requisites;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "values=" + this.values + ", requisites=" + this.requisites + '}';
     }
 }
