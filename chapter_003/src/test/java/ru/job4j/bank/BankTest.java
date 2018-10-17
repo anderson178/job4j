@@ -1,9 +1,6 @@
-package ru.job4j.Bank;
+package ru.job4j.bank;
 
 import org.junit.Test;
-import ru.job4j.bank.Account;
-import ru.job4j.bank.Bank;
-import ru.job4j.bank.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +9,11 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 17.10.2018
+ */
 public class BankTest {
     private String ln = System.lineSeparator();
     private User user1 = new User("Denis", 2545324);
@@ -119,5 +121,19 @@ public class BankTest {
         double amount = 100;
         boolean result = bank.transferMoney(2545324, 87567, 111111, 8345346, amount);
         assertThat(result, is(false));
+    }
+
+    @Test
+    public void transferMoneyUser1ToUser1WhenTrue() {
+        Bank bank = new Bank();
+        bank.addUser(this.user1);
+        bank.addAccountToUser(this.user1, new Account(544, 87567));
+        bank.addAccountToUser(this.user1, new Account(8754, 8345346));
+        bank.addUser(this.user2);
+        bank.addAccountToUser(this.user2, new Account(11445, 275687));
+        bank.addAccountToUser(this.user2, new Account(7899, 8345346));
+        double amount = 100;
+        boolean result = bank.transferMoney(2545324, 87567, 2545324, 8345346, amount);
+        assertThat(result, is(true));
     }
 }
