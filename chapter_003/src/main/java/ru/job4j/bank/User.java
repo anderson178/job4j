@@ -3,7 +3,7 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
-public class User implements Comparable{
+public class User {
     private String name;
     private Integer passport;
 
@@ -13,27 +13,18 @@ public class User implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return passport == user.passport &&
-                Objects.equals(name, user.name);
+        return Objects.equals(name, user.name) &&
+                Objects.equals(passport, user.passport);
     }
 
     @Override
     public int hashCode() {
 
         return Objects.hash(name, passport);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getPassport() {

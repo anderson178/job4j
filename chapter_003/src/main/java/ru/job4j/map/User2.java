@@ -6,12 +6,12 @@ package ru.job4j.map;
  * @since 04.10.2018
  */
 
-public class User {
+public class User2 {
     private int id;
     private String name;
     private String city;
 
-    public User(int id, String name, String city) {
+    public User2(int id, String name, String city) {
         this.id = id;
         this.name = name;
         this.city = city;

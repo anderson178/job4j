@@ -1,7 +1,7 @@
 package ru.job4j.map;
 
 import org.junit.Test;
-import ru.job4j.map.User;
+import ru.job4j.map.User2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,17 +17,17 @@ import static org.junit.Assert.assertThat;
  */
 
 public class ConvertListInMapTest {
-    private User user1 = new User(0, "Denis", "Piter");
-    private User user2 = new User(1, "Vasiliy", "Moscow");
+    private User2 user1 = new User2(0, "Denis", "Piter");
+    private User2 user2 = new User2(1, "Vasiliy", "Moscow");
 
     @Test
     public void convertListMap() {
         ConvertListInMap convert = new ConvertListInMap();
-        List<User> list = new ArrayList<>();
+        List<User2> list = new ArrayList<>();
         list.add(this.user1);
         list.add(this.user2);
-        HashMap<Integer, User> result = convert.convert(list);
-        HashMap<Integer, User> expect = new HashMap<>();
+        HashMap<Integer, User2> result = convert.convert(list);
+        HashMap<Integer, User2> expect = new HashMap<>();
         expect.put(this.user1.getId(), this.user1);
         expect.put(this.user2.getId(), this.user2);
         assertThat(result, is(expect));

@@ -16,10 +16,10 @@ public class ConvertListInMap {
      * @param list - список объектов User
      * @return - hashMap
      */
-    public HashMap<Integer, User> convert(List<User> list) {
-        HashMap<Integer, User> rst = new HashMap<>();
+    public HashMap<Integer, User2> convert(List<User2> list) {
+        HashMap<Integer, User2> rst = new HashMap<>();
         int id = 0;
-        for (User user : list) {
+        for (User2 user : list) {
             rst.put(user.getId(), user);
         }
         return rst;
