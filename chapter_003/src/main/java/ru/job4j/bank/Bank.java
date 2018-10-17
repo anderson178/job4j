@@ -1,12 +1,10 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import javax.swing.*;
+import java.util.*;
 
 public class Bank {
-    private TreeMap<User, List<Account>> usersBank = new TreeMap<>();
+    private HashMap<User, List<Account>> usersBank = new HashMap<>();
 
     public void addUser(User user) {
         this.usersBank.put(user, new ArrayList<>());
@@ -22,6 +20,7 @@ public class Bank {
 
     /**
      * метод удаления банковского счета по реквизитам.
+     *
      * @param user
      * @param requisites
      * @return
@@ -41,12 +40,42 @@ public class Bank {
         return rst;
     }
 
-    public TreeMap<User, List<Account>> getUsersBank() {
+    public HashMap<User, List<Account>> getUsersBank() {
         return this.usersBank;
     }
 
-    public List<Account> getAccounts(User user) {
-        return this.usersBank.get(user);
+    public List<Account> getAccounts(Integer srcPassport) {
+        List<Account> rst = new ArrayList<>();
+        for (Map.Entry<User, List<Account>> entry : this.usersBank.entrySet()) {
+            if (srcPassport.equals(entry.getKey().getPassport())) {
+                rst = entry.getValue();
+                break;
+            }
+        }
+        return rst;
+    }
+
+    private boolean existAccount(Integer passport, Integer requisite) {
+        boolean rst = false;
+        List<Account> listAccounts = this.getAccounts(passport);
+        for (Account account : listAccounts) {
+            if (requisite.equals(account.getRequisites())) {
+                rst = true;
+                break;
+            }
+        }
+        return rst;
+    }
+
+    public boolean transferMoney(Integer srcPassport, Integer srcRequisite, Integer destPassport,
+                                 Integer dstRequisite, double amount) {
+        boolean user1 = this.existAccount(srcPassport, srcRequisite);
+        boolean user2 = this.existAccount(destPassport, dstRequisite);
+
+
+        /*Integer p = new ArrayList<User>(this.usersBank.keySet()).indexOf(srcPassport);
+        List<User> us = this.usersBank.containsKey(srcPassport);*/
+        return true;
     }
 
 }

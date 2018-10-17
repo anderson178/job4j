@@ -33,9 +33,11 @@ public class BankTest {
     public void addUser() {
         Bank bank = new Bank();
         bank.addUser(this.user1);
+        bank.addUser(this.user2);
         assertThat(bank.getUsersBank().containsKey(this.user1), is (true));
 
     }
+
     @Test
     public void removeUser() {
         Bank bank = new Bank();
@@ -51,7 +53,7 @@ public class BankTest {
         bank.addUser(this.user1);
         bank.addAccountToUser(this.user1, new Account(544, 87567));
         bank.addAccountToUser(this.user1, new Account(8754, 8345346));
-        List<Account> result = bank.getAccounts(this.user1);
+        List<Account> result = bank.getAccounts(2545324);
         List<Account> expect = new ArrayList<>(Arrays.asList(
                 new Account(544, 87567),
                 new Account(8754, 8345346)
@@ -70,15 +72,13 @@ public class BankTest {
         assertThat(result, is(true));
     }
 
-
-    //добить тест
     @Test
     public void getAccountsToUserTest() {
         Bank bank = new Bank();
         bank.addUser(this.user1);
         bank.addAccountToUser(this.user1, new Account(544, 87567));
         bank.addAccountToUser(this.user1, new Account(8754, 8345346));
-        List<Account> temp = bank.getAccounts(this.user1);
+        List<Account> temp = bank.getAccounts(2545324);
         List<Account> temp2 = new ArrayList<>(Arrays.asList(
                 new Account(544, 87567),
                 new Account(8754, 8345346)
@@ -91,6 +91,19 @@ public class BankTest {
         expect.append(temp2.get(0).toString());
         expect.append(this.ln);
         expect.append(temp2.get(1).toString());
-        assertThat(result, is (expect));
+        assertThat(result.toString(), is (expect.toString()));
+    }
+
+    @Test
+    public void transferMoneyUser1ToUser2() {
+        Bank bank = new Bank();
+        bank.addUser(this.user1);
+        bank.addAccountToUser(this.user1, new Account(544, 87567));
+        bank.addAccountToUser(this.user1, new Account(8754, 8345346));
+        bank.addUser(this.user2);
+        bank.addAccountToUser(this.user2, new Account(11445, 87567));
+        bank.addAccountToUser(this.user2, new Account(7899, 8345346));
+        double amount = 100;
+        bank.transferMoney(2545324, 87567, 452344, 87567, amount);
     }
 }

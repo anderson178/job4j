@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class User implements Comparable{
     private String name;
-    private int passport;
+    private Integer passport;
 
     public User(String name, int passport) {
         this.name = name;
