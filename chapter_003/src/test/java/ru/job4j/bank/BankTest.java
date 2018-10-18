@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -49,7 +50,7 @@ public class BankTest {
     }
 
     @Test
-    public void addAccountToUserTest() {
+    public void addAccountToUserTestWhenTrue() {
         Bank bank = new Bank();
         bank.addUser(this.user1);
         bank.addAccountToUser(this.user1, new Account(544, 87567));
@@ -60,6 +61,16 @@ public class BankTest {
                 new Account(8754, 8345346)
         ));
         assertThat(result.get(1).toString(), is(expect.get(1).toString()));
+    }
+
+    @Test
+    public void addAccountToUserTestWhenNull() {
+        Bank bank = new Bank();
+        bank.addUser(this.user1);
+        bank.addAccountToUser(this.user1, new Account(544, 87567));
+        bank.addAccountToUser(this.user1, new Account(8754, 8345346));
+        List<Account> result = bank.getAccounts(this.user2);
+        assertThat(result, is(nullValue()));
     }
 
     @Test

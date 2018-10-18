@@ -101,16 +101,16 @@ public class Bank {
     /**
      * метод поиска банковского счета по реквизитам
      *
-     * @param user      - пользоватеьл
+     * @param passport      - паспорт пользователя
      * @param requisite - реквизиты банковского счета
      * @return - банковсий счет
      */
-    private Account existAccount(User user, Integer requisite) {
+    private Account existAccount(Integer passport, Integer requisite) {
         Account account = null;
-        List<Account> listAccounts = this.getAccounts(user);
-        for (Account temp : listAccounts) {
-            if (requisite.equals(temp.getRequisites())) {
-                account = temp;
+        List<Account> listAccounts = this.getAccounts(this.userBank(passport));
+        for (int i = 0; listAccounts != null && i < listAccounts.size(); i++) {
+            if (requisite.equals(listAccounts.get(i).getRequisites())) {
+                account = listAccounts.get(i);
                 break;
             }
         }
@@ -130,14 +130,10 @@ public class Bank {
     public boolean transferMoney(Integer srcPassport, Integer srcRequisite, Integer destPassport,
                                  Integer dstRequisite, double amount) {
         boolean result = false;
-        User firstUser = this.userBank(srcPassport);
-        User secondUser = this.userBank(destPassport);
-        if (firstUser != null && secondUser != null) {
-            Account accountFirstUser = this.existAccount(firstUser, srcRequisite);
-            Account accountSecondUser = this.existAccount(secondUser, dstRequisite);
-            if (accountFirstUser != null && accountSecondUser != null) {
+        Account accountFirstUser = this.existAccount(srcPassport, srcRequisite);
+        Account accountSecondUser = this.existAccount(destPassport, dstRequisite);
+        if (accountFirstUser != null && accountSecondUser != null) {
                 result = accountFirstUser.transferAmount(accountSecondUser, amount);
-            }
         }
         return result;
     }
