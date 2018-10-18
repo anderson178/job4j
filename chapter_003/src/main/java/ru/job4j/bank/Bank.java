@@ -18,7 +18,7 @@ public class Bank {
      * @param user - пользователь
      */
     public void addUser(User user) {
-        this.usersBank.put(user, new ArrayList<>());
+        this.usersBank.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
