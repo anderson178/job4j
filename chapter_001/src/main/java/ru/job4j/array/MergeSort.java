@@ -3,14 +3,26 @@ package ru.job4j.array;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 22.11.2018
+ */
+
 public class MergeSort {
+
+    /**
+     * merge method of two lists
+     * @param list1 - input first list
+     * @param list2 - input second list
+     * @return - merged sorted list
+     */
     private List<Integer> merge(List<Integer> list1, List<Integer> list2) {
         List<Integer> result = new ArrayList<>();
-        int sizeOut = list1.size() + list2.size();
-        int sizeIn = list1.size() + list2.size();
+        int size = list1.size() + list2.size();
         int list1Count = 0;
         int list2Count = 0;
-        for (int j = 0; j < sizeOut; j++) {
+        for (int j = 0; j < size; j++) {
             if ((list1Count != list1.size()) && (list2Count != list2.size())) {
                 if (list1.get(list1Count) < list2.get(list2Count)) {
                     result.add(list1.get(list1Count));
@@ -30,6 +42,11 @@ public class MergeSort {
         return result;
     }
 
+    /**
+     * item distribution method by the lists
+     * @param mas - input list
+     * @return list of lists
+     */
     private List<List<Integer>> distribution(List<Integer> mas) {
         List<List<Integer>> result = new ArrayList<>();
         int count = 0;
@@ -54,25 +71,30 @@ public class MergeSort {
         return result;
     }
 
-    public void sort(List<Integer> mas) {
-
-        List<List<Integer>> list1 = this.distribution(mas);
+    /**
+     * sorting method
+     * @param mas - input list
+     * @return - sorted list
+     */
+    public List<Integer> sort(List<Integer> mas) {
+        List<List<Integer>> result = this.distribution(mas);
         List<Integer> temp = new ArrayList<>();
-        while (list1.size() > 1) {
-            for (int i = 0; i < list1.size(); i = i + 2) {
-                if (list1.size() % 2 == 0) {
-                    temp.addAll(this.merge(list1.get(i), list1.get(i + 1)));
+        while (result.size() > 1) {
+            for (int i = 0; i < result.size(); i = i + 2) {
+                if (result.size() % 2 == 0) {
+                    temp.addAll(this.merge(result.get(i), result.get(i + 1)));
                 } else {
-                    if (i == list1.size() - 1) {
-                        temp.addAll(list1.get(list1.size() - 1));
+                    if (i == result.size() - 1) {
+                        temp.addAll(result.get(result.size() - 1));
                     } else {
-                        temp.addAll(this.merge(list1.get(i), list1.get(i + 1)));
+                        temp.addAll(this.merge(result.get(i), result.get(i + 1)));
                     }
                 }
             }
-            list1 = this.distribution(temp);
+            result = this.distribution(temp);
             temp.clear();
         }
+        return result.get(0);
     }
 }
 
