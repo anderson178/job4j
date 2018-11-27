@@ -18,24 +18,7 @@ public class SortDepartament {
 
     }
 
-    public void missedDep(List<String> departament) {
-        Boolean rt = false;
-        for (int i = 0; i < departament.size(); i++) {
-            String[] masLine = departament.get(i).split("\\\\");
-            for (int j = 0; j < departament.size(); j++) {
-                if (masLine.length > 1 && masLine[0].equals(departament.get(j))) {
-                    rt = true;
-                   break;
-                }
-            }
-            if (!rt) {
-                departament.add(masLine[0]);
-            }
-
-        }
-    }
-
-    private String minusDep(String[] line) {
+   private String minusDep(String[] line) {
         StringBuilder rst= new StringBuilder();
         if (line.length > 1) {
             for (int j = 0; j < line.length - 1; j++) {
@@ -71,29 +54,23 @@ public class SortDepartament {
         return list;
     }
 
-    public void insertDep(List<String> depart) {
+    private void insertDep(List<String> depart) {
         boolean check = false;
         do {
-            List<String[]> list = splitDep(depart);
+            List<String[]> listDep = splitDep(depart);
             check = false;
-            for (int i = 0; i < list.size(); i++) { // проходим по листу
-                String temp = minusDep(list.get(i));
+            for (String[] depMas : listDep) {
+                String temp = minusDep(depMas);
                 if (compareDep(temp, depart) && !temp.equals("")) {
                     depart.add(temp);
                     check = true;
                 }
             }
         } while (check);
-
-
-        //list.add(depart.get(0).split("\\\\"));
-        int p=0;
-
-
     }
 
     public void sortDown(List<String> departament) {
-        this.missedDep(departament);
+        this.insertDep(departament);
         departament.sort(new Comparator<String>() {
             @Override
             public int compare(String left, String right) {
