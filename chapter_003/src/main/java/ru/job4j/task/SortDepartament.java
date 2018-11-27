@@ -2,27 +2,27 @@ package ru.job4j.task;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
+
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 27.11.2018
+ */
 
 public class SortDepartament {
 
-    public void sortUp(List<String> departament) {
-
-        departament.sort(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
-
-    }
-
-   private String minusDep(String[] line) {
-        StringBuilder rst= new StringBuilder();
+    /**
+     * Метод отсекает последний департамент в строке
+     *
+     * @param line - массив подразделений одной строки
+     * @return - строка без последнего подразделения
+     */
+    private String minusDep(String[] line) {
+        StringBuilder rst = new StringBuilder();
         if (line.length > 1) {
             for (int j = 0; j < line.length - 1; j++) {
-                if (j != line.length -2) {
+                if (j != line.length - 2) {
                     rst.append(line[j]);
                     rst.append("\\");
                 } else {
@@ -33,6 +33,13 @@ public class SortDepartament {
         return rst.toString();
     }
 
+    /**
+     * Метод сравнения подразделений
+     *
+     * @param line    - искомое подразделение
+     * @param depList - массив подразделений одной строки
+     * @return - если совпадений не найдено то true иначе false
+     */
     private boolean compareDep(String line, List<String> depList) {
         boolean rst = false;
         for (String dep : depList) {
@@ -46,6 +53,12 @@ public class SortDepartament {
         return rst;
     }
 
+    /**
+     * Метод разделения входного списка структур подразделений на список массивов каждого из подразделений
+     *
+     * @param depart - структура подразделений
+     * @return - список массивов по каждой из структур
+     */
     private List<String[]> splitDep(List<String> depart) {
         List<String[]> list = new ArrayList<>();
         for (String dep : depart) {
@@ -54,6 +67,11 @@ public class SortDepartament {
         return list;
     }
 
+    /**
+     * Метод вставки пропущенного верхнего уровня подразделения
+     *
+     * @param depart - структура подразделений
+     */
     private void insertDep(List<String> depart) {
         boolean check = false;
         do {
@@ -69,6 +87,11 @@ public class SortDepartament {
         } while (check);
     }
 
+    /**
+     * сортивка списка подразделений по убыванию
+     *
+     * @param departament
+     */
     public void sortDown(List<String> departament) {
         this.insertDep(departament);
         departament.sort(new Comparator<String>() {
@@ -92,5 +115,21 @@ public class SortDepartament {
                 return rst;
             }
         });
+    }
+
+    /**
+     * сортивка списка подразделений по возрастанию
+     *
+     * @param departament
+     */
+    public void sortUp(List<String> departament) {
+        this.insertDep(departament);
+        departament.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
     }
 }
