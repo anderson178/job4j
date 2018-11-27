@@ -38,6 +38,7 @@ public class Bank {
      */
     public void addAccountToUser(User user, Account account) {
         this.usersBank.get(user).add(account);
+        this.usersBank.isEmpty();
     }
 
     /**
