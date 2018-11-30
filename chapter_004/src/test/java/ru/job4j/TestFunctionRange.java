@@ -2,9 +2,14 @@ package ru.job4j;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 30.11.2018
+ */
 
 public class TestFunctionRange {
     @Test
