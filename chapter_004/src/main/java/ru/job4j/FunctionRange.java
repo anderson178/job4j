@@ -9,30 +9,12 @@ import java.util.function.Function;
 
 public class FunctionRange {
 
-    public interface Operation {
-        double calc(int value, int k, int a);
-    }
-/*
-   public List<Integer> diapason(int start, int end, Function<Integer, Integer> func) {
-        //y = kx + a
-        List<Integer> rst = new ArrayList<>();
-        //rst.remo
-        for (int x = start; x <= end; x++) {
-            func.apply()
-            media.accept(op.apply());
-            rst.add(op.calc(x, k, a));
-            System.out.println(rst.get(x).toString());
+    public List<Double> linFunction(int start, int end, Function<Double, Double> func) {
+        List<Double> rst = new ArrayList<>();
+        for (int x = start; x != end; x ++) {
+            rst.add(func.apply(Double.valueOf(x)));
         }
         return rst;
     }
 
-
-    public static void main(String[] args) {
-        FunctionRange fr = new FunctionRange();
-        List<Double> list =  fr.diapason(0, 10,
-                (start, end, er) -> { double result = start * end;
-        return  result;}
-        );
-        int y =0;
-    }*/
 }
