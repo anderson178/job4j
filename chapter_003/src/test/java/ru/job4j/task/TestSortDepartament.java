@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -140,6 +141,21 @@ public class TestSortDepartament {
                 .append("K3\\SK1")
                 .toString()
         ));
+    }
+
+    @Test
+    public void whenTreeSetDown() {
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
+                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"));
+
+        //SortDepartament st = new SortDepartament();
+        //st.sortUp(list);
+        TreeSet<String> tree = new TreeSet<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
+                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"));
+        SortTreeSetDepartament dep = new SortTreeSetDepartament();
+        dep.insertDep(list);
+        int p =0;
+        //tree.addAll(Arrays.asList("K1\\SK1\\SSK2", "K1\\SK2"));
     }
 
 }
