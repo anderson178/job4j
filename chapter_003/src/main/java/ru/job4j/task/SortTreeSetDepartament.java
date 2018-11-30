@@ -1,9 +1,6 @@
 package ru.job4j.task;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SortTreeSetDepartament {
 
@@ -35,15 +32,14 @@ public class SortTreeSetDepartament {
     }
 
     public void insertDep(List<String> listDep) {
-        TreeSet<String> treeDep = new TreeSet<>();
+        TreeSet<String> treeDep = new TreeSet<>(new SortComparator());
 
         for (String dep : listDep) {
             String[] temp = dep.split("\\\\");
             addDep(temp, treeDep);
             int p =0;
-
-
         }
+        //treeDep.comparator(new SortComparator());
         int p =0;
     }
 }
