@@ -2,16 +2,19 @@ package ru.job4j.task;
 
 import java.util.*;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 30.11.2018
+ */
+
 public class SortTreeSetDepartament {
 
-    private List<String[]> splitDep(List<String> depart) {
-        List<String[]> list = new ArrayList<>();
-        for (String dep : depart) {
-            list.add(dep.split("\\\\"));
-        }
-        return list;
-    }
-
+    /**
+     * Метод добавления массива департаметов в treeSet
+     * @param line - строка депаратментов разбитая на массив
+     * @param tree - коллекция treeSet с депаратментами
+     */
     private void addDep(String[] line, TreeSet<String> tree) {
         StringBuilder rst = new StringBuilder();
         if (line.length > 1) {
@@ -28,18 +31,33 @@ public class SortTreeSetDepartament {
         } else {
             tree.add(line[0]);
         }
-        //return rst.toString();
     }
 
-    public void insertDep(List<String> listDep) {
-        TreeSet<String> treeDep = new TreeSet<>(new SortComparator());
-
+    /**
+     * Метод разбивает каждую строку на массивы и добавляет их в treeSet поэлементно
+     * @param listDep - входящий список департаментов
+     * @return - отсортированная коллекция с депаратментами по возрастанию
+     */
+    public TreeSet<String> sortUp(List<String> listDep) {
+        TreeSet<String> rst = new TreeSet<>();
         for (String dep : listDep) {
             String[] temp = dep.split("\\\\");
-            addDep(temp, treeDep);
-            int p =0;
+            addDep(temp, rst);
         }
-        //treeDep.comparator(new SortComparator());
-        int p =0;
+        return rst;
+    }
+
+    /**
+     * Метод разбивает каждую строку на массивы и добавляет их в treeSet поэлементно
+     * @param listDep - входящий список департаментов
+     * @return - отсортированная коллекция с депаратментами по убыванию
+     */
+    public TreeSet<String> sortDown(List<String> listDep) {
+        TreeSet<String> rst = new TreeSet<>(new SortComparator());
+        for (String dep : listDep) {
+            String[] temp = dep.split("\\\\");
+            addDep(temp, rst);
+        }
+        return rst;
     }
 }

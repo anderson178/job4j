@@ -12,150 +12,49 @@ import static org.junit.Assert.assertThat;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 27.11.2018
+ * @since 30.11.2018
  */
 
-
 public class TestSortDepartament {
-    private String convertToString(ArrayList<String> list) {
-        String ln = System.lineSeparator();
-        StringBuilder rst = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            if (i != list.size() - 1) {
-                rst.append(list.get(i));
-                rst.append(ln);
-            } else {
-                rst.append(list.get(i));
-            }
-        }
-        return rst.toString();
-    }
 
     @Test
     public void whenSortDownWithOutDepartamaents() {
-        String ln = System.lineSeparator();
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1"));
-        SortDepartament st = new SortDepartament();
-        st.sortDown(list);
-        assertThat(convertToString(list), is(new StringBuffer()
-                .append("K2")
-                .append(ln)
-                .append("K2\\SK1")
-                .append(ln)
-                .append("K2\\SK1\\SSK1")
-                .append(ln)
-                .append("K1")
-                .append(ln)
-                .append("K1\\SK2")
-                .append(ln)
-                .append("K1\\SK1")
-                .append(ln)
-                .append("K1\\SK1\\SSK2")
-                .toString()
-        ));
+        SortTreeSetDepartament dep = new SortTreeSetDepartament();
+        TreeSet<String> result = dep.sortDown(Arrays.asList("K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1"));
+        ArrayList<String> expectation = new ArrayList<>(Arrays.asList("K2", "K2\\SK1", "K2\\SK1\\SSK1", "K1",
+                "K1\\SK2", "K1\\SK1", "K1\\SK1\\SSK2"));
+        assertThat(result.toString(), is(expectation.toString()));
     }
 
     @Test
     public void whenSortUpWithOutDepartamaents() {
-        String ln = System.lineSeparator();
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1"));
-        SortDepartament st = new SortDepartament();
-        st.sortUp(list);
-        assertThat(convertToString(list), is(new StringBuffer()
-                .append("K1")
-                .append(ln)
-                .append("K1\\SK1")
-                .append(ln)
-                .append("K1\\SK1\\SSK2")
-                .append(ln)
-                .append("K1\\SK2")
-                .append(ln)
-                .append("K2")
-                .append(ln)
-                .append("K2\\SK1")
-                .append(ln)
-                .append("K2\\SK1\\SSK1")
-                .toString()
-        ));
+        SortTreeSetDepartament dep = new SortTreeSetDepartament();
+        TreeSet<String> result = dep.sortUp(Arrays.asList("K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1"));
+        ArrayList<String> expectation = new ArrayList<>(Arrays.asList("K1", "K1\\SK1", "K1\\SK1\\SSK2", "K1\\SK2",
+                "K2", "K2\\SK1", "K2\\SK1\\SSK1"));
+        assertThat(result.toString(), is(expectation.toString()));
     }
 
-    @Test
-    public void whenSortDownDepartaments() {
-        String ln = System.lineSeparator();
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
-                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"
-        ));
-        SortDepartament st = new SortDepartament();
-        st.sortDown(list);
-        assertThat(convertToString(list), is(new StringBuffer()
-                .append("K3")
-                .append(ln)
-                .append("K3\\SK1")
-                .append(ln)
-                .append("K2")
-                .append(ln)
-                .append("K2\\SK1")
-                .append(ln)
-                .append("K2\\SK1\\SSK1")
-                .append(ln)
-                .append("K1")
-                .append(ln)
-                .append("K1\\SK2")
-                .append(ln)
-                .append("K1\\SK1")
-                .append(ln)
-                .append("K1\\SK1\\SSK2")
-                .append(ln)
-                .append("K1\\SK1\\SSK1")
-                .toString()
-        ));
-    }
 
     @Test
     public void whenSortUpDepartaments() {
-        String ln = System.lineSeparator();
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
+        SortTreeSetDepartament dep = new SortTreeSetDepartament();
+        TreeSet<String> result = dep.sortUp(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
                 "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"
         ));
-        SortDepartament st = new SortDepartament();
-        st.sortUp(list);
-        assertThat(convertToString(list), is(new StringBuffer()
-                .append("K1")
-                .append(ln)
-                .append("K1\\SK1")
-                .append(ln)
-                .append("K1\\SK1\\SSK1")
-                .append(ln)
-                .append("K1\\SK1\\SSK2")
-                .append(ln)
-                .append("K1\\SK2")
-                .append(ln)
-                .append("K2")
-                .append(ln)
-                .append("K2\\SK1")
-                .append(ln)
-                .append("K2\\SK1\\SSK1")
-                .append(ln)
-                .append("K3")
-                .append(ln)
-                .append("K3\\SK1")
-                .toString()
-        ));
+        ArrayList<String> expectation = new ArrayList<>(Arrays.asList("K1", "K1\\SK1", "K1\\SK1\\SSK1", "K1\\SK1\\SSK2",
+                "K1\\SK2", "K2", "K2\\SK1", "K2\\SK1\\SSK1", "K3", "K3\\SK1"));
+        assertThat(result.toString(), is(expectation.toString()));
     }
 
     @Test
     public void whenTreeSetDown() {
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
-                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"));
-
-        //SortDepartament st = new SortDepartament();
-        //st.sortUp(list);
-        TreeSet<String> tree = new TreeSet<>(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
-                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"));
         SortTreeSetDepartament dep = new SortTreeSetDepartament();
-        dep.insertDep(list);
-        int p =0;
-        //tree.addAll(Arrays.asList("K1\\SK1\\SSK2", "K1\\SK2"));
+        TreeSet<String> result = dep.sortDown(Arrays.asList("K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK2", "K2\\SK1\\SSK1",
+                "K1", "K2\\SK1", "K1\\SK1\\SSK1", "K2", "K3", "K3\\SK1"));
+        ArrayList<String> expectation = new ArrayList<>(Arrays.asList("K3", "K3\\SK1", "K2", "K2\\SK1", "K2\\SK1\\SSK1", "K1",
+                "K1\\SK2", "K1\\SK1", "K1\\SK1\\SSK2", "K1\\SK1\\SSK1"));
+        assertThat(result.toString(), is(expectation.toString()));
     }
 
 }

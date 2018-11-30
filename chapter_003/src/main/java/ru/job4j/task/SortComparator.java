@@ -1,8 +1,19 @@
 package ru.job4j.task;
 
 import java.util.Comparator;
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 30.11.2018
+ */
 
 public class SortComparator implements Comparator<String> {
+    /**
+     * Метод сравнения двух элементов на убывание
+     * @param left - первый элемент
+     * @param right - второй эелемент
+     * @return - результат сравнения
+     */
     @Override
     public int compare(String left, String right) {
         String[] line1 = left.split("\\\\");
