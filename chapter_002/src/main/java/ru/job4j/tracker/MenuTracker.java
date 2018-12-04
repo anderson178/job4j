@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * @author Денис Мироненко
@@ -67,10 +68,10 @@ public class MenuTracker {
     /**
      * Вывод меню
      */
-    public void show() {
+    public void show(Consumer<String> menu) {
         for (UserAction action : this.listActions) {
             if (action != null) {
-                System.out.println(action.info());
+                menu.accept(action.info());
             }
         }
     }

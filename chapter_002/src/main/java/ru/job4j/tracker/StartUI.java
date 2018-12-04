@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * @author Денис Мироненко
@@ -33,7 +34,7 @@ public class StartUI {
         menu.fillActions(this);
         do {
             System.out.println("-----------MENU--------");
-            menu.show();
+            menu.show(x -> System.out.println(x));
             System.out.println("-----------------------");
             int key = (input.ask("select: ", menu.fillRange()));
             menu.select(key);
