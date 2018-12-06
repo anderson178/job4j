@@ -29,19 +29,19 @@ public class StartUI {
     /**
      * Основной метод для инициалазии программы
      */
-    public void init() {
+    public void init(Consumer<String> menuShow) {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions(this);
         do {
-            System.out.println("-----------MENU--------");
+            menuShow.accept("-----------MENU--------");
             menu.show(x -> System.out.println(x));
-            System.out.println("-----------------------");
-            int key = (input.ask("select: ", menu.fillRange()));
+            menuShow.accept("-----------------------");
+            int key = (input.ask("select: ", menu2 -> System.out.println(menu2), menu.fillRange()));
             menu.select(key);
         } while (this.work);
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init(menu -> System.out.println(menu));
     }
 }

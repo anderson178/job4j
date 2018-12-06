@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Денис Мироненко
@@ -16,11 +17,12 @@ public class StubInput implements Input {
     public StubInput(ArrayList<String> answer) {
         this.answer = answer;
     }
-
-    public String ask(String questions) {
+    @Override
+    public String ask(String questions, Consumer<String> show) {
         return answer.get(position++);
     }
 
+    @Override
     /**
      * метод валидации введенных данных при выборе меню
      *
@@ -28,8 +30,8 @@ public class StubInput implements Input {
      * @param range    - набор чисел меню
      * @return - ключ иначе сообщение об ошибке
      */
-    public int ask(String question, ArrayList<Integer> range) {
-        int key = Integer.valueOf(this.ask(question));
+    public int ask(String question, Consumer<String> show, ArrayList<Integer> range) {
+        int key = Integer.valueOf(this.ask(question, showKey -> System.out.println(showKey)));
         boolean result = false;
         for (int value : range) {
             if (value == key) {

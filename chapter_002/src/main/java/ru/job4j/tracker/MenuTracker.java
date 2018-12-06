@@ -62,7 +62,7 @@ public class MenuTracker {
      * @param key
      */
     public void select(int key) {
-        this.listActions.get(key).execute(this.input, this.tracker);
+        this.listActions.get(key).execute(this.input, this.tracker, show -> System.out.println(show));
     }
 
     /**
@@ -81,13 +81,13 @@ public class MenuTracker {
      *
      * @param items - массив заявок
      */
-    private void showAllItems(ArrayList<Item> items) {
+    private void showAllItems(ArrayList<Item> items, Consumer<String> show) {
         if (items.size() != 0) {
             for (Item item : items) {
-                System.out.println(item.toString());
+                show.accept(item.toString());
             }
         } else {
-            System.out.println("Список пуст");
+            show.accept("Список пуст");
         }
     }
 
@@ -101,12 +101,14 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection ADD");
-            String name = input.ask("Please enter the task name: ");
-            String desc = input.ask("Please enter the task description: ");
+        public void execute(Input input, Tracker tracker, Consumer<String> show) {
+            show.accept("You selection ADD");
+            //System.out.println("You selection ADD");
+            String name = input.ask("Please enter the task name: ", showName -> System.out.println(showName));
+            String desc = input.ask("Please enter the task description: ", showDesc -> System.out.println(showDesc));
             tracker.add(new Item(name, desc));
-            System.out.println("Item create");
+            show.accept("Item create");
+           // System.out.println("Item create");
         }
 
     }
@@ -121,10 +123,11 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker, Consumer<String> show2) {
             ArrayList<Item> items = tracker.getAll();
-            System.out.println("You selection SHOW_ALL");
-            showAllItems(items);
+            show2.accept("You selection SHOW_ALL");
+            //System.out.println("You selection SHOW_ALL");
+            showAllItems(items, show -> System.out.println(show));
         }
     }
 
@@ -138,16 +141,19 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection EDIT");
-            String id = input.ask("input id item:");
-            String name = input.ask("input new name:");
-            String desc = input.ask("input new description:");
+        public void execute(Input input, Tracker tracker, Consumer<String> show) {
+            show.accept("You selection EDIT");
+            //System.out.println("You selection EDIT");
+            String id = input.ask("input id item:", showId -> System.out.println(showId));
+            String name = input.ask("input new name:", showName -> System.out.println(showName));
+            String desc = input.ask("input new description:", showDesc -> System.out.println(showDesc));
             Item item = new Item(name, desc);
             if (tracker.edit(id, item)) {
-                System.out.println("Item is update");
+                show.accept("Item is update");
+                //System.out.println("Item is update");
             } else {
-                System.out.println("Item with id: " + id + " not found");
+                show.accept("Item with id: " + id + " not found");
+                //System.out.println("Item with id: " + id + " not found");
             }
         }
     }
@@ -162,13 +168,16 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection DELETE");
-            String id = input.ask("input id item:");
+        public void execute(Input input, Tracker tracker, Consumer<String> show) {
+            show.accept("You selection DELETE");
+           // System.out.println("You selection DELETE");
+            String id = input.ask("input id item:", showId -> System.out.println(showId));
             if (tracker.remove(id)) {
-                System.out.println("Item remove");
+                show.accept("Item remove");
+                //System.out.println("Item remove");
             } else {
-                System.out.println("Item not found");
+                show.accept("Item not found");
+                //System.out.println("Item not found");
             }
         }
 
@@ -188,14 +197,17 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection FIND_BY_ID");
-            String id = input.ask("input id item:");
+        public void execute(Input input, Tracker tracker, Consumer<String> show) {
+            show.accept("You selection FIND_BY_ID");
+            //System.out.println("You selection FIND_BY_ID");
+            String id = input.ask("input id item:", showId -> System.out.println(showId));
             Item item = tracker.findById(id);
             if (item != null) {
-                System.out.println(toStringItem(item.getId(), item.getName(), item.getDescription(), item.getCreate()));
+                show.accept(toStringItem(item.getId(), item.getName(), item.getDescription(), item.getCreate()));
+                //System.out.println(toStringItem(item.getId(), item.getName(), item.getDescription(), item.getCreate()));
             } else {
-                System.out.println("По данному id: " + id + " заявок не найдено");
+                show.accept("По данному id: " + id + " заявок не найдено");
+                //System.out.println("По данному id: " + id + " заявок не найдено");
             }
         }
     }
@@ -210,11 +222,12 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection FIND_BY_NAME");
-            String name = input.ask("input name:");
+        public void execute(Input input, Tracker tracker, Consumer<String> show2) {
+            show2.accept("You selection FIND_BY_NAME");
+            //System.out.println("You selection FIND_BY_NAME");
+            String name = input.ask("input name:", showName -> System.out.println(showName));
             ArrayList<Item> items = tracker.findByName(name);
-            showAllItems(items);
+            showAllItems(items, show -> System.out.println(show));
         }
     }
 
@@ -229,9 +242,11 @@ public class MenuTracker {
             this.ui = ui;
         }
 
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("You selection EXIT");
-            System.out.println("Goode bye");
+        public void execute(Input input, Tracker tracker, Consumer<String> show) {
+            show.accept("You selection EXIT");
+            show.accept("Goode bye");
+            //System.out.println("You selection EXIT");
+            //System.out.println("Goode bye");
             this.ui.stop();
         }
     }

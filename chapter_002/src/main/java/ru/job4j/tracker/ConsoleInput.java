@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 /**
  * @author Денис Мироненко
@@ -12,17 +13,20 @@ import java.util.Scanner;
 public class ConsoleInput implements Input {
     private Scanner scaner = new Scanner(System.in);
 
+    @Override
     /**
      * метод считывания данных с консоли введнные пользователем
      *
      * @param question - вопрос
      * @return - строку с считанными данными
      */
-    public String ask(String question) {
-        System.out.println(question);
+    public String ask(String question, Consumer<String> show) {
+        show.accept(question);
+        //System.out.println(question);
         return this.scaner.nextLine();
     }
 
+    @Override
     /**
      * метод валидации введенных данных при выборе меню
      *
@@ -30,8 +34,8 @@ public class ConsoleInput implements Input {
      * @param range    - набор чисел меню
      * @return - ключ иначе сообщение об ошибке
      */
-    public int ask(String question, ArrayList<Integer> range) {
-        int key = Integer.valueOf(this.ask(question));
+    public int ask(String question, Consumer<String> show, ArrayList<Integer> range) {
+        int key = Integer.valueOf(this.ask(question, showKey -> System.out.println(showKey)));
         boolean result = false;
         for (int value : range) {
             if (value == key) {
