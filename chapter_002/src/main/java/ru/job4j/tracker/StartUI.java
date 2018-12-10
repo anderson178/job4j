@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
+
 import java.util.function.Consumer;
 
 /**
@@ -13,10 +13,12 @@ public class StartUI {
     private Tracker tracker;
     private Input input;
     private boolean work = true;
+    private Consumer<String> consumer;
 
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.consumer = output;
     }
 
     /**
@@ -29,19 +31,19 @@ public class StartUI {
     /**
      * Основной метод для инициалазии программы
      */
-    public void init(Consumer<String> menuShow) {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+    public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, System.out::println);
         menu.fillActions(this);
         do {
-            menuShow.accept("-----------MENU--------");
-            menu.show(x -> System.out.println(x));
-            menuShow.accept("-----------------------");
-            int key = (input.ask("select: ", menu2 -> System.out.println(menu2), menu.fillRange()));
+            this.consumer.accept("-----------MENU--------");
+            menu.show();
+            this.consumer.accept("-----------------------");
+            int key = (input.ask("select: ", System.out::println, menu.fillRange()));
             menu.select(key);
         } while (this.work);
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init(menu -> System.out.println(menu));
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }

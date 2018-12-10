@@ -43,7 +43,7 @@ public class ValidateInputTest {
         }
         ArrayList<String> answerList = new ArrayList<>(Arrays.asList("invalid", "0"));
         ValidateInput input = new ValidateInput(new StubInput(answerList));
-        input.ask("Select: ", range);
+        input.ask("Select: ", System.out::println, range);
         assertThat(this.mem.toString(), is("Please enter validate data again" + this.ln));
     }
 

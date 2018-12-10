@@ -14,7 +14,7 @@ public class ValidateInput implements ru.job4j.tracker.Input {
 
     @Override
     public String ask(String question, Consumer<String> show) {
-        return this.input.ask(question, show2 -> System.out.println(show2));
+        return this.input.ask(question, System.out::println);
     }
     @Override
     public int ask(String question, Consumer<String> show, ArrayList<Integer> range) {
@@ -22,7 +22,7 @@ public class ValidateInput implements ru.job4j.tracker.Input {
         int value = -1;
         do {
             try {
-                value = this.input.ask(question, showValue -> System.out.println(showValue), range);
+                value = this.input.ask(question, System.out::println, range);
                 invalide = false;
             } catch (MenuOutExeption moe) {
                 System.out.println("Enter number menu  of range");

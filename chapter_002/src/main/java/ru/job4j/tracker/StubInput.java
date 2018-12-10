@@ -31,7 +31,7 @@ public class StubInput implements Input {
      * @return - ключ иначе сообщение об ошибке
      */
     public int ask(String question, Consumer<String> show, ArrayList<Integer> range) {
-        int key = Integer.valueOf(this.ask(question, showKey -> System.out.println(showKey)));
+        int key = Integer.valueOf(this.ask(question, System.out::println));
         boolean result = false;
         for (int value : range) {
             if (value == key) {
