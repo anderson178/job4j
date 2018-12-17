@@ -2,6 +2,8 @@ package ru.job4j.list;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * @author Денис Мироненко
@@ -22,6 +24,7 @@ public class ConvertList {
                 list.add(number2);
             }
         }
+
         return list;
     }
 }

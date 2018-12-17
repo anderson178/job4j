@@ -1,5 +1,5 @@
 package ru.job4j.bank;
-
+import java.util.stream.*;
 
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class Bank {
      */
     public void addAccountToUser(User user, Account account) {
         this.usersBank.get(user).add(account);
-        this.usersBank.isEmpty();
+        //this.usersBank.isEmpty();
     }
 
     /**
@@ -49,6 +49,7 @@ public class Bank {
      * @return - true если аккаутн удален, иначе false
      */
     public boolean removeAccountToUser(User user, int requisites) {
+        //List<Account> listTemp = usersBank.entrySet().stream().filter(userListEntry -> user.equals(userListEntry.getKey().)).map(map -> map.getKey()).collect(Collectors.toList());
         List<Account> list = this.usersBank.get(user);
         int index;
         boolean rst = false;
