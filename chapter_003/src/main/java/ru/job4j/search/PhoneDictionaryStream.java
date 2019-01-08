@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 08.01.2019
+ */
+
 public class PhoneDictionaryStream {
     private List<Person> persons = new ArrayList<>();
 
