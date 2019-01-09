@@ -1,9 +1,12 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 09.01.2019
+ */
 
 public class BankStream {
     private HashMap<User, List<Account>> usersBank = new HashMap<>();
@@ -45,16 +48,13 @@ public class BankStream {
      * @return - true если аккаутн удален, иначе false
      */
     public boolean removeAccountToUser(User user, int requisites) {
-        //List<Account> listTemp = usersBank.entrySet().stream().filter(userListEntry -> user.equals(userListEntry.getKey().)).map(map -> map.getKey()).collect(Collectors.toList());
-        List<Account> list = this.usersBank.get(user);
-        int index;
         boolean rst = false;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getRequisites() == requisites) {
-                index = i;
-                this.usersBank.get(user).remove(index);
+        if (this.usersBank.get(user) != null) {
+            Optional<Account> accountUser = this.usersBank.get(user).stream().filter(account ->
+                    account.getRequisites() == requisites).findFirst();
+            if (accountUser.isPresent()) {
+                this.usersBank.get(user).remove(accountUser);
                 rst = true;
-                break;
             }
         }
         return rst;
@@ -87,10 +87,11 @@ public class BankStream {
      */
     private User userBank(Integer passport) {
         User user = null;
-        for (Map.Entry<User, List<Account>> entry : this.usersBank.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                user = entry.getKey();
-                break;
+        if (!this.usersBank.entrySet().isEmpty()) {
+            Optional<Map.Entry<User, List<Account>>> userOpt = this.usersBank.entrySet().stream().filter(Objects::nonNull).filter(value ->
+                    passport.equals(value.getKey().getPassport())).findFirst();
+            if (userOpt.isPresent()) {
+                user = userOpt.get().getKey();
             }
         }
         return user;
@@ -99,17 +100,17 @@ public class BankStream {
     /**
      * метод поиска банковского счета по реквизитам
      *
-     * @param passport      - паспорт пользователя
+     * @param passport  - паспорт пользователя
      * @param requisite - реквизиты банковского счета
      * @return - банковсий счет
      */
     private Account existAccount(Integer passport, Integer requisite) {
         Account account = null;
         List<Account> listAccounts = this.getAccounts(this.userBank(passport));
-        for (int i = 0; listAccounts != null && i < listAccounts.size(); i++) {
-            if (requisite.equals(listAccounts.get(i).getRequisites())) {
-                account = listAccounts.get(i);
-                break;
+        if (listAccounts != null) {
+            Optional<Account> accountOpt = listAccounts.stream().filter(value -> requisite.equals(value.getRequisites())).findFirst();
+            if (accountOpt.isPresent()) {
+                account = accountOpt.get();
             }
         }
         return account;
