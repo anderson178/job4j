@@ -1,11 +1,14 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 05.10.2018
+ * @since 09.01.2019
  */
 
 public class Tracker {
@@ -52,15 +55,15 @@ public class Tracker {
      */
     public boolean edit(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.items.size(); i++) {
-            if (this.items.get(i).getId().equals(id)) {
-                item.setId(this.items.get(i).getId());
-                item.setCreate(this.items.get(i).getCreate());
-                this.items.set(i, item);
+        if (!this.items.isEmpty()) {
+            Optional<Integer> index = IntStream.range(0, this.items.size()).filter(i -> this.items.get(i).getId().equals(id)).boxed().findFirst();
+            if (index.isPresent()) {
+                item.setId(this.items.get(index.get()).getId());
+                item.setCreate(this.items.get(index.get()).getCreate());
+                this.items.set(index.get(), item);
                 result = true;
             }
         }
-
         return result;
     }
 
@@ -72,15 +75,19 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item : this.items) {
-            if (item.getId().equals(id)) {
-                result = item;
-                break;
+        if (!this.items.isEmpty()) {
+            Optional<Item> temp = this.items.stream().filter(value -> value.getId().equals(id)).findFirst();
+            if (temp.isPresent()) {
+                result = temp.get();
             }
         }
         return result;
     }
 
+
+    private static Predicate<Item> checkName(String keyName) {
+        return p -> p.getName().equals(keyName);
+    }
     /**
      * метод поиска заявки по имени
      *
@@ -88,14 +95,7 @@ public class Tracker {
      * @return
      */
     public ArrayList<Item> findByName(String keyName) {
-        ArrayList<Item> result = new ArrayList<>();
-        for (Item item : this.items) {
-            if (item.getName().equals(keyName)) {
-                result.add(item);
-            }
-        }
-
-        return result;
+        return new ArrayList<>(this.items.stream().filter(value -> checkName(keyName).test(value)).collect(Collectors.toList()));
     }
 
     /**
@@ -106,12 +106,10 @@ public class Tracker {
      */
     public boolean remove(String id) {
         boolean res = false;
-        for (int i = 0; i < this.items.size(); i++) {
-            if (this.items.get(i).getId().equals(id)) {
-                this.items.remove(i);
-                res = true;
-                break;
-            }
+        Optional<Integer> index = IntStream.range(0, this.items.size()).filter(i -> this.items.get(i).getId().equals(id)).boxed().findFirst();
+        if (index.isPresent()) {
+            this.items.remove(index.get().intValue());
+            res = true;
         }
         return res;
     }
