@@ -40,7 +40,6 @@ public class ListCompareTest {
     @Test
     public void whenStringsAreEqualThenPositive2() {
         List<Integer> list = new ArrayList<>();
-
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "Iva",
