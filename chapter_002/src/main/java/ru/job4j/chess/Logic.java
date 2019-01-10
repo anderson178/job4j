@@ -6,6 +6,10 @@ import ru.job4j.chess.exception.OccupiedWayException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.IntStream;
+
 /**
  * @author Денис Мироненко
  * @version $Id$
@@ -61,10 +65,9 @@ public class Logic {
     private boolean existFigure(Cell[] steps) {
         boolean rst = true;
         for (Figure figure : this.figures) {
-            for (Cell step : steps) {
-                if (figure.position().equals(step)) {
-                    rst = false;
-                }
+            if (Arrays.stream(steps).anyMatch(value -> figure.position().equals(value))) {
+                rst = false;
+                break;
             }
         }
         return rst;
@@ -87,13 +90,7 @@ public class Logic {
      * @return
      */
     private int findBy(Cell cell) {
-        int rst = -1;
-        for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
-                rst = index;
-                break;
-            }
-        }
-        return rst;
+       return  IntStream.range(0, this.figures.length).filter(i ->
+               this.figures[i] != null && this.figures[i].position().equals(cell)).boxed().findFirst().orElse(-1);
     }
 }

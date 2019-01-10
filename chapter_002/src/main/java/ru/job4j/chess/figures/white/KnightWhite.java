@@ -34,18 +34,6 @@ public class KnightWhite implements Figure {
         return steps;
     }
 
-    private Cell findPosition(int x, int y) {
-        Cell[] temp = Cell.values();
-        Cell result = null;
-        for (Cell cell : temp) {
-            if (x == cell.x && y == cell.y) {
-                result = cell;
-                break;
-            }
-        }
-        return result;
-    }
-
     @Override
     public Figure copy(Cell dest) {
         return new KnightWhite(dest);

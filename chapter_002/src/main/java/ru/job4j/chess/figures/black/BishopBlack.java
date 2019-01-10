@@ -5,6 +5,8 @@ import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
+
 /**
  * @author Денис Мироненко
  * @version $Id$
@@ -54,14 +56,6 @@ public class BishopBlack implements Figure {
     }
 
     private Cell findPosition(int x, int y) {
-        Cell[] temp = Cell.values();
-        Cell result = null;
-        for (Cell cell : temp) {
-            if (x == cell.x && y == cell.y) {
-                result = cell;
-                break;
-            }
-        }
-        return result;
+        return Arrays.stream(Cell.values()).filter(value -> x == value.x && y == value.y).findFirst().orElse(null);
     }
 }

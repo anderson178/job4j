@@ -4,6 +4,8 @@ import ru.job4j.chess.exception.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
+
 /**
  * @author Денис Мироненко
  * @version $Id$
@@ -31,17 +33,6 @@ public class KnightBlack implements Figure {
         }
         steps = new Cell[] {dest};
         return steps;
-    }
-    private Cell findPosition(int x, int y) {
-        Cell[] temp = Cell.values();
-        Cell result = null;
-        for (Cell cell : temp) {
-            if (x == cell.x && y == cell.y) {
-                result = cell;
-                break;
-            }
-        }
-        return result;
     }
 
     @Override
