@@ -3,6 +3,8 @@ package ru.job4j.search;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * @author Денис Мироненко
