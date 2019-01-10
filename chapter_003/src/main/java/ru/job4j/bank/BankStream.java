@@ -53,7 +53,7 @@ public class BankStream {
             Optional<Account> accountUser = this.usersBank.get(user).stream().filter(account ->
                     account.getRequisites() == requisites).findFirst();
             if (accountUser.isPresent()) {
-                this.usersBank.get(user).remove(accountUser);
+                this.usersBank.get(user).remove(accountUser.get());
                 rst = true;
             }
         }
