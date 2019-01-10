@@ -74,14 +74,7 @@ public class Tracker {
      * @return
      */
     public Item findById(String id) {
-        Item result = null;
-        if (!this.items.isEmpty()) {
-            Optional<Item> temp = this.items.stream().filter(value -> value.getId().equals(id)).findFirst();
-            if (temp.isPresent()) {
-                result = temp.get();
-            }
-        }
-        return result;
+        return this.items.stream().filter(value -> value.getId().equals(id)).findFirst().orElse(null);
     }
 
 
