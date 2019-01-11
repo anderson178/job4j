@@ -63,14 +63,9 @@ public class Logic {
      * @return - false если хоть одна клетка будет занята
      */
     private boolean existFigure(Cell[] steps) {
-        boolean rst = true;
-        for (Figure figure : this.figures) {
-            if (Arrays.stream(steps).anyMatch(value -> figure.position().equals(value))) {
-                rst = false;
-                break;
-            }
-        }
-        return rst;
+        return Arrays.stream(this.figures).noneMatch(figure ->
+                Arrays.stream(steps).anyMatch(value ->
+                        figure.position().equals(value)));
     }
 
     /**
