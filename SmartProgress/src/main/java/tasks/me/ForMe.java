@@ -10,7 +10,7 @@ public class ForMe {
     }
     public void change(int[] mas) {
         int k = 3;
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             mas[i] = k--;
         }
     }
@@ -20,7 +20,7 @@ public class ForMe {
 
     public int[] sort(int[] array) {
         boolean cheange = true;
-        while (cheange){
+        while (cheange) {
             cheange = false;
             for (int index = 0; index < array.length - 1; index++) {
                 if (array[index] > array[index + 1]) {
@@ -53,7 +53,7 @@ public class ForMe {
        // System.out.println(name);
         //name = change(name);
         //System.out.println(name);
-        int[] mas = new int[]{2, 6, 9, 1 , 4, 5};
+        int[] mas = new int[]{2, 6, 9, 1, 4, 5};
         int[] rst = fm.sort(mas);
         //boolean[] mas = new boolean[]{true, true, true};
         //boolean rst = fm.mono(mas);
@@ -69,7 +69,7 @@ public class ForMe {
         boolean rst3 = a == b;
         boolean rst4 = a.equals(b);
        fm.change(count);
-       int l =0;
+       int l = 0;
 
 
 

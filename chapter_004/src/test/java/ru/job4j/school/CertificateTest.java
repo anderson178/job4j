@@ -17,6 +17,5 @@ public class CertificateTest {
         temp.add(new Student("Dmitry", 5));
         temp.add(new Student("Vasily", 3));
         List<Student> result = cert.levelOf(temp, 5);
-        int p=0;
     }
 }
