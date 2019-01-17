@@ -31,10 +31,11 @@ public class PhoneBook {
         this.fillPhoneBook();
         do {
             this.showMenu();
-            switch (new Scanner(System.in).nextLine()){
+            switch (new Scanner(System.in).nextLine()) {
                 case "0": menuBook.showAllNumberUser(this.phoneBook);
                 break;
-                case "1": menuBook.exit(this);
+                default:menuBook.exit(this);
+                break;
             }
         } while (this.work);
     }
