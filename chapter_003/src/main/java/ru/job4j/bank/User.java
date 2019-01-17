@@ -17,25 +17,6 @@ public class User {
         this.passport = passport;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        boolean rst = false;
-        if (this == o) {
-            rst = true;
-        }
-        if (!(o instanceof User)) {
-            rst = false;
-        }
-        User user = (User) o;
-        rst = Objects.equals(this.name, user.name) && Objects.equals(this.passport, user.passport);
-        return rst;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.name, passport);
-    }
-
     public int getPassport() {
         return this.passport;
     }
