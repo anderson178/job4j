@@ -4,20 +4,20 @@ import java.util.Comparator;
 
 public class Student implements Comparator<Student> {
     private String name;
-    private Integer bound;
+    private Integer scope;
 
-    public Student(String name, Integer bound) {
+    public Student(String name, Integer scope) {
         this.name = name;
-        this.bound = bound;
+        this.scope = scope;
     }
 
     @Override
     public int compare(Student o1, Student o2) {
-        return o2.getBound().compareTo(o1.getBound());
+        return 0;
     }
 
-    public Integer getBound() {
-        return bound;
+    public Integer getScope() {
+        return scope;
     }
 
     public String getName() {
