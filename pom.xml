@@ -20,7 +20,6 @@
         <module>chapter_004</module>
         <module>otr</module>
         <module>SmartProgress</module>
-        <module>helpForUsersJob4j</module>
     </modules>
 <dependencies>
     <dependency>
