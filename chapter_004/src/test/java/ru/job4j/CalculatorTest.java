@@ -17,6 +17,6 @@ public class CalculatorTest {
                 (value, index) -> (double) value + index,
                 result -> buffer.add(result)
         );
-        assertThat(buffer, is(Arrays.asList(1D, 2D, 3D, 4D)));
+        assertThat(buffer, is(List.of(1D, 2D, 3D, 4D)));
     }
 }

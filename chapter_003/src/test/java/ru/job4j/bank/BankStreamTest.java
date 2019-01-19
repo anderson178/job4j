@@ -57,10 +57,10 @@ public class BankStreamTest {
         bank.addAccountToUser(this.user1, new Account(544, 87567));
         bank.addAccountToUser(this.user1, new Account(8754, 8345346));
         List<Account> result = bank.getAccounts(this.user1);
-        List<Account> expect = new ArrayList<>(Arrays.asList(
+        List<Account> expect = List.of(
                 new Account(544, 87567),
                 new Account(8754, 8345346)
-        ));
+        );
         assertThat(result.get(1).toString(), is(expect.get(1).toString()));
     }
 
@@ -92,10 +92,10 @@ public class BankStreamTest {
         bank.addAccountToUser(this.user1, new Account(544, 87567));
         bank.addAccountToUser(this.user1, new Account(8754, 8345346));
         List<Account> temp = bank.getAccounts(this.user1);
-        List<Account> temp2 = new ArrayList<>(Arrays.asList(
+        List<Account> temp2 = List.of(
                 new Account(544, 87567),
                 new Account(8754, 8345346)
-        ));
+        );
         StringBuilder result = new StringBuilder();
         result.append(temp.get(0).toString());
         result.append(this.ln);

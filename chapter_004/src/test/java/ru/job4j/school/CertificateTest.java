@@ -19,12 +19,12 @@ public class CertificateTest {
     @Test
     public void levelOfWhenScopeMoreThree() {
         Certificate cert = new Certificate();
-        List<Student> temp = new ArrayList<>(Arrays.asList(
+        List<Student> temp = List.of(
                 new Student("Petr", 4),
                 new Student("Denis", 2),
                 new Student("Dmitry", 5),
                 new Student("Vasily", 3)
-                ));
+                );
         List<Student> result = cert.levelOf(temp, 3);
         List<Student> expect = new ArrayList<>(Arrays.asList(temp.get(2), temp.get(0)));
         assertThat(result, is(expect));
@@ -33,12 +33,12 @@ public class CertificateTest {
     @Test
     public void levelOfWhenScopeMoreTwo() {
         Certificate cert = new Certificate();
-        List<Student> temp = new ArrayList<>(Arrays.asList(
+        List<Student> temp = List.of(
                 new Student("Petr", 4),
                 new Student("Denis", 2),
                 new Student("Dmitry", 5),
                 new Student("Vasily", 3)
-        ));
+        );
         List<Student> result = cert.levelOf(temp, 2);
         List<Student> expect = new ArrayList<>(Arrays.asList(temp.get(2), temp.get(0), temp.get(3)));
         assertThat(result, is(expect));

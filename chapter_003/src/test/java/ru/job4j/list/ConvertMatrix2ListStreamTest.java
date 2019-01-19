@@ -16,7 +16,7 @@ public class ConvertMatrix2ListStreamTest {
                 {1, 2},
                 {3, 4}
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 1, 2, 3, 4
         );
         List<Integer> result = list.toList(input);
@@ -30,7 +30,7 @@ public class ConvertMatrix2ListStreamTest {
                 {1, 2, 3},
                 {4, 5, 6}
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 1, 2, 3, 4, 5, 6
         );
         List<Integer> result = list.toList(input);
@@ -45,7 +45,7 @@ public class ConvertMatrix2ListStreamTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        List<Integer> expect = Arrays.asList(
+        List<Integer> expect = List.of(
                 1, 2, 3, 4, 5, 6, 7, 8, 9
         );
         List<Integer> result = list.toList(input);

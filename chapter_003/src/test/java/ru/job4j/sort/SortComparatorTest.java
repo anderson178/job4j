@@ -26,13 +26,13 @@ public class SortComparatorTest {
                 new Users("Petr", 17)
         ));
         ListSorted sort = new ListSorted();
-        List<Users> expect = new ArrayList<>(Arrays.asList(
+        List<Users> expect = List.of(
                 result.get(3),
                 result.get(4),
                 result.get(0),
                 result.get(2),
                 result.get(1)
-        ));
+        );
         result = sort.sortNameLength(result);
         assertThat(result, is(expect));
     }
@@ -46,13 +46,13 @@ public class SortComparatorTest {
                 new Users("Zlan", 18),
                 new Users("Petr", 17)
         ));
-        List<Users> expect = new ArrayList<>(Arrays.asList(
+        List<Users> expect = List.of(
                 result.get(2),
                 result.get(4),
                 result.get(0),
                 result.get(1),
                 result.get(3)
-        ));
+        );
         ListSorted sort = new ListSorted();
         result = sort.sortNameAge(result);
         assertThat(result, is(expect));

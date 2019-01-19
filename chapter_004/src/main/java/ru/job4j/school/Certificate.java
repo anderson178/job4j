@@ -23,4 +23,5 @@ public class Certificate {
                 .takeWhile(value -> value.getScope() > bound)
                 .collect(Collectors.toList());
     }
+
 }
