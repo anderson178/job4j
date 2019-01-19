@@ -29,7 +29,7 @@ public class PhoneDictionary {
      * @return - список с совпдающими значениями по заданному ключу
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
+        var result = new ArrayList<Person>();
         for (Person person : persons) {
             if (person.getName().contains(key)
                     || person.getSurname().contains(key)

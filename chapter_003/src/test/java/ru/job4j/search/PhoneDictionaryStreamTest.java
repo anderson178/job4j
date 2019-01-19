@@ -22,28 +22,28 @@ public class PhoneDictionaryStreamTest {
     @Test
     public void whenFindByName() {
         this.personFill();
-        List<Person> persons = phones.find("459");
+        var persons = phones.find("459");
         assertThat(persons.iterator().next().getSurname(), is("Mironenko"));
     }
 
     @Test
     public void whenFindBySurname() {
         this.personFill();
-        List<Person> persons = phones.find("Mironenko");
+        var persons = phones.find("Mironenko");
         assertThat(persons.iterator().next().getSurname(), is("Mironenko"));
     }
 
     @Test
     public void whenFindByAddress() {
         this.personFill();
-        List<Person> persons = phones.find("Bryansk");
+        var persons = phones.find("Bryansk");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 
     @Test
     public void whenFindByPhone() {
         this.personFill();
-        List<Person> persons = phones.find("597");
+        var persons = phones.find("597");
         assertThat(persons.iterator().next().getSurname(), is("Mironenko"));
     }
 }

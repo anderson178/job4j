@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 public class PriorityQueueStreamTest {
     @Test
     public void whenHigherPriority() {
-        PriorityQueueStream queue = new PriorityQueueStream();
+        var queue = new PriorityQueueStream();
         queue.put(new Task("middle", 5));
         queue.put(new Task("middle", 4));
         queue.put(new Task("urgent", 1));
