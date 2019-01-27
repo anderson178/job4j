@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author Денис Мироненко
  * @version $Id$
- * @since 27.01.2019
+ * @since 27.1.2019
  */
 
 public class StreamAPI {
