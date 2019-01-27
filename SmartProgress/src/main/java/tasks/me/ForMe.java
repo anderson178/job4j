@@ -74,7 +74,7 @@ public class ForMe {
         PredicateMe<Integer> me = x -> x > 0;
         System.out.println(me.applay(3));*/
 
-        List<Integer> names = Arrays.asList(1,2,3);
+        List<Integer> names = Arrays.asList(1, 2, 3);
 
         //List.of(5, 1, 2).forEach(System.out::print);
 
@@ -90,12 +90,12 @@ public class ForMe {
         /*names.forEach(
                 n -> names.set(0,n)
         );*/
+        int[][] ad = new int[][]{{1, 2, 3}, {1, 6, 4}};
 
-
-
-
+        int p = 0;
 
     }
+
     interface PredicateMe<T> {
         boolean applay(T t);
     }
