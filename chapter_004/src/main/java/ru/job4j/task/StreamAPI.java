@@ -2,6 +2,12 @@ package ru.job4j.task;
 
 import java.util.Arrays;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 27.01.2019
+ */
+
 public class StreamAPI {
 
     public static Integer calculate(Integer[] mas) {

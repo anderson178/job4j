@@ -6,6 +6,12 @@ import static org.junit.Assert.*;
 import org.hamcrest.core.IsNull;
 import org.junit.Test;
 
+/**
+ * @author Денис Мироненко
+ * @version $Id$
+ * @since 27.01.2019
+ */
+
 public class StreamAPITest {
     @Test
     public void whenEqualse20() {
