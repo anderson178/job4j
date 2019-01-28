@@ -32,6 +32,7 @@ public class MatrixCheck {
             }
             countEnd--;
         }
+        int p=0;
         return result;
     }
 }
