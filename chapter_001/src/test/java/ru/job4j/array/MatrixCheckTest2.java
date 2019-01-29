@@ -27,4 +27,16 @@ public class MatrixCheckTest2 {
         boolean result = check.mono2(input);
         assertThat(result, is(false));
     }
+
+    @Test
+    public void whenDataMonoByTrueThenTrue2() {
+        MatrixCheck2 check = new MatrixCheck2();
+        boolean[][] input = new boolean[][] {
+                {true, true, true},
+                {false, true, true},
+                {false, false, true}
+        };
+        boolean result = check.mono2(input);
+        assertThat(result, is(true));
+    }
 }

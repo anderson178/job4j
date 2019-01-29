@@ -10,29 +10,22 @@ public class MatrixCheck {
 
     /**
      * метод проверки диагоналей на одинаковые значения.
+     *
      * @param mas - входящий массив.
      * @return если диагонали свопадают то вернет true иначе false.
      * Первый цикл обрабатывает первую диагональ.
      * Второй цикл обрабатывает обратную диагональ.
      */
     public boolean mono(boolean[][] mas) {
-        boolean temp = mas[0][0];
-        boolean result = true;
-        int countEnd = mas.length - 1;
-        for (int i = 1; i < mas.length; i++) {
-            if (mas[i][i] != temp) {
-                result = false;
-                break;
+        boolean diagonalInverse = true, diagonal = true;
+        for (int i = 0, j = mas.length - 1; i < mas.length - 1 && (diagonal || diagonalInverse); i++, j--) {
+            if (mas[i][i] != mas[i + 1][i + 1] && diagonal) {
+                diagonal = false;
+            }
+            if (mas[i][j] != mas[i + 1][j - 1] && diagonalInverse) {
+                diagonalInverse = false;
             }
         }
-        for (int i = 0; i < mas.length; i++) {
-            if (mas[i][countEnd] != temp) {
-                result = false;
-                break;
-            }
-            countEnd--;
-        }
-        int p=0;
-        return result;
+        return diagonal || diagonalInverse;
     }
 }
