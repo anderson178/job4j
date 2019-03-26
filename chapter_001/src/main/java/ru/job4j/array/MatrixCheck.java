@@ -28,4 +28,6 @@ public class MatrixCheck {
         }
         return diagonal || diagonalInverse;
     }
+
+
 }

@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class ConsoleInput implements Input {
     private Scanner scaner = new Scanner(System.in);
 
-    @Override
+   @Override
     /**
      * метод считывания данных с консоли введнные пользователем
      *
